@@ -55,7 +55,7 @@ namespace LeagueOfLegends.Controllers
             }
             catch (Exception exception)
             {
-                ViewBag.errorMsg = exception.ToString();
+                ViewBag.errorMsg = "Summoner not found. Please try another summoner ID";
                 return View();
             }
         }
