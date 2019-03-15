@@ -16,7 +16,7 @@ namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private String api_key = "RGAPI-fefd048e-3982-463e-a720-aa6ad6b4c9f1";
+        private String api_key = "RGAPI-7e0a6173-3495-4c0d-af60-c16a8eddee05";
 
         public ActionResult Index(String message)
         {
@@ -48,15 +48,15 @@ namespace LeagueOfLegends.Controllers
                 reader = new StreamReader(response.GetResponseStream());
                 objText = reader.ReadToEnd();
                 MatchList matchList = JsonConvert.DeserializeObject<MatchList>(objText);
+                
+                ViewBag.summoner = summoner;
+                ViewBag.matchlist = matchList;
 
-                var summonerData = new Tuple<Summoner, MatchList>(summoner, matchList);
-
-                return View(summonerData);
+                return View();
             }
             catch (Exception exception)
             {
-                ViewBag.errorMsg = "Summoner not found. Please try another summoner ID";
-                return View();
+                return RedirectToAction("Index", "Home", new { message = "Summoner not found. Please try another summoner ID" });
             }
         }
 

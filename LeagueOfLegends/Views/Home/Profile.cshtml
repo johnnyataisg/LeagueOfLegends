@@ -1,20 +1,12 @@
 ﻿@using LeagueOfLegends.Models
-@model Tuple<Summoner, MatchList>
 
 @{
     ViewBag.Title = "Summoner Profile";
 }
 
-@if (Model == null)
+<h2>@ViewBag.summoner.name</h2>
+<h4>Summoner Level: @ViewBag.summoner.summonerLevel</h4>
+@foreach (Match match in (ViewBag.matchlist as MatchList))
 {
-    <h2>@ViewBag.errorMsg</h2>
-}
-else
-{
-    <h2>@Model.Item1.name</h2>
-    <h4>Summoner Level: @Model.Item1.summonerLevel</h4>
-    foreach (Match match in Model.Item2.matches)
-    {
-        <p>@match.gameId</p>
-    }
+    <p>@match.gameId</p>
 }
