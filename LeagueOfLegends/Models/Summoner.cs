@@ -8,7 +8,7 @@ namespace LeagueOfLegends.Models
     public class Summoner
     {
         public String id { get; set; }
-        public String accountID { get; set; }
+        public String accountId { get; set; }
         public String puuid { get; set; }
         public String name { get; set; }
         public int profileIconId { get; set; }

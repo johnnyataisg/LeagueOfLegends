@@ -6,7 +6,12 @@
 
 <h2>@ViewBag.summoner.name</h2>
 <h4>Summoner Level: @ViewBag.summoner.summonerLevel</h4>
-@foreach (Match match in (ViewBag.matchlist as MatchList))
+@foreach (Match match in ViewBag.matchlist.matches)
 {
-    <p>@match.gameId</p>
+    using (var db = new LeagueOfLegendsStaticDataEntities1())
+    {
+        var champion = db.Champions.Where(s => s.id == match.champion).FirstOrDefault();
+        <p>@match.gameId</p>
+        <p>@champion.champion_name</p>
+    }
 }

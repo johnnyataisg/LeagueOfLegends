@@ -16,7 +16,7 @@ namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private String api_key = "RGAPI-7e0a6173-3495-4c0d-af60-c16a8eddee05";
+        private String api_key = "RGAPI-2ab7fec2-7319-479a-b2f9-1add9e2eb702";
 
         public ActionResult Index(String message)
         {
@@ -41,7 +41,7 @@ namespace LeagueOfLegends.Controllers
                 String objText = reader.ReadToEnd();
                 Summoner summoner = JsonConvert.DeserializeObject<Summoner>(objText);
 
-                String accountID = summoner.accountID;
+                String accountID = summoner.accountId;
                 targetUri = new Uri("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID + "?api_key=" + api_key);
                 request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
                 response = (HttpWebResponse)request.GetResponse();
@@ -56,7 +56,7 @@ namespace LeagueOfLegends.Controllers
             }
             catch (Exception exception)
             {
-                return RedirectToAction("Index", "Home", new { message = "Summoner not found. Please try another summoner ID" });
+                return RedirectToAction("Index", "Home", new { message = exception.Message });
             }
         }
 
