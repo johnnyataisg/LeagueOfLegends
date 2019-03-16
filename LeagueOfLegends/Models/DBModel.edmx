@@ -11,9 +11,19 @@
           </Key>
           <Property Name="champion_name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="LeagueOfLegendsStaticDataModelStoreContainer">
           <EntitySet Name="Champions" EntityType="Self.Champions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -26,21 +36,41 @@
           </Key>
           <Property Name="champion_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="LeagueOfLegendsStaticDataEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="LeagueOfLegendsStaticDataEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Champions" EntityType="Self.Champion" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LeagueOfLegendsStaticDataModelStoreContainer" CdmEntityContainer="LeagueOfLegendsStaticDataEntities1">
+        <EntityContainerMapping StorageEntityContainer="LeagueOfLegendsStaticDataModelStoreContainer" CdmEntityContainer="LeagueOfLegendsStaticDataEntities2">
           <EntitySetMapping Name="Champions">
             <EntityTypeMapping TypeName="LeagueOfLegendsStaticDataModel.Champion">
               <MappingFragment StoreEntitySet="Champions">
                 <ScalarProperty Name="champion_name" ColumnName="champion_name" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="image" ColumnName="image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="LeagueOfLegendsStaticDataModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

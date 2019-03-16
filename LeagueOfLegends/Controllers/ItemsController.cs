@@ -10,107 +10,107 @@ using LeagueOfLegends.Models;
 
 namespace LeagueOfLegends.Controllers
 {
-    public class ChampionsController : Controller
+    public class ItemsController : Controller
     {
         private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
 
-        // GET: Champions
+        // GET: Items
         public ActionResult Index()
         {
-            return View(db.Champions.ToList());
+            return View(db.Items.ToList());
         }
 
-        // GET: Champions/Details/5
-        public ActionResult Details(string id)
+        // GET: Items/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Champion champion = db.Champions.Find(id);
-            if (champion == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(champion);
+            return View(item);
         }
 
-        // GET: Champions/Create
+        // GET: Items/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Champions/Create
+        // POST: Items/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "champion_name,id,title,image")] Champion champion)
+        public ActionResult Create([Bind(Include = "id,item_name")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Champions.Add(champion);
+                db.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(champion);
+            return View(item);
         }
 
-        // GET: Champions/Edit/5
-        public ActionResult Edit(string id)
+        // GET: Items/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Champion champion = db.Champions.Find(id);
-            if (champion == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(champion);
+            return View(item);
         }
 
-        // POST: Champions/Edit/5
+        // POST: Items/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "champion_name,id,title,image")] Champion champion)
+        public ActionResult Edit([Bind(Include = "id,item_name")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(champion).State = EntityState.Modified;
+                db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(champion);
+            return View(item);
         }
 
-        // GET: Champions/Delete/5
-        public ActionResult Delete(string id)
+        // GET: Items/Delete/5
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Champion champion = db.Champions.Find(id);
-            if (champion == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(champion);
+            return View(item);
         }
 
-        // POST: Champions/Delete/5
+        // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Champion champion = db.Champions.Find(id);
-            db.Champions.Remove(champion);
+            Item item = db.Items.Find(id);
+            db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -12,11 +12,9 @@ namespace LeagueOfLegends.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Champion
+    public partial class Item
     {
-        public string champion_name { get; set; }
         public int id { get; set; }
-        public string title { get; set; }
-        public string image { get; set; }
+        public string item_name { get; set; }
     }
 }

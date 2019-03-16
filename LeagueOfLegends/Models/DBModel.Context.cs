@@ -13,10 +13,10 @@ namespace LeagueOfLegends.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LeagueOfLegendsStaticDataEntities1 : DbContext
+    public partial class LeagueOfLegendsStaticDataEntities : DbContext
     {
-        public LeagueOfLegendsStaticDataEntities1()
-            : base("name=LeagueOfLegendsStaticDataEntities1")
+        public LeagueOfLegendsStaticDataEntities()
+            : base("name=LeagueOfLegendsStaticDataEntities")
         {
         }
     
@@ -26,5 +26,6 @@ namespace LeagueOfLegends.Models
         }
     
         public virtual DbSet<Champion> Champions { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
     }
 }
