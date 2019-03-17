@@ -1,0 +1,15 @@
+﻿@using LeagueOfLegends.Models
+@model IEnumerable<LeagueOfLegends.Models.Champion>
+
+@{
+    ViewBag.Title = "AllChampions";
+}
+
+@foreach (Champion champion in Model)
+{
+    <div class="picture-tile">
+        <h5>@champion.champion_name, @champion.title</h5>
+        <img src="~/Images/Champions/Icon/@champion.image"/>
+    </div>
+}
+

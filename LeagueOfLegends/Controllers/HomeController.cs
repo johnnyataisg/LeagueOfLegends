@@ -17,6 +17,7 @@ namespace LeagueOfLegends.Controllers
     public class HomeController : Controller
     {
         private String api_key = "RGAPI-2ab7fec2-7319-479a-b2f9-1add9e2eb702";
+        private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
 
         public ActionResult Index(String message)
         {
@@ -60,11 +61,9 @@ namespace LeagueOfLegends.Controllers
             }
         }
 
-        public ActionResult Contact()
+        public ActionResult AllChampions()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(db.Champions.ToList());
         }
     }
 }
