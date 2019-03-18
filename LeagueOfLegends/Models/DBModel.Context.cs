@@ -27,5 +27,8 @@ namespace LeagueOfLegends.Models
     
         public virtual DbSet<Champion> Champions { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Queue> Queues { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Season> Seasons { get; set; }
     }
 }

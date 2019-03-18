@@ -6,20 +6,22 @@
 
 <h2>@ViewBag.summoner.name</h2>
 <h4>Summoner Level: @ViewBag.summoner.summonerLevel</h4>
-@foreach (Match match in ViewBag.matchlist.matches)
+@foreach (Match match in ViewBag.matchList.matches)
 {
-    using (var db = new LeagueOfLegendsStaticDataEntities())
+    using (LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities())
     {
-        var champion = db.Champions.Where(s => s.id == match.champion).FirstOrDefault();
-        <div class="matchListTile">
-            <div class="matchChampionIcon">
-                <img src="~/Images/Champions/Icon/@champion.image" style="width: 100%; height: auto;"/>
+        Champion champion = db.Champions.Where(s => s.id == match.champion).FirstOrDefault();
+        <a href=@Url.Action("MatchDetails", "Home", new { matchId = match.gameId, championId = match.champion })>
+            <div class="matchListTile">
+                <div class="matchChampionIcon">
+                    <img src="~/Images/Champions/Icon/@champion.image" style="width: 100%; height: auto;" />
+                </div>
+                <div class="matchDetails">
+                    <p>@champion.champion_name</p>
+                    <p>@match.role</p>
+                    <p>@match.lane</p>
+                </div>
             </div>
-            <div class="matchDetails">
-                <p>@champion.champion_name</p>
-                <p>@match.role</p>
-                <p>@match.lane</p>
-            </div>
-        </div>
+        </a>
     }
 }

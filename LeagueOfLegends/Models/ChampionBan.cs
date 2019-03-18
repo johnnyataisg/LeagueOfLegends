@@ -7,5 +7,7 @@ namespace LeagueOfLegends.Models
 {
     public class ChampionBan
     {
+        public int pickTurn { get; set; }
+        public int championId { get; set; }
     }
 }

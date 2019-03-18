@@ -170,7 +170,16 @@
     <Compile Include="Models\PerformanceTimeline.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\PlayerData.cs" />
+    <Compile Include="Models\Queue.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Season.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Summoner.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TeamStats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -381,6 +390,7 @@
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\Home\AllChampions.cshtml" />
+    <Content Include="Views\Home\matchDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

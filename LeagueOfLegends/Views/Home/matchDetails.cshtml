@@ -1,0 +1,35 @@
+﻿@using LeagueOfLegends.Models
+@model MatchData
+
+@{
+    LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
+
+    ViewBag.Title = "Match Details";
+
+    int championId = ViewBag.champion;
+    Champion champion = db.Champions.Where(s => s.id == championId).FirstOrDefault();
+
+    double timestamp = Model.gameCreation;
+    System.DateTime gameStartTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+    gameStartTime = gameStartTime.AddMilliseconds(timestamp).ToLocalTime();
+
+    Queue queue = db.Queues.Where(s => s.id == Model.queueId).FirstOrDefault();
+
+    List<Player> participantIdentities = Model.participantIdentities;
+    List<ParticipantPerformance> participantPerformances = Model.participants;
+}
+
+<div>
+    <h2>@queue.map  @queue.pickType @queue.gameType</h2>
+    <img src="~/Images/Champions/Icon/@champion.image" />
+    <h4>@gameStartTime</h4>
+    @for (int i = 0; i < participantIdentities.Count(); i++)
+    {
+        int participantSelectedChampionId = participantPerformances.ElementAt(i).championId;
+        Champion participantSelectedChampion = db.Champions.Where(s => s.id == participantSelectedChampionId).FirstOrDefault();
+        
+        <img src="~/Images/Champions/Icon/@participantSelectedChampion.image" />
+        <p>@participantIdentities.ElementAt(i).player.summonername</p>
+    }
+
+</div>

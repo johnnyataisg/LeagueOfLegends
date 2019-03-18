@@ -4,9 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c3998426ede14377900d1251df07364b" Name="Diagram1">
+      <Diagram DiagramId="f5a7db98353b40a0b794c26d3c1776a9" Name="Diagram1">
         <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Champion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Item" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Queue" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.sysdiagram" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Season" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

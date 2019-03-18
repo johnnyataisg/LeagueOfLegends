@@ -16,7 +16,7 @@ namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private String api_key = "RGAPI-2ab7fec2-7319-479a-b2f9-1add9e2eb702";
+        private String api_key = "RGAPI-acb8abda-f860-4b61-b65a-2808d066f202";
         private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
 
         public ActionResult Index(String message)
@@ -51,13 +51,34 @@ namespace LeagueOfLegends.Controllers
                 MatchList matchList = JsonConvert.DeserializeObject<MatchList>(objText);
                 
                 ViewBag.summoner = summoner;
-                ViewBag.matchlist = matchList;
+                ViewBag.matchList = matchList;
 
                 return View();
             }
             catch (Exception exception)
             {
                 return RedirectToAction("Index", "Home", new { message = exception.Message });
+            }
+        }
+
+        public ActionResult matchDetails(String matchId, int championId)
+        {
+            try
+            {
+                Uri targetUri = new Uri("https://na1.api.riotgames.com/lol/match/v4/matches/" + matchId + "?api_key=" + api_key);
+                System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+                String objText = reader.ReadToEnd();
+                MatchData data = JsonConvert.DeserializeObject<MatchData>(objText);
+
+                ViewBag.champion = championId;
+
+                return View(data);
+            }
+            catch (Exception exception)
+            {
+                return View();
             }
         }
 
