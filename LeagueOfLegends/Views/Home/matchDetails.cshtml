@@ -23,13 +23,84 @@
     <h2>@queue.map  @queue.pickType @queue.gameType</h2>
     <img src="~/Images/Champions/Icon/@champion.image" />
     <h4>@gameStartTime</h4>
-    @for (int i = 0; i < participantIdentities.Count(); i++)
-    {
-        int participantSelectedChampionId = participantPerformances.ElementAt(i).championId;
-        Champion participantSelectedChampion = db.Champions.Where(s => s.id == participantSelectedChampionId).FirstOrDefault();
-        
-        <img src="~/Images/Champions/Icon/@participantSelectedChampion.image" />
-        <p>@participantIdentities.ElementAt(i).player.summonername</p>
-    }
+    <div id="teamStatsContainer">
+        <div class="teamSideContainer">
+            <h3>@Model.teams.ElementAt(0).win</h3>
+            @for (int i = 0; i < 5; i++)
+            {
+                Player currentPlayer = participantIdentities.ElementAt(i);
+                ParticipantPerformance currentPlayerPerformance = participantPerformances.ElementAt(i);
+                int participantSelectedChampionId = currentPlayerPerformance.championId;
+                Champion participantSelectedChampion = db.Champions.Where(s => s.id == participantSelectedChampionId).FirstOrDefault();
+
+                String highestAchievedRank = (currentPlayerPerformance.highestAchievedSeasonTier == null) ? "UNRANKED" : currentPlayerPerformance.highestAchievedSeasonTier;
+
+                <div class="teamPlayerTile">
+                    <div class="playerNameAndTier">
+                        <div>
+                            <p>@currentPlayer.player.summonername</p>
+                            <p>@highestAchievedRank</p>
+                        </div>
+                    </div>
+                    <div class="playerChampionImage">
+                        <img src="~/Images/Champions/Icon/@participantSelectedChampion.image" />
+                    </div>
+                    <div class="playerKDA">
+                        <div>
+                            <p>@currentPlayerPerformance.stats.kills/@currentPlayerPerformance.stats.deaths/@currentPlayerPerformance.stats.assists</p>
+                        </div>
+                    </div>
+                    <div class="playerStats">
+                        <div class="statsContainer">
+                            <div class="statsContent">
+                                <p>Minions Killed: <span>@currentPlayerPerformance.stats.totalMinionsKilled</span></p>
+                                <p>Gold Earned: <span>@currentPlayerPerformance.stats.goldEarned</span></p>
+                                <p>Wards Placed: <span>@currentPlayerPerformance.stats.wardsPlaced</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="teamSideContainer">
+            <h3>@Model.teams.ElementAt(1).win</h3>
+            @for (int i = 5; i < 10; i++)
+            {
+                Player currentPlayer = participantIdentities.ElementAt(i);
+                ParticipantPerformance currentPlayerPerformance = participantPerformances.ElementAt(i);
+                int participantSelectedChampionId = currentPlayerPerformance.championId;
+                Champion participantSelectedChampion = db.Champions.Where(s => s.id == participantSelectedChampionId).FirstOrDefault();
+
+                String highestAchievedRank = (currentPlayerPerformance.highestAchievedSeasonTier == null) ? "UNRANKED" : currentPlayerPerformance.highestAchievedSeasonTier;
+
+                <div class="teamPlayerTile">
+                    <div class="playerNameAndTier">
+                        <div>
+                            <p>@currentPlayer.player.summonername</p>
+                            <p>@highestAchievedRank</p>
+                        </div>
+                    </div>
+                    <div class="playerChampionImage">
+                        <img src="~/Images/Champions/Icon/@participantSelectedChampion.image" />
+                    </div>
+                    <div class="playerKDA">
+                        <div>
+                            <p>@currentPlayerPerformance.stats.kills/@currentPlayerPerformance.stats.deaths/@currentPlayerPerformance.stats.assists</p>
+                        </div>
+                    </div>
+                    <div class="playerStats">
+                        <div class="statsContainer">
+                            <div class="statsContent">
+                                <p>Minions Killed: <span>@currentPlayerPerformance.stats.totalMinionsKilled</span></p>
+                                <p>Gold Earned: <span>@currentPlayerPerformance.stats.goldEarned</span></p>
+                                <p>Wards Placed: <span>@currentPlayerPerformance.stats.wardsPlaced</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    
 
 </div>

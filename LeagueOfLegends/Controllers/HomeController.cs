@@ -16,7 +16,7 @@ namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private String api_key = "RGAPI-acb8abda-f860-4b61-b65a-2808d066f202";
+        private String api_key = "RGAPI-47743c8b-db57-497f-8738-c970d8262193";
         private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
 
         public ActionResult Index(String message)
@@ -61,7 +61,7 @@ namespace LeagueOfLegends.Controllers
             }
         }
 
-        public ActionResult matchDetails(String matchId, int championId)
+        public ActionResult MatchDetails(String matchId, int championId)
         {
             try
             {
