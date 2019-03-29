@@ -16,7 +16,7 @@ namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private String api_key = "RGAPI-47743c8b-db57-497f-8738-c970d8262193";
+        private String api_key = "RGAPI-763186fd-6004-44a5-aafe-325fbbada2f3";
         private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
 
         public ActionResult Index(String message)

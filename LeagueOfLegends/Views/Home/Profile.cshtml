@@ -4,8 +4,8 @@
     ViewBag.Title = "Summoner Profile";
 }
 
-<h2>@ViewBag.summoner.name</h2>
-<h4>Summoner Level: @ViewBag.summoner.summonerLevel</h4>
+<h4 style="margin: 0 auto;">@ViewBag.summoner.name</h4>
+<h5 style="margin-bottom: 30px;">Summoner Level: @ViewBag.summoner.summonerLevel</h5>
 @foreach (Match match in ViewBag.matchList.matches)
 {
     using (LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities())

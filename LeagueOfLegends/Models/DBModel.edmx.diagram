@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f5a7db98353b40a0b794c26d3c1776a9" Name="Diagram1">
+      <Diagram DiagramId="44f7da46b895463db5ac0faeb185b1b7" Name="Diagram1">
         <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Champion" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Item" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="LeagueOfLegendsStaticDataModel.Queue" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

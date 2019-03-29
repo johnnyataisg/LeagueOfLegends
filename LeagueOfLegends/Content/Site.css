@@ -1,6 +1,5 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    color: white;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -17,6 +16,14 @@ textarea {
     max-width: 280px;
 }
 
+.body-container {
+    padding: 25px 40px;
+}
+
+#summonerName {
+    color: white !important;
+}
+
 .picture-tile {
     float: left;
     width: 25%;
@@ -24,8 +31,8 @@ textarea {
 
 .matchListTile {
     height: 100px;
-    background-color: #949494;
     margin-bottom: 15px;
+    margin-left: 50px;
 }
 
 .matchChampionIcon {
@@ -40,7 +47,13 @@ textarea {
 }
 
 .matchDetails {
+    height: 100%;
     float: left;
+    margin: auto 15px;
+}
+
+.matchDetails p {
+    margin: 0;
 }
 
 #teamStatsContainer {
@@ -59,7 +72,7 @@ textarea {
 
 .playerNameAndTier {
     float: left;
-    width: 120px;
+    width: 125px;
     height: 100%;
     position: relative;
 }

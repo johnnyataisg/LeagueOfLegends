@@ -20,9 +20,9 @@
 }
 
 <div>
-    <h2>@queue.map  @queue.pickType @queue.gameType</h2>
-    <img src="~/Images/Champions/Icon/@champion.image" />
-    <h4>@gameStartTime</h4>
+    <h4 style="margin: 0 auto;">@queue.map  @queue.pickType @queue.gameType</h4>
+    <img src="~/Images/Champions/Icon/@champion.image" style="height: 80px; width: 80px;"/>
+    <h5>@gameStartTime</h5>
     <div id="teamStatsContainer">
         <div class="teamSideContainer">
             <h3>@Model.teams.ElementAt(0).win</h3>

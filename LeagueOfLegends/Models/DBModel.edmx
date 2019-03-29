@@ -114,7 +114,7 @@ warning 6002: The table/view 'LeagueOfLegendsStaticData.dbo.Seasons' does not ha
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <EntityContainer Name="LeagueOfLegendsStaticDataEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LeagueOfLegendsStaticDataEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Champions" EntityType="Self.Champion" />
           <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="Queues" EntityType="Self.Queue" />
@@ -126,7 +126,7 @@ warning 6002: The table/view 'LeagueOfLegendsStaticData.dbo.Seasons' does not ha
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LeagueOfLegendsStaticDataModelStoreContainer" CdmEntityContainer="LeagueOfLegendsStaticDataEntities3">
+        <EntityContainerMapping StorageEntityContainer="LeagueOfLegendsStaticDataModelStoreContainer" CdmEntityContainer="LeagueOfLegendsStaticDataEntities">
           <EntitySetMapping Name="Champions">
             <EntityTypeMapping TypeName="LeagueOfLegendsStaticDataModel.Champion">
               <MappingFragment StoreEntitySet="Champions">
