@@ -2,17 +2,24 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    @using (Html.BeginForm("Profile", "Home", FormMethod.Get))
-    {
-        <div class="input-field col s6">
-            <input id="summonerName" name="sName" type="text" class="validate" placeholder="Enter a summoner name">
-            <label for="summonerName">Summoner Lookup</label>
-        </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">
-            Search
-            <i class="material-icons right">send</i>
-        </button>
-    }
-    <p>@ViewBag.message</p>
+
+<script>
+    particlesJS.load("particles-js", "particles.json", function () { console.log(""); });
+</script>
+
+<div class="homepage-jumbotron">
+    <div id="particles-js"></div>
+    <div class="overlay">
+        <h1 class="display-3" style="color: white;">Improve Your Game</h1>
+        <p class="lead">Providing the best in-game analytics for League of Legends</p>
+        <hr class="my-5">
+        <h4 style="color: white;">Search a Summoner by name</h4>
+        <br />
+        @using (Html.BeginForm("SummonerProfile", "Home", FormMethod.Get))
+        {
+            <input id="summonerName" name="sName" type="text" class="validate form-control" placeholder="Enter a summoner name">
+            <button id="searchBtn" class="btn btn-game" style="margin-top: 30px;" type="submit" name="action"><span>Search Summoner</span><i class="fas fa-paper-plane"></i></button>
+        }
+        <p style="margin-top: 20px;">@ViewBag.message</p>
+    </div>
 </div>

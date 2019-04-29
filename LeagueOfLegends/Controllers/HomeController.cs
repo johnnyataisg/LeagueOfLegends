@@ -11,12 +11,13 @@ using System.Web.Script.Serialization;
 using System.Data;
 using System.Data.Entity;
 using System.Web.Security;
+using RestSharp;
+using Newtonsoft.Json.Linq;
 
 namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private String api_key = "RGAPI-763186fd-6004-44a5-aafe-325fbbada2f3";
         private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
 
         public ActionResult Index(String message)
@@ -26,32 +27,30 @@ namespace LeagueOfLegends.Controllers
         }
 
         [HttpGet]
-        public ActionResult Profile(String sName)
+        public ActionResult SummonerProfile(String sName)
         {
             try
             {
-                String summonerName = sName;
-                if (summonerName == null || summonerName == "")
+                //Redirect to index and show error message if the summoner name is null or empty
+                if (sName == null || sName == "")
                 {
                     return RedirectToAction("Index", "Home", new { message = "Please enter the name of a summoner" });
                 }
-                Uri targetUri = new Uri("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + summonerName + "?api_key=" + api_key);
-                System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                String objText = reader.ReadToEnd();
-                Summoner summoner = JsonConvert.DeserializeObject<Summoner>(objText);
 
+                //Get the summoner Riot API response object
+                RiotRestWrapper client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + sName);
+                IRestResponse response = client.Execute();
+                Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response.Content.ToString());
+
+                //Get the 100 most recent games of this summoner
                 String accountID = summoner.accountId;
-                targetUri = new Uri("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID + "?api_key=" + api_key);
-                request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
-                response = (HttpWebResponse)request.GetResponse();
-                reader = new StreamReader(response.GetResponseStream());
-                objText = reader.ReadToEnd();
-                MatchList matchList = JsonConvert.DeserializeObject<MatchList>(objText);
-                
+                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID);
+                response = client.Execute();
+                MatchList matchList = JsonConvert.DeserializeObject<MatchList>(response.Content.ToString());
+
                 ViewBag.summoner = summoner;
                 ViewBag.matchList = matchList;
+                ViewBag.accountID = accountID;
 
                 return View();
             }
@@ -65,12 +64,9 @@ namespace LeagueOfLegends.Controllers
         {
             try
             {
-                Uri targetUri = new Uri("https://na1.api.riotgames.com/lol/match/v4/matches/" + matchId + "?api_key=" + api_key);
-                System.Net.HttpWebRequest request = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(targetUri);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                StreamReader reader = new StreamReader(response.GetResponseStream());
-                String objText = reader.ReadToEnd();
-                MatchData data = JsonConvert.DeserializeObject<MatchData>(objText);
+                RiotRestWrapper client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matches/" + matchId);
+                IRestResponse response = client.Execute();
+                MatchData data = JsonConvert.DeserializeObject<MatchData>(response.Content.ToString());
 
                 ViewBag.champion = championId;
 
@@ -78,7 +74,7 @@ namespace LeagueOfLegends.Controllers
             }
             catch (Exception exception)
             {
-                return View();
+                return RedirectToAction("Index", "Home", new { message = exception.Message });
             }
         }
 

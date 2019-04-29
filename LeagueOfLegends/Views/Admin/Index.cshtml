@@ -1,0 +1,58 @@
+﻿@using LeagueOfLegends.Models.StaticDataModels
+@model LeagueOfLegends.Models.StaticDataModels.ChampionFull
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    particlesJS.load("particles-js2", "particles.json", function ()
+    {
+        console.log("particles.js working as expected");
+    });
+</script>
+
+<div class="body-main-container">
+    <div id="particles-js2" class="particles-positioning"></div>
+    <div class="overlay" style="background-color: #1f1f1f80;">
+        <div class="import-feature-left">
+            <h2>Import Data into the Database</h2>
+            @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <input type="file" id="fileInputBtn" name="file" class="form-control-file" />
+                <input type="submit" id="fileInputSubmit" class="btn btn-success" value="Import" />
+            }
+        </div>
+        <div class="import-result-right">
+            <div id="commitTable">
+                <table class="table table-hover">
+                    @if (Model != null)
+                    {
+                        <thead style="background-color: #4040409e;">
+                            <tr>
+                                <th>id</th>
+                                <th>key</th>
+                                <th>name</th>
+                                <th>title</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (KeyValuePair<String, ChampionData> pair in Model.data)
+                            {
+                                <tr>
+                                    <td>@pair.Value.id</td>
+                                    <td>@pair.Value.key</td>
+                                    <td>@pair.Value.name</td>
+                                    <td>@pair.Value.title</td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+            </div>
+            <div id="commitBtn">
+                <a href=@Url.Action("CommitImport", "Admin") class="btn @(@Model == null ? "btn-secondary disabled" : "btn-success")">Commit Import</a>
+            </div>
+        </div>
+    </div>
+</div>

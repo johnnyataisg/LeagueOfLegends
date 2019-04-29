@@ -1,5 +1,26 @@
 ﻿body {
-    color: white;
+    color: white !important;
+    background-color: #000040;
+}
+
+footer {
+    width: 100%;
+    height: 75px;
+    background-color: white;
+    text-align: right;
+    color: black;
+    padding: 10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: white !important;
+}
+
+.body-main-container {
+    height: 90vh;
+    width: 100%;
+    display: block;
+    position: relative;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -14,19 +35,203 @@ input,
 select,
 textarea {
     max-width: 280px;
+    color: black;
 }
 
-.body-container {
-    padding: 25px 40px;
+/* Custom designed button for the theme */
+.btn-game {
+    border-radius: 5px;
+    color: #fff;
+    background-color: #4bbfb3;
+    border-color: #4bbfb3;
+    position: relative;
+}
+
+.btn-game:hover {
+    color: #fff;
+    background-color: #3c988f;
+    border-color: #3c988f;
+}
+
+.btn-game:active {
+    color: #fff;
+    background-color: #3c988f;
+    border-color: #3c988f;
+}
+
+.btn-game:focus {
+    box-shadow: 0 0 0 0.2rem rgba(102, 201, 136, 0.5);
+}
+
+/* Hover icon for index page search button */
+#searchBtn span {
+    left: 0;
+    position: relative;
+    transition: all 0.2s ease-out 0s;
+}
+
+#searchBtn i {
+    width: 18px;
+    right: 20px;
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+    line-height: 18px;
+    opacity: 0;
+    transition: all 0.2s ease-out 0s;
+}
+
+#searchBtn:hover span {
+    left: -10px;
+}
+
+#searchBtn:hover i {
+    opacity: 1;
 }
 
 #summonerName {
-    color: white !important;
+    border-radius: 5px;
+}
+
+.homepage-jumbotron {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+#particles-js {
+    background-image: url('/Images/Static/adult-competition-concentration-929831.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.particles-positioning {
+    background-image: url('/Images/Static/zed_wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.overlay {
+    background-color: #000048a1;
+    height: 100%;
+    width: 100%;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+.import-feature-left {
+    height: 100%;
+    width: 40%;
+    float: left;
+    background-color: #4040409e;
+    padding: 30px;
+    border-radius: 5px;
+    margin-right: 3%;
+}
+
+.import-result-right {
+    height: 100%;
+    width: 57%;
+    float: left;
+    background-color: #4040409e;
+    padding: 30px;
+    border-radius: 5px;
+}
+
+#commitTable {
+    height: 90%;
+    width: 100%;
+    overflow-y: auto;
+    margin-bottom: 3%;
+}
+
+#commitBtn {
+    height: 7%;
+    width: 100%;
+}
+
+.import-feature-left h2 {
+    margin-bottom: 25px;
+}
+
+#fileInputBtn {
+    color: white;
+    display: block;
+    margin-bottom: 25px;
+}
+
+#fileInputSubmit {
+    color: white;
+}
+
+#championAnalytics {
+    height: 90vh;
+    width: 100%;
+    display: block;
+    position: relative;
+}
+
+#championListContainer {
+    float: left;
+    height: 100%;
+    width: 25%;
+    position: relative;
+    margin-right: 3%;
+}
+
+#championListContainer .header-block {
+    height: 7%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+#championListContainer .body-block {
+    overflow-y: auto;
+    height: 93%;
+    position: absolute;
+    bottom: 0;
+}
+
+#championListContainer .body-block::-webkit-scrollbar {
+    width: 0 !important;
 }
 
 .picture-tile {
+    cursor: pointer;
+}
+
+.picture-tile th, td {
+    padding: 0.5rem !important;
+}
+
+.picture-tile img {
+    height: 70px;
+    width: auto;
+}
+
+.picture-tile h5 {
     float: left;
-    width: 25%;
+}
+
+#championDataContainer {
+    float: left;
+    height: 100%;
+    width: 72%;
+    background-color: #4040409e;
 }
 
 .matchListTile {
@@ -140,4 +345,33 @@ textarea {
 
 .statsContent p {
     margin: 5px;
+}
+
+.statsModal {
+    display: none;
+    z-index: 2000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #2a2671;
+    padding: 30px;
+    max-height: 70%;
+    width: 55%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;
+    box-shadow: #00000045 0px 0px 10px 6px;
+}
+
+.statsModalFooter {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+.statsModalFooter a {
+    color: white;
 }

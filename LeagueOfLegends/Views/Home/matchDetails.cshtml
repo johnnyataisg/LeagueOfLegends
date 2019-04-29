@@ -38,7 +38,7 @@
                 <div class="teamPlayerTile">
                     <div class="playerNameAndTier">
                         <div>
-                            <p>@currentPlayer.player.summonername</p>
+                            <a href=@Url.Action("SummonerProfile", "Home", new { sName = currentPlayer.player.summonerName })>@currentPlayer.player.summonerName</a>
                             <p>@highestAchievedRank</p>
                         </div>
                     </div>
@@ -59,6 +59,7 @@
                             </div>
                         </div>
                     </div>
+                    <button target="@currentPlayer.player.summonerName" value="@currentPlayer.player.summonerId" class="btn modal-trigger">Modal</button>
                 </div>
             }
         </div>
@@ -76,7 +77,7 @@
                 <div class="teamPlayerTile">
                     <div class="playerNameAndTier">
                         <div>
-                            <p>@currentPlayer.player.summonername</p>
+                            <a href=@Url.Action("SummonerProfile", "Home", new { sName = currentPlayer.player.summonerName })>@currentPlayer.player.summonerName</a>
                             <p>@highestAchievedRank</p>
                         </div>
                     </div>
@@ -97,10 +98,19 @@
                             </div>
                         </div>
                     </div>
+                    <button target="@currentPlayer.player.summonerName" value="@currentPlayer.player.summonerId" class="btn modal-trigger">Modal</button>
                 </div>
             }
         </div>
     </div>
-    
-
+    <!-- Modal Structure -->
+    <div id="playerStatsModal" class="statsModal">
+        <div>
+            <h4></h4>
+            <p></p>
+        </div>
+        <div class="statsModalFooter">
+            <a href="#" id="closeModalBtn" class="modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
 </div>

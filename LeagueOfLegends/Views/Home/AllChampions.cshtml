@@ -5,11 +5,37 @@
     ViewBag.Title = "AllChampions";
 }
 
-@foreach (Champion champion in Model)
-{
-    <div class="picture-tile">
-        <h5>@champion.champion_name, @champion.title</h5>
-        <img src="~/Images/Champions/Icon/@champion.image"/>
-    </div>
-}
+<script>
+    particlesJS.load("particles-js3", "particles.json", function () { console.log(""); });
+</script>
 
+<div id="championAnalytics">
+    <div id="particles-js3" class="particles-positioning"></div>
+    <div class="overlay" style="background-color: #1f1f1f80;">
+        <div id="championListContainer">
+            <div class="header-block">
+                <h4>Scroll to See All Champions</h4>
+            </div>
+            <div class="body-block">
+                <table class="table table-hover">
+                    <tbody style="background-color: #4040409e;">
+                        @foreach (Champion champion in Model)
+                        {
+                            <tr class="picture-tile" scope="row">
+                                <td>
+                                    <img src="~/Images/Champions/Icon/@champion.image" />
+                                </td>
+                                <td>
+                                    <h6>@champion.champion_name, @champion.title</h6>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="championDataContainer">
+
+        </div>
+    </div>
+</div>
