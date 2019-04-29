@@ -90,9 +90,7 @@ namespace LeagueOfLegends.Models
                 {
                     this.db.ChampionSummary.Add(entry);
                 }
-                this.updateChampionInfoTable(entry.key, champion.info);
-                this.updateChampionStatsTable(entry.key, champion.stats);
-                this.updateChampionSkinsTable(entry.key, champion.skins);
+                this.updateDependentTables(key, champion);
             }
             this.db.SaveChanges();
         }
@@ -119,6 +117,257 @@ namespace LeagueOfLegends.Models
             }
             this.db.SaveChanges();
             return entry.id;
+        }
+
+        public int updateChampionPassivesTable(StaticDataModels.ChampionPassive passive)
+        {
+            bool newRow = false;
+            int foreignKey = this.updatePassiveImagesTable(passive.image);
+            ChampionPassive entry = this.db.ChampionPassives.Where(row => row.image == foreignKey).FirstOrDefault();
+            if (entry == null)
+            {
+                newRow = true;
+                entry = new ChampionPassive();
+            }
+            entry.image = foreignKey;
+            if (passive.name != "" && passive.name != null)
+            {
+                entry.name = passive.name;
+                entry.description = passive.description;
+            }
+            if (newRow)
+            {
+                this.db.ChampionPassives.Add(entry);
+            }
+            this.db.SaveChanges();
+            return entry.id;
+        }
+
+        public int updatePassiveImagesTable(StaticDataModels.SpellImage image)
+        {
+            bool newRow = false;
+            PassiveImage entry = this.db.PassiveImages.Where(row => row.full == image.full).FirstOrDefault();
+            if (entry == null)
+            {
+                newRow = true;
+                entry = new PassiveImage();
+            }
+            entry.full = image.full;
+            entry.sprite = image.sprite;
+            entry.group = image.group;
+            entry.x = image.x;
+            entry.y = image.y;
+            entry.w = image.w;
+            entry.h = image.h;
+            if (newRow)
+            {
+                this.db.PassiveImages.Add(entry);
+            }
+            this.db.SaveChanges();
+            return entry.id;
+        }
+
+        public int updateSpellImagesTable(StaticDataModels.SpellImage image)
+        {
+            bool newRow = false;
+            SpellImage entry = this.db.SpellImages.Where(row => row.full == image.full).FirstOrDefault();
+            if (entry == null)
+            {
+                newRow = true;
+                entry = new SpellImage();
+            }
+            entry.full = image.full;
+            entry.sprite = image.sprite;
+            entry.group = image.group;
+            entry.x = image.x;
+            entry.y = image.y;
+            entry.w = image.w;
+            entry.h = image.h;
+            if (newRow)
+            {
+                this.db.SpellImages.Add(entry);
+            }
+            this.db.SaveChanges();
+            return entry.id;
+        }
+
+        public void updateDependentTables(int championKey, ChampionData championData)
+        {
+            this.updateAllyTipsTable(championKey, championData.allytips);
+            this.updateEnemyTipsTable(championKey, championData.enemytips);
+            this.updateChampionTypesTable(championKey, championData.tags);
+            this.updateChampionInfoTable(championKey, championData.info);
+            this.updateChampionStatsTable(championKey, championData.stats);
+            this.updateChampionSkinsTable(championKey, championData.skins);
+            this.updateChampionSpellsTable(championKey, championData.spells);
+        }
+
+        public void updateAllyTipsTable(int championKey, List<String> allytips)
+        {
+            List<AllyTip> entries = this.db.AllyTips.Where(row => row.championKey == championKey).ToList();
+            if (entries.Count() == 0 || entries == null)
+            {
+                foreach (String tip in allytips)
+                {
+                    AllyTip newEntry = new AllyTip();
+                    newEntry.description = tip;
+                    newEntry.championKey = championKey;
+                    this.db.AllyTips.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() == allytips.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).description = allytips.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() > allytips.Count())
+            {
+                for (int i = 0; i < allytips.Count(); i++)
+                {
+                    entries.ElementAt(i).description = allytips.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+                for (int i = allytips.Count(); i < entries.Count(); i++)
+                {
+                    this.db.AllyTips.Remove(entries.ElementAt(i));
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() < allytips.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).description = allytips.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+                for (int i = entries.Count(); i < allytips.Count(); i++)
+                {
+                    AllyTip newEntry = new AllyTip();
+                    newEntry.description = allytips.ElementAt(i);
+                    newEntry.championKey = championKey;
+                    this.db.AllyTips.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+        }
+
+        public void updateEnemyTipsTable(int championKey, List<String> enemytips)
+        {
+            List<EnemyTip> entries = this.db.EnemyTips.Where(row => row.championKey == championKey).ToList();
+            if (entries.Count() == 0 || entries == null)
+            {
+                foreach (String tip in enemytips)
+                {
+                    EnemyTip newEntry = new EnemyTip();
+                    newEntry.description = tip;
+                    newEntry.championKey = championKey;
+                    this.db.EnemyTips.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() == enemytips.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).description = enemytips.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() > enemytips.Count())
+            {
+                for (int i = 0; i < enemytips.Count(); i++)
+                {
+                    entries.ElementAt(i).description = enemytips.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+                for (int i = enemytips.Count(); i < entries.Count(); i++)
+                {
+                    this.db.EnemyTips.Remove(entries.ElementAt(i));
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() < enemytips.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).description = enemytips.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+                for (int i = entries.Count(); i < enemytips.Count(); i++)
+                {
+                    EnemyTip newEntry = new EnemyTip();
+                    newEntry.description = enemytips.ElementAt(i);
+                    newEntry.championKey = championKey;
+                    this.db.EnemyTips.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+        }
+
+        public void updateChampionTypesTable(int championKey, List<String> types)
+        {
+            List<ChampionType> entries = this.db.ChampionTypes.Where(row => row.championKey == championKey).ToList();
+            if (entries.Count() == 0 || entries == null)
+            {
+                foreach (String tag in types)
+                {
+                    ChampionType newEntry = new ChampionType();
+                    newEntry.description = tag;
+                    newEntry.championKey = championKey;
+                    this.db.ChampionTypes.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() == types.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).description = types.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() > types.Count())
+            {
+                for (int i = 0; i < types.Count(); i++)
+                {
+                    entries.ElementAt(i).description = types.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+                for (int i = types.Count(); i < entries.Count(); i++)
+                {
+                    this.db.ChampionTypes.Remove(entries.ElementAt(i));
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() < types.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).description = types.ElementAt(i);
+                    entries.ElementAt(i).championKey = championKey;
+                    this.db.SaveChanges();
+                }
+                for (int i = entries.Count(); i < types.Count(); i++)
+                {
+                    ChampionType newEntry = new ChampionType();
+                    newEntry.description = types.ElementAt(i);
+                    newEntry.championKey = championKey;
+                    this.db.ChampionTypes.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
         }
 
         public void updateChampionInfoTable(int championKey, StaticDataModels.ChampionInfo info)
@@ -179,54 +428,6 @@ namespace LeagueOfLegends.Models
             this.db.SaveChanges();
         }
 
-        public int updateChampionPassivesTable(StaticDataModels.ChampionPassive passive)
-        {
-            bool newRow = false;
-            int foreignKey = this.updatePassiveImagesTable(passive.image);
-            ChampionPassive entry = this.db.ChampionPassives.Where(row => row.image == foreignKey).FirstOrDefault();
-            if (entry == null)
-            {
-                newRow = true;
-                entry = new ChampionPassive();
-            }
-            entry.image = foreignKey;
-            if (passive.name != "" && passive.name != null)
-            {
-                entry.name = passive.name;
-                entry.description = passive.description;
-            }
-            if (newRow)
-            {
-                this.db.ChampionPassives.Add(entry);
-            }
-            this.db.SaveChanges();
-            return entry.id;
-        }
-
-        public int updatePassiveImagesTable(StaticDataModels.SpellImage image)
-        {
-            bool newRow = false;
-            PassiveImage entry = this.db.PassiveImages.Where(row => row.full == image.full).FirstOrDefault();
-            if (entry == null)
-            {
-                newRow = true;
-                entry = new PassiveImage();
-            }
-            entry.full = image.full;
-            entry.sprite = image.sprite;
-            entry.group = image.group;
-            entry.x = image.x;
-            entry.y = image.y;
-            entry.w = image.w;
-            entry.h = image.h;
-            if (newRow)
-            {
-                this.db.PassiveImages.Add(entry);
-            }
-            this.db.SaveChanges();
-            return entry.id;
-        }
-
         public void updateChampionSkinsTable(int championKey, List<StaticDataModels.ChampionSkin> skins)
         {
             foreach (StaticDataModels.ChampionSkin skin in skins)
@@ -247,6 +448,39 @@ namespace LeagueOfLegends.Models
                 if (newRow)
                 {
                     this.db.ChampionSkins.Add(entry);
+                }
+            }
+            this.db.SaveChanges();
+        }
+
+        public void updateChampionSpellsTable(int championKey, List<StaticDataModels.ChampionSpell> spells)
+        {
+            foreach (StaticDataModels.ChampionSpell spell in spells)
+            {
+                bool newRow = false;
+                ChampionSpell entry = this.db.ChampionSpells.Find(spell.id);
+                if (entry == null)
+                {
+                    newRow = true;
+                    entry = new ChampionSpell();
+                    entry.id = spell.id;
+                }
+                entry.name = spell.name;
+                entry.description = spell.description;
+                entry.tooltip = spell.tooltip;
+                entry.maxrank = spell.maxrank;
+                entry.costburn = spell.costBurn;
+                entry.datavalues = "";
+                entry.vars = "";
+                entry.costtype = spell.costType;
+                entry.maxammo = spell.maxammo;
+                entry.rangeburn = spell.rangeBurn;
+                entry.image = this.updateSpellImagesTable(spell.image);
+                entry.resource = spell.resource;
+                entry.championKey = championKey;
+                if (newRow)
+                {
+                    this.db.ChampionSpells.Add(entry);
                 }
             }
             this.db.SaveChanges();

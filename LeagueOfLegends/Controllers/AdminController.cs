@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,12 +36,14 @@ namespace LeagueOfLegends.Controllers
             return View(championFull);
         }
 
-        public ActionResult CommitImport()
+        public HttpResponseMessage CommitImport()
         {
             DAO dao = new DAO();
             dao.importChampionFullJSON(championFull);
 
-            return RedirectToAction("Index", "Admin");
+            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.Content = new StringContent("Successful database import", Encoding.Unicode);
+            return response;
         }
     }
 }

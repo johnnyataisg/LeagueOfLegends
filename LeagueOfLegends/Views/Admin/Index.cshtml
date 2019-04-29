@@ -51,8 +51,18 @@
                 </table>
             </div>
             <div id="commitBtn">
-                <a href=@Url.Action("CommitImport", "Admin") class="btn @(@Model == null ? "btn-secondary disabled" : "btn-success")">Commit Import</a>
+                @if (Model == null)
+                {
+                    <a href="" class="btn btn-secondary disabled">Commit Import</a>
+                }
+                else
+                {
+                    <button id="commitImport" class="btn btn-success">Commit Import</button>
+                }
             </div>
         </div>
+    </div>
+    <div class="screenLoader" style="display: none;">
+        <div class="loader"></div>
     </div>
 </div>

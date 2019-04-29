@@ -39,9 +39,14 @@ namespace LeagueOfLegends.Models
         public virtual DbSet<ChampionPassive> ChampionPassives { get; set; }
         public virtual DbSet<PassiveImage> PassiveImages { get; set; }
         public virtual DbSet<ChampionSkin> ChampionSkins { get; set; }
+        public virtual DbSet<ChampionType> ChampionTypes { get; set; }
         public virtual DbSet<ChampionInfo> ChampionInfo { get; set; }
         public virtual DbSet<ChampionStat> ChampionStats { get; set; }
-    
+        public virtual DbSet<AllyTip> AllyTips { get; set; }
+        public virtual DbSet<EnemyTip> EnemyTips { get; set; }
+        public virtual DbSet<ChampionSpell> ChampionSpells { get; set; }
+        public virtual DbSet<SpellImage> SpellImages { get; set; }
+
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?

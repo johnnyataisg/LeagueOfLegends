@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="championKey" Type="int" Nullable="false" />
         </EntityType>
@@ -77,19 +77,19 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="30" />
+          <Property Name="id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="tooltip" Type="varchar(max)" />
           <Property Name="maxrank" Type="float" />
-          <Property Name="costburn" Type="varchar" MaxLength="15" />
-          <Property Name="datavalues" Type="varchar" MaxLength="15" />
-          <Property Name="vars" Type="varchar" MaxLength="15" />
-          <Property Name="costtype" Type="varchar" MaxLength="20" />
-          <Property Name="maxammo" Type="varchar" MaxLength="5" />
-          <Property Name="rangeburn" Type="varchar" MaxLength="15" />
+          <Property Name="costburn" Type="varchar" MaxLength="50" />
+          <Property Name="datavalues" Type="varchar" MaxLength="50" />
+          <Property Name="vars" Type="varchar" MaxLength="50" />
+          <Property Name="costtype" Type="varchar" MaxLength="50" />
+          <Property Name="maxammo" Type="varchar" MaxLength="50" />
+          <Property Name="rangeburn" Type="varchar" MaxLength="50" />
           <Property Name="image" Type="int" />
-          <Property Name="resource" Type="varchar" MaxLength="15" />
+          <Property Name="resource" Type="varchar" MaxLength="50" />
           <Property Name="championKey" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ChampionStats">
@@ -153,7 +153,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="championKey" Type="int" Nullable="false" />
         </EntityType>
@@ -276,8 +276,8 @@ warning 6002: The table/view 'LeagueOfLegendsStaticData.dbo.Seasons' does not ha
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="full" Type="varchar" MaxLength="30" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="full" Type="varchar" MaxLength="50" />
           <Property Name="sprite" Type="varchar" MaxLength="30" />
           <Property Name="group" Type="varchar" MaxLength="10" />
           <Property Name="x" Type="float" />
@@ -556,7 +556,7 @@ warning 6002: The table/view 'LeagueOfLegendsStaticData.dbo.Seasons' does not ha
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="championKey" Type="Int32" Nullable="false" />
         </EntityType>
@@ -574,26 +574,26 @@ warning 6002: The table/view 'LeagueOfLegendsStaticData.dbo.Seasons' does not ha
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="tooltip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="maxrank" Type="Double" />
-          <Property Name="costburn" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="datavalues" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="vars" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="costtype" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="maxammo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="rangeburn" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="costburn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datavalues" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vars" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="costtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="maxammo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rangeburn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="image" Type="Int32" />
-          <Property Name="resource" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="resource" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="championKey" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EnemyTip">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="championKey" Type="Int32" Nullable="false" />
         </EntityType>
@@ -675,8 +675,8 @@ warning 6002: The table/view 'LeagueOfLegendsStaticData.dbo.Seasons' does not ha
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="full" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="full" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sprite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="group" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="x" Type="Double" />

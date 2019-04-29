@@ -18,4 +18,15 @@
         $("#playerStatsModal").find("p").first().text("");
         $("#playerStatsModal").css("display", "none");
     });
+
+    $("#commitImport").click(function () {
+        $(".screenLoader").toggle();
+        console.log("Starting database import");
+        $.ajax({
+            url: "/Admin/CommitImport"
+        }).done(function (content) {
+            console.log(content);
+            $(".screenLoader").toggle();
+        });
+    });
 });
