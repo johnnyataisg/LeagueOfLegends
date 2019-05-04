@@ -17,9 +17,8 @@ namespace LeagueOfLegends.Models
         public int id { get; set; }
         public Nullable<int> rank { get; set; }
         public Nullable<double> cooldown { get; set; }
-        public Nullable<double> cooldownburn { get; set; }
         public Nullable<double> cost { get; set; }
         public Nullable<double> range { get; set; }
-        public int spellID { get; set; }
+        public string spellID { get; set; }
     }
 }

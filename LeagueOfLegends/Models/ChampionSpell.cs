@@ -20,6 +20,7 @@ namespace LeagueOfLegends.Models
         public string tooltip { get; set; }
         public Nullable<double> maxrank { get; set; }
         public string costburn { get; set; }
+        public string cooldownburn { get; set; }
         public string datavalues { get; set; }
         public string vars { get; set; }
         public string costtype { get; set; }

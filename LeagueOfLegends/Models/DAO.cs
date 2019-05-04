@@ -8,11 +8,11 @@ namespace LeagueOfLegends.Models
 {
     public class DAO
     {
-        private LeagueOfLegendsStaticDataEntities db;
+        private DatabaseEntity db;
 
         public DAO()
         {
-            this.db = new LeagueOfLegendsStaticDataEntities();
+            this.db = new DatabaseEntity();
         }
 
         public void importChampionFullJSON(ChampionFull data)
@@ -470,6 +470,7 @@ namespace LeagueOfLegends.Models
                 entry.tooltip = spell.tooltip;
                 entry.maxrank = spell.maxrank;
                 entry.costburn = spell.costBurn;
+                entry.cooldownburn = spell.cooldownBurn;
                 entry.datavalues = "";
                 entry.vars = "";
                 entry.costtype = spell.costType;
@@ -482,8 +483,136 @@ namespace LeagueOfLegends.Models
                 {
                     this.db.ChampionSpells.Add(entry);
                 }
+                if (spell.leveltip != null)
+                {
+                    this.updateLevelTipsTable(entry.id, spell.leveltip);
+                }
+                this.updateSpellRanksTable(entry.id, spell.cooldown, spell.cost, spell.effect, spell.effectBurn, spell.range);
             }
             this.db.SaveChanges();
+        }
+
+        public void updateLevelTipsTable(String spellID, SpellLevelTip levelTip)
+        {
+            List<LevelTip> entries = this.db.LevelTips.Where(row => row.spellID == spellID).ToList();
+            if (entries.Count() == 0 || entries == null)
+            {
+                for (int i = 0; i < levelTip.label.Count(); i++)
+                {
+                    LevelTip newEntry = new LevelTip();
+                    newEntry.label = levelTip.label.ElementAt(i);
+                    newEntry.effect = levelTip.effect.ElementAt(i);
+                    newEntry.spellID = spellID;
+                    this.db.LevelTips.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() == levelTip.label.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).label = levelTip.label.ElementAt(i);
+                    entries.ElementAt(i).effect = levelTip.effect.ElementAt(i);
+                    entries.ElementAt(i).spellID = spellID;
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() > levelTip.label.Count())
+            {
+                for (int i = 0; i < levelTip.label.Count(); i++)
+                {
+                    entries.ElementAt(i).label = levelTip.label.ElementAt(i);
+                    entries.ElementAt(i).effect = levelTip.effect.ElementAt(i);
+                    entries.ElementAt(i).spellID = spellID;
+                    this.db.SaveChanges();
+                }
+                for (int i = levelTip.label.Count(); i < entries.Count(); i++)
+                {
+                    this.db.LevelTips.Remove(entries.ElementAt(i));
+                    this.db.SaveChanges();
+                }
+            }
+            else if (entries.Count() < levelTip.label.Count())
+            {
+                for (int i = 0; i < entries.Count(); i++)
+                {
+                    entries.ElementAt(i).label = levelTip.label.ElementAt(i);
+                    entries.ElementAt(i).effect = levelTip.effect.ElementAt(i);
+                    entries.ElementAt(i).spellID = spellID;
+                    this.db.SaveChanges();
+                }
+                for (int i = entries.Count(); i < levelTip.label.Count(); i++)
+                {
+                    LevelTip newEntry = new LevelTip();
+                    newEntry.label = levelTip.label.ElementAt(i);
+                    newEntry.effect = levelTip.effect.ElementAt(i);
+                    newEntry.spellID = spellID;
+                    this.db.LevelTips.Add(newEntry);
+                    this.db.SaveChanges();
+                }
+            }
+        }
+
+        public void updateSpellRanksTable(String spellID, List<float> cooldown, List<float> cost, List<List<float>> effect, List<String> effectBurn, List<float> range)
+        {
+            List<SpellRank> entries = this.db.SpellRanks.Where(row => row.spellID == spellID).ToList();
+            for (int i = 0; i < entries.Count(); i++)
+            {
+                entries.ElementAt(i).rank = i + 1;
+                entries.ElementAt(i).cooldown = cooldown.ElementAt(i);
+                entries.ElementAt(i).cost = cost.ElementAt(i);
+                entries.ElementAt(i).range = range.ElementAt(i);
+                entries.ElementAt(i).spellID = spellID;
+                //this.updateSpellEffectsTable(entries.ElementAt(i).id, i, effect, effectBurn);
+                this.db.SaveChanges();
+            }
+            for (int i = entries.Count(); i < cooldown.Count(); i++)
+            {
+                SpellRank newEntry = new SpellRank();
+                newEntry.rank = i + 1;
+                newEntry.cooldown = cooldown.ElementAt(i);
+                newEntry.cost = cost.ElementAt(i);
+                newEntry.range = range.ElementAt(i);
+                newEntry.spellID = spellID;
+                this.db.SpellRanks.Add(newEntry);
+                //this.updateSpellEffectsTable(newEntry.id, i, effect, effectBurn);
+                this.db.SaveChanges();
+            }
+        }
+
+        public void updateSpellEffectsTable(int spellRankID, int index, List<List<float>> effect, List<String> effectBurn)
+        {
+            List<SpellEffect> entries = this.db.SpellEffects.Where(row => row.spellRankID == spellRankID).ToList();
+            for (int i = 0; i < entries.Count(); i++)
+            {
+                if (effect.ElementAt(i) == null)
+                {
+                    entries.ElementAt(i).effect = null;
+                }
+                else
+                {
+                    entries.ElementAt(i).effect = effect.ElementAt(i).ElementAt(index);
+                }
+                entries.ElementAt(i).effectburn = effectBurn.ElementAt(i);
+                entries.ElementAt(i).spellRankID = spellRankID;
+                this.db.SaveChanges();
+            }
+            for (int i = entries.Count(); i < effect.Count(); i++)
+            {
+                SpellEffect newEntry = new SpellEffect();
+                if (effect.ElementAt(i) == null)
+                {
+                    newEntry.effect = null;
+                }
+                else
+                {
+                    newEntry.effect = effect.ElementAt(i).ElementAt(index);
+                }
+                newEntry.effectburn = effectBurn.ElementAt(i);
+                newEntry.spellRankID = spellRankID;
+                this.db.SpellEffects.Add(newEntry);
+                this.db.SaveChanges();
+            }
         }
     }
 }

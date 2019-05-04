@@ -1,13 +1,9 @@
 ﻿@using LeagueOfLegends.Models
-@model IEnumerable<LeagueOfLegends.Models.Champion>
+@using System.Data.SqlClient;
 
 @{
     ViewBag.Title = "AllChampions";
 }
-
-<script>
-    particlesJS.load("particles-js3", "particles.json", function () { console.log(""); });
-</script>
 
 <div id="championAnalytics">
     <div id="particles-js3" class="particles-positioning"></div>
@@ -19,14 +15,14 @@
             <div class="body-block">
                 <table class="table table-hover">
                     <tbody style="background-color: #4040409e;">
-                        @foreach (Champion champion in Model)
+                        @foreach (Tuple<int, String, String, String> item in Model)
                         {
-                            <tr class="picture-tile" scope="row">
+                            <tr class="picture-tile" scope="row" value=@item.Item1>
                                 <td>
-                                    <img src="~/Images/Champions/Icon/@champion.image" />
+                                    <img src="~/Images/Champions/Icon/@item.Item4" />
                                 </td>
                                 <td>
-                                    <h6>@champion.champion_name, @champion.title</h6>
+                                    <h6>@item.Item2, @item.Item3</h6>
                                 </td>
                             </tr>
                         }
@@ -35,7 +31,11 @@
             </div>
         </div>
         <div id="championDataContainer">
-
         </div>
     </div>
+    <div class="screenLoader" style="display: none;">
+        <div class="loader"></div>
+        <div class="loaderText">Gathering Data</div>
+    </div>
 </div>
+<script>loadParticles("particles-js3");</script>

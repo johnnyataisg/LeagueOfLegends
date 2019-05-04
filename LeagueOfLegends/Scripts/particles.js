@@ -1523,7 +1523,7 @@ window.particlesJS.load = function (tag_id, path_config_json, callback) {
 
   /* load json config */
   var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'http://' + window.location.hostname + ':' + window.location.port + '/particles.json');
+    xhr.open('GET', path_config_json);
   xhr.onreadystatechange = function (data) {
     if(xhr.readyState == 4){
       if(xhr.status == 200){
@@ -1537,5 +1537,4 @@ window.particlesJS.load = function (tag_id, path_config_json, callback) {
     }
   };
   xhr.send();
-
 };

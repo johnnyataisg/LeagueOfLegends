@@ -13,12 +13,13 @@ using System.Data.Entity;
 using System.Web.Security;
 using RestSharp;
 using Newtonsoft.Json.Linq;
+using System.Threading.Tasks;
 
 namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities();
+        private DatabaseEntity db = new DatabaseEntity();
 
         public ActionResult Index(String message)
         {
@@ -80,7 +81,23 @@ namespace LeagueOfLegends.Controllers
 
         public ActionResult AllChampions()
         {
-            return View(db.Champions.ToList());
+            List<Tuple<int, String, String, String>> dataList = new List<Tuple<int, String, String, String>>();
+            var query = from champion in this.db.ChampionSummary
+                        join image in this.db.ChampionImages on champion.image equals image.id
+                        orderby champion.name ascending
+                        select new { key = champion.key, name = champion.name, title = champion.title, image = image.full };
+
+            foreach (var item in query)
+            {
+                dataList.Add(new Tuple<int, String, String, String>(item.key, item.name, item.title, item.image));
+            }
+            return View(dataList);
+        }
+
+        public ActionResult ChampionData(int championKey)
+        {
+            ViewBag.championKey = championKey;
+            return View();
         }
     }
 }

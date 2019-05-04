@@ -132,92 +132,73 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\ChampionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AllyTip.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Champion.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionImage.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionInfo.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionKey.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionPassive.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionSkin.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionSpell.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionStat.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionSummary.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChampionType.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DAO.cs" />
     <Compile Include="Models\Datatype.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel.edmx</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EnemyTip.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Hidden.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Item.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemBlock.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemRecommendation.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LevelTipEffect.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LevelTipLabel.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+    <Compile Include="Models\LevelTip.cs">
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PassiveImage.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Queue.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RecommendedItem.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RiotWebResponseObjects\ChampionBan.cs" />
     <Compile Include="Models\RiotWebResponseObjects\Match.cs" />
@@ -228,27 +209,21 @@
     <Compile Include="Models\RiotWebResponseObjects\PerformanceTimeline.cs" />
     <Compile Include="Models\RiotWebResponseObjects\Player.cs" />
     <Compile Include="Models\RiotWebResponseObjects\PlayerData.cs" />
-    <Compile Include="Models\DataAnalyzer.cs" />
-    <Compile Include="Models\RiotRestWrapper.cs" />
-    <Compile Include="Models\RiotWebResponseObjects\Summoner.cs" />
     <Compile Include="Models\Season.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SpellEffect.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SpellImage.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SpellRank.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\StaticDataModels\DataAnalyzer.cs" />
+    <Compile Include="Models\RiotRestWrapper.cs" />
+    <Compile Include="Models\RiotWebResponseObjects\Summoner.cs" />
     <Compile Include="Models\StaticDataModels\Block.cs" />
     <Compile Include="Models\StaticDataModels\ChampionData.cs" />
     <Compile Include="Models\StaticDataModels\ChampionFull.cs" />
@@ -263,11 +238,24 @@
     <Compile Include="Models\StaticDataModels\SpellImage.cs" />
     <Compile Include="Models\StaticDataModels\SpellLevelTip.cs" />
     <Compile Include="Models\RiotWebResponseObjects\TeamStats.cs" />
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\Videos.cs" />
     <Compile Include="Models\Visible.cs">
-      <DependentUpon>DBModel.tt</DependentUpon>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YordleSpyDBModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YordleSpyDBModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YordleSpyDBModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\YordleSpyDBModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>YordleSpyDBModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -279,16 +267,753 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\main.js" />
+    <Content Include="Images\Champions\Passive\Aatrox_Passive.png" />
+    <Content Include="Images\Champions\Passive\Ahri_SoulEater2.png" />
+    <Content Include="Images\Champions\Passive\Akali_P.png" />
+    <Content Include="Images\Champions\Passive\Alistar_E.png" />
+    <Content Include="Images\Champions\Passive\Amumu_Passive.png" />
+    <Content Include="Images\Champions\Passive\Anivia_P.png" />
+    <Content Include="Images\Champions\Passive\Annie_Passive.png" />
+    <Content Include="Images\Champions\Passive\Armordillo_ScavengeArmor.png" />
+    <Content Include="Images\Champions\Passive\Armsmaster_MasterOfArms.png" />
+    <Content Include="Images\Champions\Passive\Ashe_P.png" />
+    <Content Include="Images\Champions\Passive\AurelionSol_Passive.png" />
+    <Content Include="Images\Champions\Passive\Azir_Passive.png" />
+    <Content Include="Images\Champions\Passive\Bard_Passive.png" />
+    <Content Include="Images\Champions\Passive\Blitzcrank_ManaBarrier.png" />
+    <Content Include="Images\Champions\Passive\BrandP.png" />
+    <Content Include="Images\Champions\Passive\Braum_Passive.png" />
+    <Content Include="Images\Champions\Passive\Caitlyn_Headshot.png" />
+    <Content Include="Images\Champions\Passive\Camille_Passive.png" />
+    <Content Include="Images\Champions\Passive\Cardmaster_SealFate.png" />
+    <Content Include="Images\Champions\Passive\Cassiopeia_Passive.png" />
+    <Content Include="Images\Champions\Passive\Corki_RapidReload.png" />
+    <Content Include="Images\Champions\Passive\Darius_PassiveBuff.png" />
+    <Content Include="Images\Champions\Passive\Diana_Passive_LunarBlade.png" />
+    <Content Include="Images\Champions\Passive\Draven_passive.png" />
+    <Content Include="Images\Champions\Passive\DrMundo_Passive.png" />
+    <Content Include="Images\Champions\Passive\Ekko_P.png" />
+    <Content Include="Images\Champions\Passive\ElisePassive.png" />
+    <Content Include="Images\Champions\Passive\Evelynn_Passive.png" />
+    <Content Include="Images\Champions\Passive\Ezreal_RisingSpellForce.png" />
+    <Content Include="Images\Champions\Passive\FallenAngel_Empathize.png" />
+    <Content Include="Images\Champions\Passive\FiddleSticks_Passive.png" />
+    <Content Include="Images\Champions\Passive\Fiora_P.png" />
+    <Content Include="Images\Champions\Passive\Fizz_P.png" />
+    <Content Include="Images\Champions\Passive\Galio_Passive.png" />
+    <Content Include="Images\Champions\Passive\Gangplank_Passive.png" />
+    <Content Include="Images\Champions\Passive\Garen_Passive.png" />
+    <Content Include="Images\Champions\Passive\Gnar_Passive.png" />
+    <Content Include="Images\Champions\Passive\GragasPassiveHeal.png" />
+    <Content Include="Images\Champions\Passive\GravesTrueGrit.png" />
+    <Content Include="Images\Champions\Passive\GreenTerror_TailSpike.png" />
+    <Content Include="Images\Champions\Passive\Hecarim_Passive.png" />
+    <Content Include="Images\Champions\Passive\Heimerdinger_Passive.png" />
+    <Content Include="Images\Champions\Passive\Illaoi_P.png" />
+    <Content Include="Images\Champions\Passive\Irelia_Passive.png" />
+    <Content Include="Images\Champions\Passive\IvernP.png" />
+    <Content Include="Images\Champions\Passive\Janna_Tailwind.png" />
+    <Content Include="Images\Champions\Passive\JarvanIV_MartialCadence.png" />
+    <Content Include="Images\Champions\Passive\Jayce_Passive.png" />
+    <Content Include="Images\Champions\Passive\Jester_CarefulStrikes.png" />
+    <Content Include="Images\Champions\Passive\Jhin_P.png" />
+    <Content Include="Images\Champions\Passive\Jinx_Passive.png" />
+    <Content Include="Images\Champions\Passive\Kaisa_Passive.png" />
+    <Content Include="Images\Champions\Passive\Kalista_Passive.png" />
+    <Content Include="Images\Champions\Passive\Karma_Passive.png" />
+    <Content Include="Images\Champions\Passive\Karthus_Passive.png" />
+    <Content Include="Images\Champions\Passive\Kassadin_Passive.png" />
+    <Content Include="Images\Champions\Passive\Katarina_Passive.png" />
+    <Content Include="Images\Champions\Passive\Kayle_P.png" />
+    <Content Include="Images\Champions\Passive\Kayn_Passive_Primary.png" />
+    <Content Include="Images\Champions\Passive\Kennen_Passive.png" />
+    <Content Include="Images\Champions\Passive\Khazix_P.png" />
+    <Content Include="Images\Champions\Passive\Kindred_Passive.png" />
+    <Content Include="Images\Champions\Passive\Kled_P.png" />
+    <Content Include="Images\Champions\Passive\KogMaw_IcathianSurprise.png" />
+    <Content Include="Images\Champions\Passive\LeBlancP.png" />
+    <Content Include="Images\Champions\Passive\LeeSinPassive.png" />
+    <Content Include="Images\Champions\Passive\LeonaSunlight.png" />
+    <Content Include="Images\Champions\Passive\Lissandra_Passive.png" />
+    <Content Include="Images\Champions\Passive\Lucian_Passive.png" />
+    <Content Include="Images\Champions\Passive\Lulu_PixFaerieCompanion.png" />
+    <Content Include="Images\Champions\Passive\LuxIlluminatingFraulein.png" />
+    <Content Include="Images\Champions\Passive\Malphite_GraniteShield.png" />
+    <Content Include="Images\Champions\Passive\Malzahar_Passive.png" />
+    <Content Include="Images\Champions\Passive\Maokai_Passive.png" />
+    <Content Include="Images\Champions\Passive\MasterYi_Passive1.png" />
+    <Content Include="Images\Champions\Passive\MissFortune_W.png" />
+    <Content Include="Images\Champions\Passive\MonkeyKingStoneSkin.png" />
+    <Content Include="Images\Champions\Passive\MordekaiserPassive.png" />
+    <Content Include="Images\Champions\Passive\NamiPassive.png" />
+    <Content Include="Images\Champions\Passive\Nasus_Passive.png" />
+    <Content Include="Images\Champions\Passive\Nautilus_StaggeringBlow.png" />
+    <Content Include="Images\Champions\Passive\Neeko_Passive.png" />
+    <Content Include="Images\Champions\Passive\Nidalee_Passive.png" />
+    <Content Include="Images\Champions\Passive\Nocturne_UmbraBlades.png" />
+    <Content Include="Images\Champions\Passive\NunuPassive.png" />
+    <Content Include="Images\Champions\Passive\Olaf_Passive.png" />
+    <Content Include="Images\Champions\Passive\OriannaPassive.png" />
+    <Content Include="Images\Champions\Passive\OrnnP.png" />
+    <Content Include="Images\Champions\Passive\Pantheon_AOZ.png" />
+    <Content Include="Images\Champions\Passive\Poppy_Passive.png" />
+    <Content Include="Images\Champions\Passive\PykePassive.png" />
+    <Content Include="Images\Champions\Passive\Quinn_Passive.png" />
+    <Content Include="Images\Champions\Passive\Rakan_P.png" />
+    <Content Include="Images\Champions\Passive\RekSai_Passive.png" />
+    <Content Include="Images\Champions\Passive\Renekton_Passive.png" />
+    <Content Include="Images\Champions\Passive\Rengar_P.png" />
+    <Content Include="Images\Champions\Passive\RivenRunicBlades.png" />
+    <Content Include="Images\Champions\Passive\Rumble_JunkyardTitan1.png" />
+    <Content Include="Images\Champions\Passive\Ryze_P.png" />
+    <Content Include="Images\Champions\Passive\Sejuani_passive.png" />
+    <Content Include="Images\Champions\Passive\shadowninja_P.png" />
+    <Content Include="Images\Champions\Passive\Shen_Passive.png" />
+    <Content Include="Images\Champions\Passive\ShyvanaReinforcedScales.png" />
+    <Content Include="Images\Champions\Passive\Singed_Passive.png" />
+    <Content Include="Images\Champions\Passive\Sion_Passive1.png" />
+    <Content Include="Images\Champions\Passive\Sivir_Passive.png" />
+    <Content Include="Images\Champions\Passive\Skarner_Passive.png" />
+    <Content Include="Images\Champions\Passive\Sona_Passive_Charged.png" />
+    <Content Include="Images\Champions\Passive\Soraka_Passive.png" />
+    <Content Include="Images\Champions\Passive\Swain_P.png" />
+    <Content Include="Images\Champions\Passive\SylasP.png" />
+    <Content Include="Images\Champions\Passive\SyndraPassive.png" />
+    <Content Include="Images\Champions\Passive\TahmKench_P.png" />
+    <Content Include="Images\Champions\Passive\Taliyah_Passive.png" />
+    <Content Include="Images\Champions\Passive\TalonP.png" />
+    <Content Include="Images\Champions\Passive\Taric_Passive.png" />
+    <Content Include="Images\Champions\Passive\Teemo_P.png" />
+    <Content Include="Images\Champions\Passive\Thresh_Passive.png" />
+    <Content Include="Images\Champions\Passive\Tristana_Passive.png" />
+    <Content Include="Images\Champions\Passive\Trundle_Passive.png" />
+    <Content Include="Images\Champions\Passive\Tryndamere_Passive.png" />
+    <Content Include="Images\Champions\Passive\Twitch_Passive.png" />
+    <Content Include="Images\Champions\Passive\Udyr_MonkeysAgility.png" />
+    <Content Include="Images\Champions\Passive\Urgot_Passive.png" />
+    <Content Include="Images\Champions\Passive\VarusPassive.png" />
+    <Content Include="Images\Champions\Passive\Vayne_NightHunter.png" />
+    <Content Include="Images\Champions\Passive\Veigar_Entropy.png" />
+    <Content Include="Images\Champions\Passive\VelKoz_Passive.png" />
+    <Content Include="Images\Champions\Passive\Viktor_Passive.png" />
+    <Content Include="Images\Champions\Passive\ViPassive.png" />
+    <Content Include="Images\Champions\Passive\VladimirP.png" />
+    <Content Include="Images\Champions\Passive\VolibearPassive.png" />
+    <Content Include="Images\Champions\Passive\WarwickP.png" />
+    <Content Include="Images\Champions\Passive\XayahPassive.png" />
+    <Content Include="Images\Champions\Passive\Xerath_Passive1.png" />
+    <Content Include="Images\Champions\Passive\XinZhaoP.png" />
+    <Content Include="Images\Champions\Passive\Yasuo_Passive.png" />
+    <Content Include="Images\Champions\Passive\Yorick_P.png" />
+    <Content Include="Images\Champions\Passive\ZacPassive.png" />
+    <Content Include="Images\Champions\Passive\ZiggsPassiveReady.png" />
+    <Content Include="Images\Champions\Passive\Zilean_Passive.png" />
+    <Content Include="Images\Champions\Passive\Zoe_P.png" />
+    <Content Include="Images\Champions\Passive\ZyraP.png" />
+    <Content Include="Images\Champions\Spell\AatroxE.png" />
+    <Content Include="Images\Champions\Spell\AatroxQ.png" />
+    <Content Include="Images\Champions\Spell\AatroxR.png" />
+    <Content Include="Images\Champions\Spell\AatroxW.png" />
+    <Content Include="Images\Champions\Spell\AhriFoxFire.png" />
+    <Content Include="Images\Champions\Spell\AhriOrbofDeception.png" />
+    <Content Include="Images\Champions\Spell\AhriSeduce.png" />
+    <Content Include="Images\Champions\Spell\AhriTumble.png" />
+    <Content Include="Images\Champions\Spell\AkaliE.png" />
+    <Content Include="Images\Champions\Spell\AkaliQ.png" />
+    <Content Include="Images\Champions\Spell\AkaliR.png" />
+    <Content Include="Images\Champions\Spell\AkaliW.png" />
+    <Content Include="Images\Champions\Spell\AlistarE.png" />
+    <Content Include="Images\Champions\Spell\AlphaStrike.png" />
+    <Content Include="Images\Champions\Spell\AnnieE.png" />
+    <Content Include="Images\Champions\Spell\AnnieQ.png" />
+    <Content Include="Images\Champions\Spell\AnnieR.png" />
+    <Content Include="Images\Champions\Spell\AnnieW.png" />
+    <Content Include="Images\Champions\Spell\AsheQ.png" />
+    <Content Include="Images\Champions\Spell\AsheSpiritOfTheHawk.png" />
+    <Content Include="Images\Champions\Spell\AspectOfTheCougar.png" />
+    <Content Include="Images\Champions\Spell\AuraofDespair.png" />
+    <Content Include="Images\Champions\Spell\AurelionSolE.png" />
+    <Content Include="Images\Champions\Spell\AurelionSolQ.png" />
+    <Content Include="Images\Champions\Spell\AurelionSolR.png" />
+    <Content Include="Images\Champions\Spell\AurelionSolW.png" />
+    <Content Include="Images\Champions\Spell\AzirEWrapper.png" />
+    <Content Include="Images\Champions\Spell\AzirQWrapper.png" />
+    <Content Include="Images\Champions\Spell\AzirR.png" />
+    <Content Include="Images\Champions\Spell\AzirW.png" />
+    <Content Include="Images\Champions\Spell\BandageToss.png" />
+    <Content Include="Images\Champions\Spell\BardE.png" />
+    <Content Include="Images\Champions\Spell\BardQ.png" />
+    <Content Include="Images\Champions\Spell\BardR.png" />
+    <Content Include="Images\Champions\Spell\BardW.png" />
+    <Content Include="Images\Champions\Spell\BlindingDart.png" />
+    <Content Include="Images\Champions\Spell\BlindMonkEOne.png" />
+    <Content Include="Images\Champions\Spell\BlindMonkQOne.png" />
+    <Content Include="Images\Champions\Spell\BlindMonkRKick.png" />
+    <Content Include="Images\Champions\Spell\BlindMonkWOne.png" />
+    <Content Include="Images\Champions\Spell\BrandE.png" />
+    <Content Include="Images\Champions\Spell\BrandQ.png" />
+    <Content Include="Images\Champions\Spell\BrandR.png" />
+    <Content Include="Images\Champions\Spell\BrandW.png" />
+    <Content Include="Images\Champions\Spell\BraumE.png" />
+    <Content Include="Images\Champions\Spell\BraumQ.png" />
+    <Content Include="Images\Champions\Spell\BraumRWrapper.png" />
+    <Content Include="Images\Champions\Spell\BraumW.png" />
+    <Content Include="Images\Champions\Spell\BurningAgony.png" />
+    <Content Include="Images\Champions\Spell\Bushwhack.png" />
+    <Content Include="Images\Champions\Spell\CaitlynAceintheHole.png" />
+    <Content Include="Images\Champions\Spell\CaitlynEntrapment.png" />
+    <Content Include="Images\Champions\Spell\CaitlynPiltoverPeacemaker.png" />
+    <Content Include="Images\Champions\Spell\CaitlynYordleTrap.png" />
+    <Content Include="Images\Champions\Spell\CamilleE.png" />
+    <Content Include="Images\Champions\Spell\CamilleQ.png" />
+    <Content Include="Images\Champions\Spell\CamilleR.png" />
+    <Content Include="Images\Champions\Spell\CamilleW.png" />
+    <Content Include="Images\Champions\Spell\CardmasterStack.png" />
+    <Content Include="Images\Champions\Spell\CarpetBomb.png" />
+    <Content Include="Images\Champions\Spell\CassiopeiaE.png" />
+    <Content Include="Images\Champions\Spell\CassiopeiaQ.png" />
+    <Content Include="Images\Champions\Spell\CassiopeiaR.png" />
+    <Content Include="Images\Champions\Spell\CassiopeiaW.png" />
+    <Content Include="Images\Champions\Spell\ChronoShift.png" />
+    <Content Include="Images\Champions\Spell\Crowstorm.png" />
+    <Content Include="Images\Champions\Spell\Crystallize.png" />
+    <Content Include="Images\Champions\Spell\CurseoftheSadMummy.png" />
+    <Content Include="Images\Champions\Spell\DariusAxeGrabCone.png" />
+    <Content Include="Images\Champions\Spell\DariusCleave.png" />
+    <Content Include="Images\Champions\Spell\DariusExecute.png" />
+    <Content Include="Images\Champions\Spell\DariusNoxianTacticsONH.png" />
+    <Content Include="Images\Champions\Spell\Deceive.png" />
+    <Content Include="Images\Champions\Spell\DefensiveBallCurl.png" />
+    <Content Include="Images\Champions\Spell\Destiny.png" />
+    <Content Include="Images\Champions\Spell\DianaArc.png" />
+    <Content Include="Images\Champions\Spell\DianaOrbs.png" />
+    <Content Include="Images\Champions\Spell\DianaTeleport.png" />
+    <Content Include="Images\Champions\Spell\DianaVortex.png" />
+    <Content Include="Images\Champions\Spell\Drain.png" />
+    <Content Include="Images\Champions\Spell\DravenDoubleShot.png" />
+    <Content Include="Images\Champions\Spell\DravenFury.png" />
+    <Content Include="Images\Champions\Spell\DravenRCast.png" />
+    <Content Include="Images\Champions\Spell\DravenSpinning.png" />
+    <Content Include="Images\Champions\Spell\EkkoE.png" />
+    <Content Include="Images\Champions\Spell\EkkoQ.png" />
+    <Content Include="Images\Champions\Spell\EkkoR.png" />
+    <Content Include="Images\Champions\Spell\EkkoW.png" />
+    <Content Include="Images\Champions\Spell\EliseHumanE.png" />
+    <Content Include="Images\Champions\Spell\EliseHumanQ.png" />
+    <Content Include="Images\Champions\Spell\EliseHumanW.png" />
+    <Content Include="Images\Champions\Spell\EliseR.png" />
+    <Content Include="Images\Champions\Spell\EnchantedCrystalArrow.png" />
+    <Content Include="Images\Champions\Spell\EvelynnE.png" />
+    <Content Include="Images\Champions\Spell\EvelynnQ.png" />
+    <Content Include="Images\Champions\Spell\EvelynnR.png" />
+    <Content Include="Images\Champions\Spell\EvelynnW.png" />
+    <Content Include="Images\Champions\Spell\EyeOfTheStorm.png" />
+    <Content Include="Images\Champions\Spell\EzrealE.png" />
+    <Content Include="Images\Champions\Spell\EzrealQ.png" />
+    <Content Include="Images\Champions\Spell\EzrealR.png" />
+    <Content Include="Images\Champions\Spell\EzrealW.png" />
+    <Content Include="Images\Champions\Spell\Feast.png" />
+    <Content Include="Images\Champions\Spell\FeralScream.png" />
+    <Content Include="Images\Champions\Spell\FerociousHowl.png" />
+    <Content Include="Images\Champions\Spell\FiddlesticksDarkWind.png" />
+    <Content Include="Images\Champions\Spell\FioraE.png" />
+    <Content Include="Images\Champions\Spell\FioraQ.png" />
+    <Content Include="Images\Champions\Spell\FioraR.png" />
+    <Content Include="Images\Champions\Spell\FioraW.png" />
+    <Content Include="Images\Champions\Spell\FizzE.png" />
+    <Content Include="Images\Champions\Spell\FizzQ.png" />
+    <Content Include="Images\Champions\Spell\FizzR.png" />
+    <Content Include="Images\Champions\Spell\FizzW.png" />
+    <Content Include="Images\Champions\Spell\FlashFrost.png" />
+    <Content Include="Images\Champions\Spell\Fling.png" />
+    <Content Include="Images\Champions\Spell\ForcePulse.png" />
+    <Content Include="Images\Champions\Spell\Frostbite.png" />
+    <Content Include="Images\Champions\Spell\GalioE.png" />
+    <Content Include="Images\Champions\Spell\GalioQ.png" />
+    <Content Include="Images\Champions\Spell\GalioR.png" />
+    <Content Include="Images\Champions\Spell\GalioW.png" />
+    <Content Include="Images\Champions\Spell\GangplankE.png" />
+    <Content Include="Images\Champions\Spell\GangplankQWrapper.png" />
+    <Content Include="Images\Champions\Spell\GangplankR.png" />
+    <Content Include="Images\Champions\Spell\GangplankW.png" />
+    <Content Include="Images\Champions\Spell\GarenE.png" />
+    <Content Include="Images\Champions\Spell\GarenQ.png" />
+    <Content Include="Images\Champions\Spell\GarenR.png" />
+    <Content Include="Images\Champions\Spell\GarenW.png" />
+    <Content Include="Images\Champions\Spell\GGun.png" />
+    <Content Include="Images\Champions\Spell\GlacialStorm.png" />
+    <Content Include="Images\Champions\Spell\GnarE.png" />
+    <Content Include="Images\Champions\Spell\GnarQ.png" />
+    <Content Include="Images\Champions\Spell\GnarR.png" />
+    <Content Include="Images\Champions\Spell\GnarW.png" />
+    <Content Include="Images\Champions\Spell\GragasE.png" />
+    <Content Include="Images\Champions\Spell\GragasQ.png" />
+    <Content Include="Images\Champions\Spell\GragasR.png" />
+    <Content Include="Images\Champions\Spell\GragasW.png" />
+    <Content Include="Images\Champions\Spell\GravesChargeShot.png" />
+    <Content Include="Images\Champions\Spell\GravesMove.png" />
+    <Content Include="Images\Champions\Spell\GravesQLineSpell.png" />
+    <Content Include="Images\Champions\Spell\GravesSmokeGrenade.png" />
+    <Content Include="Images\Champions\Spell\HallucinateFull.png" />
+    <Content Include="Images\Champions\Spell\Headbutt.png" />
+    <Content Include="Images\Champions\Spell\HecarimRamp.png" />
+    <Content Include="Images\Champions\Spell\HecarimRapidSlash.png" />
+    <Content Include="Images\Champions\Spell\HecarimUlt.png" />
+    <Content Include="Images\Champions\Spell\HecarimW.png" />
+    <Content Include="Images\Champions\Spell\HeimerdingerE.png" />
+    <Content Include="Images\Champions\Spell\HeimerdingerQ.png" />
+    <Content Include="Images\Champions\Spell\HeimerdingerR.png" />
+    <Content Include="Images\Champions\Spell\HeimerdingerW.png" />
+    <Content Include="Images\Champions\Spell\Highlander.png" />
+    <Content Include="Images\Champions\Spell\HowlingGale.png" />
+    <Content Include="Images\Champions\Spell\IllaoiE.png" />
+    <Content Include="Images\Champions\Spell\IllaoiQ.png" />
+    <Content Include="Images\Champions\Spell\IllaoiR.png" />
+    <Content Include="Images\Champions\Spell\IllaoiW.png" />
+    <Content Include="Images\Champions\Spell\InfectedCleaverMissileCast.png" />
+    <Content Include="Images\Champions\Spell\InsanityPotion.png" />
+    <Content Include="Images\Champions\Spell\IreliaE.png" />
+    <Content Include="Images\Champions\Spell\IreliaQ.png" />
+    <Content Include="Images\Champions\Spell\IreliaR.png" />
+    <Content Include="Images\Champions\Spell\IreliaW.png" />
+    <Content Include="Images\Champions\Spell\IvernE.png" />
+    <Content Include="Images\Champions\Spell\IvernQ.png" />
+    <Content Include="Images\Champions\Spell\IvernR.png" />
+    <Content Include="Images\Champions\Spell\IvernW.png" />
+    <Content Include="Images\Champions\Spell\JackInTheBox.png" />
+    <Content Include="Images\Champions\Spell\JarvanIVCataclysm.png" />
+    <Content Include="Images\Champions\Spell\JarvanIVDemacianStandard.png" />
+    <Content Include="Images\Champions\Spell\JarvanIVDragonStrike.png" />
+    <Content Include="Images\Champions\Spell\JarvanIVGoldenAegis.png" />
+    <Content Include="Images\Champions\Spell\JavelinToss.png" />
+    <Content Include="Images\Champions\Spell\JaxCounterStrike.png" />
+    <Content Include="Images\Champions\Spell\JaxEmpowerTwo.png" />
+    <Content Include="Images\Champions\Spell\JaxLeapStrike.png" />
+    <Content Include="Images\Champions\Spell\JaxRelentlessAssault.png" />
+    <Content Include="Images\Champions\Spell\JayceStanceHtG.png" />
+    <Content Include="Images\Champions\Spell\JayceStaticField.png" />
+    <Content Include="Images\Champions\Spell\JayceThunderingBlow.png" />
+    <Content Include="Images\Champions\Spell\JayceToTheSkies.png" />
+    <Content Include="Images\Champions\Spell\JhinE.png" />
+    <Content Include="Images\Champions\Spell\JhinQ.png" />
+    <Content Include="Images\Champions\Spell\JhinR.png" />
+    <Content Include="Images\Champions\Spell\JhinW.png" />
+    <Content Include="Images\Champions\Spell\JinxE.png" />
+    <Content Include="Images\Champions\Spell\JinxQ.png" />
+    <Content Include="Images\Champions\Spell\JinxR.png" />
+    <Content Include="Images\Champions\Spell\JinxW.png" />
+    <Content Include="Images\Champions\Spell\KaisaE.png" />
+    <Content Include="Images\Champions\Spell\KaisaQ.png" />
+    <Content Include="Images\Champions\Spell\KaisaR.png" />
+    <Content Include="Images\Champions\Spell\KaisaW.png" />
+    <Content Include="Images\Champions\Spell\KalistaExpungeWrapper.png" />
+    <Content Include="Images\Champions\Spell\KalistaMysticShot.png" />
+    <Content Include="Images\Champions\Spell\KalistaRx.png" />
+    <Content Include="Images\Champions\Spell\KalistaW.png" />
+    <Content Include="Images\Champions\Spell\KarmaMantra.png" />
+    <Content Include="Images\Champions\Spell\KarmaQ.png" />
+    <Content Include="Images\Champions\Spell\KarmaSolKimShield.png" />
+    <Content Include="Images\Champions\Spell\KarmaSpiritBind.png" />
+    <Content Include="Images\Champions\Spell\KarthusDefile.png" />
+    <Content Include="Images\Champions\Spell\KarthusFallenOne.png" />
+    <Content Include="Images\Champions\Spell\KarthusLayWasteA1.png" />
+    <Content Include="Images\Champions\Spell\KarthusWallOfPain.png" />
+    <Content Include="Images\Champions\Spell\KatarinaEWrapper.png" />
+    <Content Include="Images\Champions\Spell\KatarinaQ.png" />
+    <Content Include="Images\Champions\Spell\KatarinaR.png" />
+    <Content Include="Images\Champions\Spell\KatarinaW.png" />
+    <Content Include="Images\Champions\Spell\KayleE.png" />
+    <Content Include="Images\Champions\Spell\KayleQ.png" />
+    <Content Include="Images\Champions\Spell\KayleR.png" />
+    <Content Include="Images\Champions\Spell\KayleW.png" />
+    <Content Include="Images\Champions\Spell\KaynE.png" />
+    <Content Include="Images\Champions\Spell\KaynQ.png" />
+    <Content Include="Images\Champions\Spell\KaynR.png" />
+    <Content Include="Images\Champions\Spell\KaynW.png" />
+    <Content Include="Images\Champions\Spell\KennenBringTheLight.png" />
+    <Content Include="Images\Champions\Spell\KennenLightningRush.png" />
+    <Content Include="Images\Champions\Spell\KennenShurikenHurlMissile1.png" />
+    <Content Include="Images\Champions\Spell\KennenShurikenStorm.png" />
+    <Content Include="Images\Champions\Spell\KhazixE.png" />
+    <Content Include="Images\Champions\Spell\KhazixQ.png" />
+    <Content Include="Images\Champions\Spell\KhazixR.png" />
+    <Content Include="Images\Champions\Spell\KhazixW.png" />
+    <Content Include="Images\Champions\Spell\KindredEWrapper.png" />
+    <Content Include="Images\Champions\Spell\KindredQ.png" />
+    <Content Include="Images\Champions\Spell\KindredR.png" />
+    <Content Include="Images\Champions\Spell\KindredW.png" />
+    <Content Include="Images\Champions\Spell\KledE.png" />
+    <Content Include="Images\Champions\Spell\KledQ.png" />
+    <Content Include="Images\Champions\Spell\KledR.png" />
+    <Content Include="Images\Champions\Spell\KledW.png" />
+    <Content Include="Images\Champions\Spell\KogMawBioArcaneBarrage.png" />
+    <Content Include="Images\Champions\Spell\KogMawLivingArtillery.png" />
+    <Content Include="Images\Champions\Spell\KogMawQ.png" />
+    <Content Include="Images\Champions\Spell\KogMawVoidOoze.png" />
+    <Content Include="Images\Champions\Spell\Landslide.png" />
+    <Content Include="Images\Champions\Spell\LeblancE.png" />
+    <Content Include="Images\Champions\Spell\LeblancQ.png" />
+    <Content Include="Images\Champions\Spell\LeblancR.png" />
+    <Content Include="Images\Champions\Spell\LeblancW.png" />
+    <Content Include="Images\Champions\Spell\LeonaShieldOfDaybreak.png" />
+    <Content Include="Images\Champions\Spell\LeonaSolarBarrier.png" />
+    <Content Include="Images\Champions\Spell\LeonaSolarFlare.png" />
+    <Content Include="Images\Champions\Spell\LeonaZenithBlade.png" />
+    <Content Include="Images\Champions\Spell\LissandraE.png" />
+    <Content Include="Images\Champions\Spell\LissandraQ.png" />
+    <Content Include="Images\Champions\Spell\LissandraR.png" />
+    <Content Include="Images\Champions\Spell\LissandraW.png" />
+    <Content Include="Images\Champions\Spell\LucianE.png" />
+    <Content Include="Images\Champions\Spell\LucianQ.png" />
+    <Content Include="Images\Champions\Spell\LucianR.png" />
+    <Content Include="Images\Champions\Spell\LucianW.png" />
+    <Content Include="Images\Champions\Spell\LuluE.png" />
+    <Content Include="Images\Champions\Spell\LuluQ.png" />
+    <Content Include="Images\Champions\Spell\LuluR.png" />
+    <Content Include="Images\Champions\Spell\LuluW.png" />
+    <Content Include="Images\Champions\Spell\LuxLightBinding.png" />
+    <Content Include="Images\Champions\Spell\LuxLightStrikeKugel.png" />
+    <Content Include="Images\Champions\Spell\LuxMaliceCannon.png" />
+    <Content Include="Images\Champions\Spell\LuxPrismaticWave.png" />
+    <Content Include="Images\Champions\Spell\MalzaharE.png" />
+    <Content Include="Images\Champions\Spell\MalzaharQ.png" />
+    <Content Include="Images\Champions\Spell\MalzaharR.png" />
+    <Content Include="Images\Champions\Spell\MalzaharW.png" />
+    <Content Include="Images\Champions\Spell\MaokaiE.png" />
+    <Content Include="Images\Champions\Spell\MaokaiQ.png" />
+    <Content Include="Images\Champions\Spell\MaokaiR.png" />
+    <Content Include="Images\Champions\Spell\MaokaiW.png" />
+    <Content Include="Images\Champions\Spell\Masochism.png" />
+    <Content Include="Images\Champions\Spell\Meditate.png" />
+    <Content Include="Images\Champions\Spell\MegaAdhesive.png" />
+    <Content Include="Images\Champions\Spell\MissFortuneBulletTime.png" />
+    <Content Include="Images\Champions\Spell\MissFortuneRicochetShot.png" />
+    <Content Include="Images\Champions\Spell\MissFortuneScattershot.png" />
+    <Content Include="Images\Champions\Spell\MissFortuneViciousStrikes.png" />
+    <Content Include="Images\Champions\Spell\MissileBarrage.png" />
+    <Content Include="Images\Champions\Spell\MonkeyKingDecoy.png" />
+    <Content Include="Images\Champions\Spell\MonkeyKingDoubleAttack.png" />
+    <Content Include="Images\Champions\Spell\MonkeyKingNimbus.png" />
+    <Content Include="Images\Champions\Spell\MonkeyKingSpinToWin.png" />
+    <Content Include="Images\Champions\Spell\MordekaiserChildrenOfTheGrave.png" />
+    <Content Include="Images\Champions\Spell\MordekaiserCreepingDeathCast.png" />
+    <Content Include="Images\Champions\Spell\MordekaiserMaceOfSpades.png" />
+    <Content Include="Images\Champions\Spell\MordekaiserSyphonOfDestruction.png" />
+    <Content Include="Images\Champions\Spell\MorganaE.png" />
+    <Content Include="Images\Champions\Spell\MorganaQ.png" />
+    <Content Include="Images\Champions\Spell\MorganaR.png" />
+    <Content Include="Images\Champions\Spell\MorganaW.png" />
+    <Content Include="Images\Champions\Spell\MoveQuick.png" />
+    <Content Include="Images\Champions\Spell\NamiE.png" />
+    <Content Include="Images\Champions\Spell\NamiQ.png" />
+    <Content Include="Images\Champions\Spell\NamiR.png" />
+    <Content Include="Images\Champions\Spell\NamiW.png" />
+    <Content Include="Images\Champions\Spell\NasusE.png" />
+    <Content Include="Images\Champions\Spell\NasusQ.png" />
+    <Content Include="Images\Champions\Spell\NasusR.png" />
+    <Content Include="Images\Champions\Spell\NasusW.png" />
+    <Content Include="Images\Champions\Spell\NautilusAnchorDrag.png" />
+    <Content Include="Images\Champions\Spell\NautilusGrandLine.png" />
+    <Content Include="Images\Champions\Spell\NautilusPiercingGaze.png" />
+    <Content Include="Images\Champions\Spell\NautilusSplashZone.png" />
+    <Content Include="Images\Champions\Spell\NeekoE.png" />
+    <Content Include="Images\Champions\Spell\NeekoQ.png" />
+    <Content Include="Images\Champions\Spell\NeekoR.png" />
+    <Content Include="Images\Champions\Spell\NeekoW.png" />
+    <Content Include="Images\Champions\Spell\NetherBlade.png" />
+    <Content Include="Images\Champions\Spell\NocturneDuskbringer.png" />
+    <Content Include="Images\Champions\Spell\NocturneParanoia.png" />
+    <Content Include="Images\Champions\Spell\NocturneShroudofDarkness.png" />
+    <Content Include="Images\Champions\Spell\NocturneUnspeakableHorror.png" />
+    <Content Include="Images\Champions\Spell\NullLance.png" />
+    <Content Include="Images\Champions\Spell\NunuE.png" />
+    <Content Include="Images\Champions\Spell\NunuQ.png" />
+    <Content Include="Images\Champions\Spell\NunuR.png" />
+    <Content Include="Images\Champions\Spell\NunuW.png" />
+    <Content Include="Images\Champions\Spell\Obduracy.png" />
+    <Content Include="Images\Champions\Spell\OlafAxeThrowCast.png" />
+    <Content Include="Images\Champions\Spell\OlafFrenziedStrikes.png" />
+    <Content Include="Images\Champions\Spell\OlafRagnarok.png" />
+    <Content Include="Images\Champions\Spell\OlafRecklessStrike.png" />
+    <Content Include="Images\Champions\Spell\OrianaDetonateCommand.png" />
+    <Content Include="Images\Champions\Spell\OrianaDissonanceCommand.png" />
+    <Content Include="Images\Champions\Spell\OrianaIzunaCommand.png" />
+    <Content Include="Images\Champions\Spell\OrianaRedactCommand.png" />
+    <Content Include="Images\Champions\Spell\OrnnE.png" />
+    <Content Include="Images\Champions\Spell\OrnnQ.png" />
+    <Content Include="Images\Champions\Spell\OrnnR.png" />
+    <Content Include="Images\Champions\Spell\OrnnW.png" />
+    <Content Include="Images\Champions\Spell\Overdrive.png" />
+    <Content Include="Images\Champions\Spell\PantheonE.png" />
+    <Content Include="Images\Champions\Spell\PantheonQ.png" />
+    <Content Include="Images\Champions\Spell\PantheonRJump.png" />
+    <Content Include="Images\Champions\Spell\PantheonW.png" />
+    <Content Include="Images\Champions\Spell\PhosphorusBomb.png" />
+    <Content Include="Images\Champions\Spell\PickACard.png" />
+    <Content Include="Images\Champions\Spell\PoisonTrail.png" />
+    <Content Include="Images\Champions\Spell\PoppyE.png" />
+    <Content Include="Images\Champions\Spell\PoppyQ.png" />
+    <Content Include="Images\Champions\Spell\PoppyR.png" />
+    <Content Include="Images\Champions\Spell\PoppyW.png" />
+    <Content Include="Images\Champions\Spell\PowerBall.png" />
+    <Content Include="Images\Champions\Spell\PowerFist.png" />
+    <Content Include="Images\Champions\Spell\PrimalSurge.png" />
+    <Content Include="Images\Champions\Spell\Pulverize.png" />
+    <Content Include="Images\Champions\Spell\PuncturingTaunt.png" />
+    <Content Include="Images\Champions\Spell\PykeE.png" />
+    <Content Include="Images\Champions\Spell\PykeQ.png" />
+    <Content Include="Images\Champions\Spell\PykeR.png" />
+    <Content Include="Images\Champions\Spell\PykeW.png" />
+    <Content Include="Images\Champions\Spell\QuinnE.png" />
+    <Content Include="Images\Champions\Spell\QuinnQ.png" />
+    <Content Include="Images\Champions\Spell\QuinnR.png" />
+    <Content Include="Images\Champions\Spell\QuinnW.png" />
+    <Content Include="Images\Champions\Spell\RakanE.png" />
+    <Content Include="Images\Champions\Spell\RakanQ.png" />
+    <Content Include="Images\Champions\Spell\RakanR.png" />
+    <Content Include="Images\Champions\Spell\RakanW.png" />
+    <Content Include="Images\Champions\Spell\ReapTheWhirlwind.png" />
+    <Content Include="Images\Champions\Spell\RekSaiE.png" />
+    <Content Include="Images\Champions\Spell\RekSaiQ.png" />
+    <Content Include="Images\Champions\Spell\RekSaiRWrapper.png" />
+    <Content Include="Images\Champions\Spell\RekSaiW.png" />
+    <Content Include="Images\Champions\Spell\RenektonCleave.png" />
+    <Content Include="Images\Champions\Spell\RenektonPreExecute.png" />
+    <Content Include="Images\Champions\Spell\RenektonReignOfTheTyrant.png" />
+    <Content Include="Images\Champions\Spell\RenektonSliceAndDice.png" />
+    <Content Include="Images\Champions\Spell\RengarE.png" />
+    <Content Include="Images\Champions\Spell\RengarQ.png" />
+    <Content Include="Images\Champions\Spell\RengarR.png" />
+    <Content Include="Images\Champions\Spell\RengarW.png" />
+    <Content Include="Images\Champions\Spell\RiftWalk.png" />
+    <Content Include="Images\Champions\Spell\RivenFeint.png" />
+    <Content Include="Images\Champions\Spell\RivenFengShuiEngine.png" />
+    <Content Include="Images\Champions\Spell\RivenMartyr.png" />
+    <Content Include="Images\Champions\Spell\RivenTriCleave.png" />
+    <Content Include="Images\Champions\Spell\RocketGrab.png" />
+    <Content Include="Images\Champions\Spell\RumbleCarpetBomb.png" />
+    <Content Include="Images\Champions\Spell\RumbleFlameThrower.png" />
+    <Content Include="Images\Champions\Spell\RumbleGrenade.png" />
+    <Content Include="Images\Champions\Spell\RumbleShield.png" />
+    <Content Include="Images\Champions\Spell\Rupture.png" />
+    <Content Include="Images\Champions\Spell\RyzeE.png" />
+    <Content Include="Images\Champions\Spell\RyzeQWrapper.png" />
+    <Content Include="Images\Champions\Spell\RyzeR.png" />
+    <Content Include="Images\Champions\Spell\RyzeW.png" />
+    <Content Include="Images\Champions\Spell\Sadism.png" />
+    <Content Include="Images\Champions\Spell\SeismicShard.png" />
+    <Content Include="Images\Champions\Spell\SejuaniE.png" />
+    <Content Include="Images\Champions\Spell\SejuaniQ.png" />
+    <Content Include="Images\Champions\Spell\SejuaniR.png" />
+    <Content Include="Images\Champions\Spell\SejuaniW.png" />
+    <Content Include="Images\Champions\Spell\ShenE.png" />
+    <Content Include="Images\Champions\Spell\ShenQ.png" />
+    <Content Include="Images\Champions\Spell\ShenR.png" />
+    <Content Include="Images\Champions\Spell\ShenW.png" />
+    <Content Include="Images\Champions\Spell\ShyvanaDoubleAttack.png" />
+    <Content Include="Images\Champions\Spell\ShyvanaFireball.png" />
+    <Content Include="Images\Champions\Spell\ShyvanaImmolationAura.png" />
+    <Content Include="Images\Champions\Spell\ShyvanaTransformCast.png" />
+    <Content Include="Images\Champions\Spell\SionE.png" />
+    <Content Include="Images\Champions\Spell\SionQ.png" />
+    <Content Include="Images\Champions\Spell\SionR.png" />
+    <Content Include="Images\Champions\Spell\SionW.png" />
+    <Content Include="Images\Champions\Spell\SivirE.png" />
+    <Content Include="Images\Champions\Spell\SivirQ.png" />
+    <Content Include="Images\Champions\Spell\SivirR.png" />
+    <Content Include="Images\Champions\Spell\SivirW.png" />
+    <Content Include="Images\Champions\Spell\SkarnerExoskeleton.png" />
+    <Content Include="Images\Champions\Spell\SkarnerFracture.png" />
+    <Content Include="Images\Champions\Spell\SkarnerImpale.png" />
+    <Content Include="Images\Champions\Spell\SkarnerVirulentSlash.png" />
+    <Content Include="Images\Champions\Spell\SonaE.png" />
+    <Content Include="Images\Champions\Spell\SonaQ.png" />
+    <Content Include="Images\Champions\Spell\SonaR.png" />
+    <Content Include="Images\Champions\Spell\SonaW.png" />
+    <Content Include="Images\Champions\Spell\SorakaE.png" />
+    <Content Include="Images\Champions\Spell\SorakaQ.png" />
+    <Content Include="Images\Champions\Spell\SorakaR.png" />
+    <Content Include="Images\Champions\Spell\SorakaW.png" />
+    <Content Include="Images\Champions\Spell\SowTheWind.png" />
+    <Content Include="Images\Champions\Spell\StaticField.png" />
+    <Content Include="Images\Champions\Spell\SummonerBarrier.png" />
+    <Content Include="Images\Champions\Spell\SummonerBoost.png" />
+    <Content Include="Images\Champions\Spell\SummonerDarkStarChampSelect1.png" />
+    <Content Include="Images\Champions\Spell\SummonerDarkStarChampSelect2.png" />
+    <Content Include="Images\Champions\Spell\SummonerDot.png" />
+    <Content Include="Images\Champions\Spell\SummonerExhaust.png" />
+    <Content Include="Images\Champions\Spell\SummonerFlash.png" />
+    <Content Include="Images\Champions\Spell\SummonerHaste.png" />
+    <Content Include="Images\Champions\Spell\SummonerHeal.png" />
+    <Content Include="Images\Champions\Spell\SummonerMana.png" />
+    <Content Include="Images\Champions\Spell\SummonerOdysseyFlash.png" />
+    <Content Include="Images\Champions\Spell\SummonerOdysseyGhost.png" />
+    <Content Include="Images\Champions\Spell\SummonerOdysseyRevive.png" />
+    <Content Include="Images\Champions\Spell\SummonerPoroRecall.png" />
+    <Content Include="Images\Champions\Spell\SummonerPoroThrow.png" />
+    <Content Include="Images\Champions\Spell\SummonerReturn.png" />
+    <Content Include="Images\Champions\Spell\SummonerSiegeChampSelect1.png" />
+    <Content Include="Images\Champions\Spell\SummonerSiegeChampSelect2.png" />
+    <Content Include="Images\Champions\Spell\SummonerSmite.png" />
+    <Content Include="Images\Champions\Spell\SummonerSnowball.png" />
+    <Content Include="Images\Champions\Spell\SummonerSnowURFSnowball_Mark.png" />
+    <Content Include="Images\Champions\Spell\SummonerTeleport.png" />
+    <Content Include="Images\Champions\Spell\SwainE.png" />
+    <Content Include="Images\Champions\Spell\SwainQ.png" />
+    <Content Include="Images\Champions\Spell\SwainR.png" />
+    <Content Include="Images\Champions\Spell\SwainW.png" />
+    <Content Include="Images\Champions\Spell\SylasE.png" />
+    <Content Include="Images\Champions\Spell\SylasQ.png" />
+    <Content Include="Images\Champions\Spell\SylasR.png" />
+    <Content Include="Images\Champions\Spell\SylasW.png" />
+    <Content Include="Images\Champions\Spell\SyndraE.png" />
+    <Content Include="Images\Champions\Spell\SyndraQ.png" />
+    <Content Include="Images\Champions\Spell\SyndraR.png" />
+    <Content Include="Images\Champions\Spell\SyndraW.png" />
+    <Content Include="Images\Champions\Spell\TahmKenchE.png" />
+    <Content Include="Images\Champions\Spell\TahmKenchNewR.png" />
+    <Content Include="Images\Champions\Spell\TahmKenchQ.png" />
+    <Content Include="Images\Champions\Spell\TahmKenchW.png" />
+    <Content Include="Images\Champions\Spell\TaliyahE.png" />
+    <Content Include="Images\Champions\Spell\TaliyahQ.png" />
+    <Content Include="Images\Champions\Spell\TaliyahR.png" />
+    <Content Include="Images\Champions\Spell\TaliyahWVC.png" />
+    <Content Include="Images\Champions\Spell\TalonE.png" />
+    <Content Include="Images\Champions\Spell\TalonQ.png" />
+    <Content Include="Images\Champions\Spell\TalonR.png" />
+    <Content Include="Images\Champions\Spell\TalonW.png" />
+    <Content Include="Images\Champions\Spell\Tantrum.png" />
+    <Content Include="Images\Champions\Spell\TaricE.png" />
+    <Content Include="Images\Champions\Spell\TaricQ.png" />
+    <Content Include="Images\Champions\Spell\TaricR.png" />
+    <Content Include="Images\Champions\Spell\TaricW.png" />
+    <Content Include="Images\Champions\Spell\TeemoRCast.png" />
+    <Content Include="Images\Champions\Spell\Terrify.png" />
+    <Content Include="Images\Champions\Spell\ThreshE.png" />
+    <Content Include="Images\Champions\Spell\ThreshQ.png" />
+    <Content Include="Images\Champions\Spell\ThreshRPenta.png" />
+    <Content Include="Images\Champions\Spell\ThreshW.png" />
+    <Content Include="Images\Champions\Spell\TimeWarp.png" />
+    <Content Include="Images\Champions\Spell\ToxicShot.png" />
+    <Content Include="Images\Champions\Spell\Tremors2.png" />
+    <Content Include="Images\Champions\Spell\TristanaE.png" />
+    <Content Include="Images\Champions\Spell\TristanaQ.png" />
+    <Content Include="Images\Champions\Spell\TristanaR.png" />
+    <Content Include="Images\Champions\Spell\TristanaW.png" />
+    <Content Include="Images\Champions\Spell\TrundleCircle.png" />
+    <Content Include="Images\Champions\Spell\trundledesecrate.png" />
+    <Content Include="Images\Champions\Spell\TrundlePain.png" />
+    <Content Include="Images\Champions\Spell\TrundleTrollSmash.png" />
+    <Content Include="Images\Champions\Spell\TryndamereE.png" />
+    <Content Include="Images\Champions\Spell\TryndamereQ.png" />
+    <Content Include="Images\Champions\Spell\TryndamereW.png" />
+    <Content Include="Images\Champions\Spell\TwitchExpunge.png" />
+    <Content Include="Images\Champions\Spell\TwitchFullAutomatic.png" />
+    <Content Include="Images\Champions\Spell\TwitchHideInShadows.png" />
+    <Content Include="Images\Champions\Spell\TwitchVenomCask.png" />
+    <Content Include="Images\Champions\Spell\TwoShivPoison.png" />
+    <Content Include="Images\Champions\Spell\UdyrBearStance.png" />
+    <Content Include="Images\Champions\Spell\UdyrPhoenixStance.png" />
+    <Content Include="Images\Champions\Spell\UdyrTigerStance.png" />
+    <Content Include="Images\Champions\Spell\UdyrTurtleStance.png" />
+    <Content Include="Images\Champions\Spell\UFSlash.png" />
+    <Content Include="Images\Champions\Spell\UndyingRage.png" />
+    <Content Include="Images\Champions\Spell\UrgotE.png" />
+    <Content Include="Images\Champions\Spell\UrgotQ.png" />
+    <Content Include="Images\Champions\Spell\UrgotR.png" />
+    <Content Include="Images\Champions\Spell\UrgotW.png" />
+    <Content Include="Images\Champions\Spell\VarusE.png" />
+    <Content Include="Images\Champions\Spell\VarusQ.png" />
+    <Content Include="Images\Champions\Spell\VarusR.png" />
+    <Content Include="Images\Champions\Spell\VarusW.png" />
+    <Content Include="Images\Champions\Spell\VayneCondemn.png" />
+    <Content Include="Images\Champions\Spell\VayneInquisition.png" />
+    <Content Include="Images\Champions\Spell\VayneSilveredBolts.png" />
+    <Content Include="Images\Champions\Spell\VayneTumble.png" />
+    <Content Include="Images\Champions\Spell\VeigarBalefulStrike.png" />
+    <Content Include="Images\Champions\Spell\VeigarDarkMatter.png" />
+    <Content Include="Images\Champions\Spell\VeigarEventHorizon.png" />
+    <Content Include="Images\Champions\Spell\VeigarR.png" />
+    <Content Include="Images\Champions\Spell\VelkozE.png" />
+    <Content Include="Images\Champions\Spell\VelkozQ.png" />
+    <Content Include="Images\Champions\Spell\VelkozR.png" />
+    <Content Include="Images\Champions\Spell\VelkozW.png" />
+    <Content Include="Images\Champions\Spell\ViE.png" />
+    <Content Include="Images\Champions\Spell\ViktorChaosStorm.png" />
+    <Content Include="Images\Champions\Spell\ViktorDeathRay.png" />
+    <Content Include="Images\Champions\Spell\ViktorGravitonField.png" />
+    <Content Include="Images\Champions\Spell\ViktorPowerTransfer.png" />
+    <Content Include="Images\Champions\Spell\ViQ.png" />
+    <Content Include="Images\Champions\Spell\ViR.png" />
+    <Content Include="Images\Champions\Spell\ViW.png" />
+    <Content Include="Images\Champions\Spell\VladimirE.png" />
+    <Content Include="Images\Champions\Spell\VladimirHemoplague.png" />
+    <Content Include="Images\Champions\Spell\VladimirQ.png" />
+    <Content Include="Images\Champions\Spell\VladimirSanguinePool.png" />
+    <Content Include="Images\Champions\Spell\VolibearE.png" />
+    <Content Include="Images\Champions\Spell\VolibearQ.png" />
+    <Content Include="Images\Champions\Spell\VolibearR.png" />
+    <Content Include="Images\Champions\Spell\VolibearW.png" />
+    <Content Include="Images\Champions\Spell\Volley.png" />
+    <Content Include="Images\Champions\Spell\VorpalSpikes.png" />
+    <Content Include="Images\Champions\Spell\WarwickE.png" />
+    <Content Include="Images\Champions\Spell\WarwickQ.png" />
+    <Content Include="Images\Champions\Spell\WarwickR.png" />
+    <Content Include="Images\Champions\Spell\WarwickW.png" />
+    <Content Include="Images\Champions\Spell\WildCards.png" />
+    <Content Include="Images\Champions\Spell\WujuStyle.png" />
+    <Content Include="Images\Champions\Spell\XayahE.png" />
+    <Content Include="Images\Champions\Spell\XayahQ.png" />
+    <Content Include="Images\Champions\Spell\XayahR.png" />
+    <Content Include="Images\Champions\Spell\XayahW.png" />
+    <Content Include="Images\Champions\Spell\XerathArcaneBarrage2.png" />
+    <Content Include="Images\Champions\Spell\XerathArcanopulseChargeUp.png" />
+    <Content Include="Images\Champions\Spell\XerathLocusOfPower2.png" />
+    <Content Include="Images\Champions\Spell\XerathMageSpear.png" />
+    <Content Include="Images\Champions\Spell\XinZhaoE.png" />
+    <Content Include="Images\Champions\Spell\XinZhaoQ.png" />
+    <Content Include="Images\Champions\Spell\XinZhaoR.png" />
+    <Content Include="Images\Champions\Spell\XinZhaoW.png" />
+    <Content Include="Images\Champions\Spell\YasuoE.png" />
+    <Content Include="Images\Champions\Spell\YasuoQ1Wrapper.png" />
+    <Content Include="Images\Champions\Spell\YasuoR.png" />
+    <Content Include="Images\Champions\Spell\YasuoW.png" />
+    <Content Include="Images\Champions\Spell\YorickE.png" />
+    <Content Include="Images\Champions\Spell\YorickQ.png" />
+    <Content Include="Images\Champions\Spell\YorickR.png" />
+    <Content Include="Images\Champions\Spell\YorickW.png" />
+    <Content Include="Images\Champions\Spell\ZacE.png" />
+    <Content Include="Images\Champions\Spell\ZacQ.png" />
+    <Content Include="Images\Champions\Spell\ZacR.png" />
+    <Content Include="Images\Champions\Spell\ZacW.png" />
+    <Content Include="Images\Champions\Spell\ZedE.png" />
+    <Content Include="Images\Champions\Spell\ZedQ.png" />
+    <Content Include="Images\Champions\Spell\ZedR.png" />
+    <Content Include="Images\Champions\Spell\ZedW.png" />
+    <Content Include="Images\Champions\Spell\ZiggsE.png" />
+    <Content Include="Images\Champions\Spell\ZiggsQ.png" />
+    <Content Include="Images\Champions\Spell\ZiggsR.png" />
+    <Content Include="Images\Champions\Spell\ZiggsW.png" />
+    <Content Include="Images\Champions\Spell\ZileanQ.png" />
+    <Content Include="Images\Champions\Spell\ZileanW.png" />
+    <Content Include="Images\Champions\Spell\ZoeE.png" />
+    <Content Include="Images\Champions\Spell\ZoeQ.png" />
+    <Content Include="Images\Champions\Spell\ZoeR.png" />
+    <Content Include="Images\Champions\Spell\ZoeW.png" />
+    <Content Include="Images\Champions\Spell\ZyraE.png" />
+    <Content Include="Images\Champions\Spell\ZyraQ.png" />
+    <Content Include="Images\Champions\Spell\ZyraR.png" />
+    <Content Include="Images\Champions\Spell\ZyraW.png" />
     <Content Include="Images\Static\zed_wallpaper.jpg" />
-    <Content Include="Models\DBModel.Context.tt">
+    <Content Include="Models\YordleSpyDBModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.Context.cs</LastGenOutput>
+      <DependentUpon>YordleSpyDBModels.edmx</DependentUpon>
+      <LastGenOutput>YordleSpyDBModels.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DBModel.tt">
+    <Content Include="Models\YordleSpyDBModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel.edmx</DependentUpon>
-      <LastGenOutput>DBModel.cs</LastGenOutput>
+      <DependentUpon>YordleSpyDBModels.edmx</DependentUpon>
+      <LastGenOutput>YordleSpyDBModels.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\particles.js" />
@@ -461,14 +1186,15 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="particles.json" />
-    <EntityDeploy Include="Models\DBModel.edmx">
+    <Content Include="Content\particles.json" />
+    <EntityDeploy Include="Models\YordleSpyDBModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>YordleSpyDBModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DBModel.edmx.diagram">
-      <DependentUpon>DBModel.edmx</DependentUpon>
+    <Content Include="Models\YordleSpyDBModels.edmx.diagram">
+      <DependentUpon>YordleSpyDBModels.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\yordlespy - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -515,11 +1241,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\Champions\Create.cshtml" />
-    <Content Include="Views\Champions\Delete.cshtml" />
-    <Content Include="Views\Champions\Details.cshtml" />
-    <Content Include="Views\Champions\Edit.cshtml" />
-    <Content Include="Views\Champions\Index.cshtml" />
+    <Content Include="Views\Home\ChampionData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

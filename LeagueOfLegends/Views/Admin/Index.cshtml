@@ -5,13 +5,6 @@
     ViewBag.Title = "Index";
 }
 
-<script>
-    particlesJS.load("particles-js2", "particles.json", function ()
-    {
-        console.log("particles.js working as expected");
-    });
-</script>
-
 <div class="body-main-container">
     <div id="particles-js2" class="particles-positioning"></div>
     <div class="overlay" style="background-color: #1f1f1f80;">
@@ -64,5 +57,7 @@
     </div>
     <div class="screenLoader" style="display: none;">
         <div class="loader"></div>
+        <div class="loaderText">Importing Data</div>
     </div>
 </div>
+<script>loadParticles("particles-js2");</script>

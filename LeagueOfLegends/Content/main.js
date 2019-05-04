@@ -29,4 +29,15 @@
             $(".screenLoader").toggle();
         });
     });
+
+    $(".picture-tile").click(function () {
+        $(".screenLoader").toggle();
+        $.ajax({
+            url: "/Home/ChampionData",
+            data: { championKey : $(this).attr("value") }
+        }).done(function (content) {
+            $("#championDataContainer").html(content);
+            $(".screenLoader").toggle();
+        });
+    });
 });

@@ -2,11 +2,6 @@
     ViewBag.Title = "Home Page";
 }
 
-
-<script>
-    particlesJS.load("particles-js", "particles.json", function () { console.log(""); });
-</script>
-
 <div class="homepage-jumbotron">
     <div id="particles-js"></div>
     <div class="overlay">
@@ -23,3 +18,4 @@
         <p style="margin-top: 20px;">@ViewBag.message</p>
     </div>
 </div>
+<script>loadParticles("particles-js");</script>

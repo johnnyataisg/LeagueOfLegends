@@ -18,16 +18,17 @@
 
     @foreach (Match match in ViewBag.matchList.matches)
     {
-        using (LeagueOfLegendsStaticDataEntities db = new LeagueOfLegendsStaticDataEntities())
+        using (DatabaseEntity db = new DatabaseEntity())
         {
-            Champion champion = db.Champions.Where(s => s.id == match.champion).FirstOrDefault();
+            ChampionSummary championSummary = db.ChampionSummary.Find(match.champion);
+            ChampionImage championImage = db.ChampionImages.Find(championSummary.image);
             <a href=@Url.Action("MatchDetails", "Home", new { matchId = match.gameId, championId = match.champion })>
                 <div class="matchListTile">
                     <div class="matchChampionIcon">
-                        <img src="~/Images/Champions/Icon/@champion.image" style="width: 100%; height: auto;" />
+                        <img src="~/Images/Champions/Icon/@championImage.full" style="width: 100%; height: auto;" />
                     </div>
                     <div class="matchDetails">
-                        <p>@champion.champion_name</p>
+                        <p>@championSummary.name</p>
                         <p>@match.role</p>
                         <p>@match.lane</p>
                     </div>
