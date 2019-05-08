@@ -14,9 +14,19 @@ namespace LeagueOfLegends.Models
     
     public partial class ChampionPassive
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ChampionPassive()
+        {
+            this.ChampionSummaries = new HashSet<ChampionSummary>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public Nullable<int> image { get; set; }
+    
+        public virtual PassiveImage PassiveImage { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChampionSummary> ChampionSummaries { get; set; }
     }
 }

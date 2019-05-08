@@ -1,8 +1,11 @@
 ﻿@using LeagueOfLegends.Models
 @using System.Data.SqlClient;
+@model Dictionary<String, LeagueOfLegends.Models.ChampionSummary>
 
 @{
-    ViewBag.Title = "AllChampions";
+    ViewBag.Title = "Champion Database";
+    List<String> keys = Model.Keys.ToList();
+    keys.Sort();
 }
 
 <div id="championAnalytics">
@@ -10,19 +13,19 @@
     <div class="overlay" style="background-color: #1f1f1f80;">
         <div id="championListContainer">
             <div class="header-block">
-                <h4>Scroll to See All Champions</h4>
+                <h4 style="font-size: 110%;">Scroll to See All Champions</h4>
             </div>
             <div class="body-block">
                 <table class="table table-hover">
                     <tbody style="background-color: #4040409e;">
-                        @foreach (Tuple<int, String, String, String> item in Model)
+                        @foreach (String key in keys)
                         {
-                            <tr class="picture-tile" scope="row" value=@item.Item1>
+                            <tr class="picture-tile" scope="row" value=@key>
                                 <td>
-                                    <img src="~/Images/Champions/Icon/@item.Item4" />
+                                    <img src="~/Images/Champions/Icon/@Model[key].ChampionImage.full" />
                                 </td>
                                 <td>
-                                    <h6>@item.Item2, @item.Item3</h6>
+                                    <h6>@Model[key].name, @Model[key].title</h6>
                                 </td>
                             </tr>
                         }

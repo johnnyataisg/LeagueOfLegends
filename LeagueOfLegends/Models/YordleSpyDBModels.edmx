@@ -298,6 +298,30 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="value" Type="varchar" MaxLength="20" />
           <Property Name="blockID" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK_ChampionPassives_PassiveImages">
+          <End Role="PassiveImages" Type="Self.PassiveImages" Multiplicity="0..1" />
+          <End Role="ChampionPassives" Type="Self.ChampionPassives" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassiveImages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ChampionPassives">
+              <PropertyRef Name="image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChampionSpells_SpellImages">
+          <End Role="SpellImages" Type="Self.SpellImages" Multiplicity="0..1" />
+          <End Role="ChampionSpells" Type="Self.ChampionSpells" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpellImages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ChampionSpells">
+              <PropertyRef Name="image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ChampionSummary_ChampionImages">
           <End Role="ChampionImages" Type="Self.ChampionImages" Multiplicity="1" />
           <End Role="ChampionSummary" Type="Self.ChampionSummary" Multiplicity="*" />
@@ -307,6 +331,18 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
             </Principal>
             <Dependent Role="ChampionSummary">
               <PropertyRef Name="image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChampionSummary_ChampionPassives">
+          <End Role="ChampionPassives" Type="Self.ChampionPassives" Multiplicity="1" />
+          <End Role="ChampionSummary" Type="Self.ChampionSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChampionPassives">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ChampionSummary">
+              <PropertyRef Name="passive" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,8 +378,20 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
     [Seasons].[name] AS [name]
     FROM [dbo].[Seasons] AS [Seasons]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK_ChampionPassives_PassiveImages" Association="Self.FK_ChampionPassives_PassiveImages">
+            <End Role="PassiveImages" EntitySet="PassiveImages" />
+            <End Role="ChampionPassives" EntitySet="ChampionPassives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionSpells_SpellImages" Association="Self.FK_ChampionSpells_SpellImages">
+            <End Role="SpellImages" EntitySet="SpellImages" />
+            <End Role="ChampionSpells" EntitySet="ChampionSpells" />
+          </AssociationSet>
           <AssociationSet Name="FK_ChampionSummary_ChampionImages" Association="Self.FK_ChampionSummary_ChampionImages">
             <End Role="ChampionImages" EntitySet="ChampionImages" />
+            <End Role="ChampionSummary" EntitySet="ChampionSummary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionSummary_ChampionPassives" Association="Self.FK_ChampionSummary_ChampionPassives">
+            <End Role="ChampionPassives" EntitySet="ChampionPassives" />
             <End Role="ChampionSummary" EntitySet="ChampionSummary" />
           </AssociationSet>
         </EntityContainer>
@@ -400,6 +448,8 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="image" Type="Int32" />
+          <NavigationProperty Name="PassiveImage" Relationship="YordleSpyModel.FK_ChampionPassives_PassiveImages" FromRole="ChampionPassive" ToRole="PassiveImage" />
+          <NavigationProperty Name="ChampionSummaries" Relationship="YordleSpyModel.FK_ChampionSummary_ChampionPassives" FromRole="ChampionPassive" ToRole="ChampionSummary" />
         </EntityType>
         <EntityType Name="Champion">
           <Key>
@@ -439,6 +489,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="image" Type="Int32" />
           <Property Name="resource" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="championKey" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SpellImage" Relationship="YordleSpyModel.FK_ChampionSpells_SpellImages" FromRole="ChampionSpell" ToRole="SpellImage" />
         </EntityType>
         <EntityType Name="ChampionStat">
           <Key>
@@ -481,6 +532,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="partype" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="passive" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ChampionImage" Relationship="YordleSpyModel.FK_ChampionSummary_ChampionImages" FromRole="ChampionSummary" ToRole="ChampionImage" />
+          <NavigationProperty Name="ChampionPassive" Relationship="YordleSpyModel.FK_ChampionSummary_ChampionPassives" FromRole="ChampionSummary" ToRole="ChampionPassive" />
         </EntityType>
         <EntityType Name="ChampionType">
           <Key>
@@ -574,6 +626,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="y" Type="Double" />
           <Property Name="w" Type="Double" />
           <Property Name="h" Type="Double" />
+          <NavigationProperty Name="ChampionPassives" Relationship="YordleSpyModel.FK_ChampionPassives_PassiveImages" FromRole="PassiveImage" ToRole="ChampionPassive" />
         </EntityType>
         <EntityType Name="Queue">
           <Key>
@@ -616,6 +669,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="y" Type="Double" />
           <Property Name="w" Type="Double" />
           <Property Name="h" Type="Double" />
+          <NavigationProperty Name="ChampionSpells" Relationship="YordleSpyModel.FK_ChampionSpells_SpellImages" FromRole="SpellImage" ToRole="ChampionSpell" />
         </EntityType>
         <EntityType Name="SpellRank">
           <Key>
@@ -675,6 +729,18 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
             <End Role="ChampionImage" EntitySet="ChampionImages" />
             <End Role="ChampionSummary" EntitySet="ChampionSummaries" />
           </AssociationSet>
+          <AssociationSet Name="FK_ChampionPassives_PassiveImages" Association="YordleSpyModel.FK_ChampionPassives_PassiveImages">
+            <End Role="PassiveImage" EntitySet="PassiveImages" />
+            <End Role="ChampionPassive" EntitySet="ChampionPassives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionSummary_ChampionPassives" Association="YordleSpyModel.FK_ChampionSummary_ChampionPassives">
+            <End Role="ChampionPassive" EntitySet="ChampionPassives" />
+            <End Role="ChampionSummary" EntitySet="ChampionSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionSpells_SpellImages" Association="YordleSpyModel.FK_ChampionSpells_SpellImages">
+            <End Role="SpellImage" EntitySet="SpellImages" />
+            <End Role="ChampionSpell" EntitySet="ChampionSpells" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_ChampionSummary_ChampionImages">
           <End Type="YordleSpyModel.ChampionImage" Role="ChampionImage" Multiplicity="1" />
@@ -684,6 +750,42 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="ChampionSummary">
+              <PropertyRef Name="image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChampionPassives_PassiveImages">
+          <End Type="YordleSpyModel.PassiveImage" Role="PassiveImage" Multiplicity="0..1" />
+          <End Type="YordleSpyModel.ChampionPassive" Role="ChampionPassive" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PassiveImage">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ChampionPassive">
+              <PropertyRef Name="image" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChampionSummary_ChampionPassives">
+          <End Type="YordleSpyModel.ChampionPassive" Role="ChampionPassive" Multiplicity="1" />
+          <End Type="YordleSpyModel.ChampionSummary" Role="ChampionSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChampionPassive">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ChampionSummary">
+              <PropertyRef Name="passive" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChampionSpells_SpellImages">
+          <End Type="YordleSpyModel.SpellImage" Role="SpellImage" Multiplicity="0..1" />
+          <End Type="YordleSpyModel.ChampionSpell" Role="ChampionSpell" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SpellImage">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ChampionSpell">
               <PropertyRef Name="image" />
             </Dependent>
           </ReferentialConstraint>

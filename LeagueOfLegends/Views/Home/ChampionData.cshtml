@@ -1,120 +1,18 @@
 ﻿@using LeagueOfLegends.Models
+@using System.Data.Entity
+@model LeagueOfLegends.Models.ChampionSummary
+
 @{
     Layout = null;
-    DatabaseEntity db = new DatabaseEntity();
-    int championKey = ViewBag.championKey;
-
-    ChampionSummary championSummary = db.ChampionSummary.Find(championKey);
-    ChampionImage championImage = db.ChampionImages.Find(championSummary.image);
-    ChampionInfo championInfo = db.ChampionInfo.Where(row => row.championKey == championKey).FirstOrDefault();
-    ChampionType[] championTypes = db.ChampionTypes.Where(row => row.championKey == championKey).ToArray();
-    ChampionSpell[] championSpells = db.ChampionSpells.Where(row => row.championKey == championKey).OrderBy(row => row.image).ToArray();
-    ChampionPassive championPassive = db.ChampionPassives.Find(championSummary.passive);
-    PassiveImage passiveImage = db.PassiveImages.Find(championPassive.image);
-
-    String championTypeString = null;
-    for (int i = 0; i < championTypes.Count(); i++)
-    {
-        if (i == 0)
-        {
-            championTypeString += championTypes[i].description;
-        }
-        else
-        {
-            championTypeString += ", " + championTypes[i].description;
-        }
-    }
+    ChampionInfo championInfo = (ChampionInfo)ViewData["ChampionInfo"];
+    ChampionSpell[] championSpells = (ChampionSpell[])ViewData["ChampionSpells"];
+    String championTypeString = (String)ViewData["ChampionTypeString"];
 }
 
-<style>
-    #left {
-        width: 40%;
-        height: 100%;
-        float: left;
-        padding: 25px;
-    }
-    #right {
-        width: 60%;
-        height: 100%;
-        float: left;
-        padding: 25px;
-    }
-    .champion-header {
-        height: 20%;
-        width: 100%;
-    }
-    .champion-header img {
-        float: left;
-        width: 25%;
-        height: auto;
-    }
-    #champion-skillbars {
-        float: left;
-        width: 75%;
-        height: 100%;
-        padding-left: 15px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-    }
-    .meter {
-        width: 100%;
-        height: 25%;
-    }
-    .meter div {
-        margin: 0;
-        width: 30%;
-        float: left;
-    }
-    .meter meter {
-        width: 70%;
-        display: inline;
-    }
-    meter::-webkit-meter-bar {
-        background: white;
-        border-radius: 3px;
-    }
-    meter::-webkit-meter-optimum-value {
-        background: #4bbfb3;
-        border-top-left-radius: 3px;
-        border-bottom-left-radius: 3px;
-    }
-    .meterFull::-webkit-meter-optimum-value {
-        border-top-right-radius: 3px;
-        border-bottom-right-radius: 3px;
-    }
-    .champion-lore {
-        width: 100%;
-        height: 33%;
-        margin-bottom: 5%;
-        overflow-y: auto;
-    }
-    .champion-info-basics {
-        height: 10%;
-        width: 100%;
-    }
-    .spellContainer {
-        height: 20%;
-        width: 100%;
-        overflow-y: auto;
-        overflow-x: auto;
-    }
-    .spellContainer img {
-        width: 10%;
-        height: auto;
-        float: left;
-        border: 2px solid black;
-        margin-right: 2%;
-    }
-    .spellContainer p {
-        width: 88%;
-        float: left;
-    }
-</style>
-
 <div id="left">
-    <h5>@championSummary.name, @championSummary.title</h5>
+    <h5>@Model.name, @Model.title</h5>
     <div class="champion-header">
-        <img src="~/Images/Champions/Icon/@championImage.full" />
+        <img src="~/Images/Champions/Icon/@Model.ChampionImage.full" />
         <div id="champion-skillbars">
             <div class="meter">
                 <div>Attack: </div>
@@ -136,23 +34,29 @@
     </div>
     <div class="champion-lore">
         <h6>Lore</h6>
-        <p>@championSummary.lore</p>
+        <p>@Model.lore</p>
     </div>
     <div class="champion-info-basics">
-            <p>Champion Types: @championTypeString</p>
-            <p>Resource Bar: @championSummary.partype</p>
+        <p>Champion Types: @championTypeString</p>
+        <p>Resource Bar: @Model.partype</p>
     </div>
 </div>
 <div id="right">
     <div class="spellContainer">
-        <img src="~/Images/Champions/Passive/@passiveImage.full" />
-        <p>@Html.Raw(championPassive.description)</p>
+        @{ 
+            ChampionPassive passive = Model.ChampionPassive;
+        }
+        <img src="~/Images/Champions/Passive/@passive.PassiveImage.full" />
+        <p>
+            @passive.name
+            <br />
+            @Html.Raw(passive.description)
+        </p>
     </div>
     @foreach (ChampionSpell spell in championSpells)
     {
-        SpellImage spellImage = db.SpellImages.Where(row => row.id == spell.image).FirstOrDefault();
         <div class="spellContainer">
-            <img src="~/Images/Champions/Spell/@spellImage.full" />
+            <img src="~/Images/Champions/Spell/@spell.SpellImage.full" />
             <p>
                 @spell.name
                 <br />

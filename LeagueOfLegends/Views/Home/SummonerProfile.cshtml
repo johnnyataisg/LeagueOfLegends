@@ -1,39 +1,52 @@
 ﻿@using LeagueOfLegends.Models
+@model Dictionary<int, LeagueOfLegends.Models.ChampionSummary>
 
 @{
     ViewBag.Title = "Summoner Profile";
 
     //Load the match history data for the past 20 games into a PlayerDataAnalyzer object and perform calculations
     DataAnalyzer analyzer = new DataAnalyzer(ViewBag.matchList, 20);
-    Dictionary<String, double> statsMatrix = analyzer.calculateAverageStats(ViewBag.accountID);
+    Dictionary<String, double> statsMatrix = analyzer.calculateAverageStats((String)ViewData["AccountID"]);
+
+    //Initialize variables
+    String accountID = (String)ViewData["AccountID"];
+    Summoner summoner = (Summoner)ViewData["Summoner"];
+    MatchList matchList = (MatchList)ViewData["Matchlist"];
+    Dictionary<long, MatchData> matchDictionary = (Dictionary<long, MatchData>)ViewData["MatchDictionary"];
 }
 
 <div class="body-main-container">
-    <h4 style="margin: 10px auto;">@ViewBag.summoner.name</h4>
-    <h5 style="margin: 10px auto;">Summoner Level: @ViewBag.summoner.summonerLevel</h5>
+    <h4 style="margin: 10px auto;">@summoner.name</h4>
+    <h5 style="margin: 10px auto;">Summoner Level: @summoner.summonerLevel</h5>
     <h5 style="margin: 10px auto;">Win Rate in Past 20 Games: @statsMatrix["winrate"]%</h5>
     <h5 style="margin: 10px auto;">Average Stats: @statsMatrix["kills"]/@statsMatrix["deaths"]/@statsMatrix["assists"]</h5>
     <h5 style="margin: 10px auto;">Average Minion Score: @statsMatrix["minionscore"]</h5>
-    <h5 style="margin-bottom: 30px;">Past @ViewBag.matchList.totalGames Games</h5>
+    <h5 style="margin-bottom: 30px;">Past 20 Match History</h5>
 
-    @foreach (Match match in ViewBag.matchList.matches)
-    {
-        using (DatabaseEntity db = new DatabaseEntity())
-        {
-            ChampionSummary championSummary = db.ChampionSummary.Find(match.champion);
-            ChampionImage championImage = db.ChampionImages.Find(championSummary.image);
-            <a href=@Url.Action("MatchDetails", "Home", new { matchId = match.gameId, championId = match.champion })>
-                <div class="matchListTile">
-                    <div class="matchChampionIcon">
-                        <img src="~/Images/Champions/Icon/@championImage.full" style="width: 100%; height: auto;" />
-                    </div>
-                    <div class="matchDetails">
-                        <p>@championSummary.name</p>
-                        <p>@match.role</p>
-                        <p>@match.lane</p>
-                    </div>
-                </div>
-            </a>
-        }
-    }
+    <table class="table table-hover">
+        <tbody>
+            @foreach (Match match in matchList.matches)
+            {
+                ChampionSummary champion = Model[match.champion];
+                String matchResult = matchDictionary[match.gameId].getMatchResultForPlayer(accountID);
+                <tr class="@(@matchResult == "Win" ? "table-info" : "table-danger")">
+                    <td>
+                        <a href=@Url.Action("MatchDetails", "Home", new { matchId = match.gameId, championId = match.champion })>
+                            <div class="matchListTile">
+                                <div class="matchChampionIcon">
+                                    <img src="~/Images/Champions/Icon/@champion.ChampionImage.full" style="width: 100%; height: auto;" />
+                                </div>
+                                <div class="matchDetails">
+                                    <p>@champion.name</p>
+                                    <p>@match.role</p>
+                                    <p>@match.lane</p>
+                                    <p>@matchResult</p>
+                                </div>
+                            </div>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

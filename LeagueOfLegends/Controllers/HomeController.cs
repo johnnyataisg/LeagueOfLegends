@@ -19,11 +19,13 @@ namespace LeagueOfLegends.Controllers
 {
     public class HomeController : Controller
     {
-        private DatabaseEntity db = new DatabaseEntity();
+        static private DatabaseEntity db = new DatabaseEntity();
+        private Dictionary<int, ChampionSummary> championDictionary = db.ChampionSummary.Include("ChampionImage").Include("ChampionPassive.PassiveImage").ToDictionary(row => row.key);
+        private Dictionary<String, ChampionSummary> championDictionary2 = db.ChampionSummary.Include("ChampionImage").Include("ChampionPassive.PassiveImage").ToDictionary(row => row.id);
 
         public ActionResult Index(String message)
         {
-            ViewBag.message = message;
+            ViewData["Message"] = message;
             return View();
         }
 
@@ -41,19 +43,42 @@ namespace LeagueOfLegends.Controllers
                 //Get the summoner Riot API response object
                 RiotRestWrapper client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + sName);
                 IRestResponse response = client.Execute();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                }
                 Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response.Content.ToString());
 
                 //Get the 100 most recent games of this summoner
                 String accountID = summoner.accountId;
-                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID);
+                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID + "?endIndex=20");
                 response = client.Execute();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                }
                 MatchList matchList = JsonConvert.DeserializeObject<MatchList>(response.Content.ToString());
 
-                ViewBag.summoner = summoner;
-                ViewBag.matchList = matchList;
-                ViewBag.accountID = accountID;
+                //Create a dictionary for all match data
+                Dictionary<long, MatchData> matchDictionary = new Dictionary<long, MatchData>();
+                foreach (Match match in matchList.matches)
+                {
+                    client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matches/" + match.gameId);
+                    response = client.Execute();
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                    }
+                    MatchData data = JsonConvert.DeserializeObject<MatchData>(response.Content.ToString());
+                    matchDictionary.Add(match.gameId, data);
+                }
 
-                return View();
+                ViewData["Summoner"] = summoner;
+                ViewData["Matchlist"] = matchList;
+                ViewData["AccountID"] = accountID;
+                ViewData["MatchDictionary"] = matchDictionary;
+
+                return View(this.championDictionary);
             }
             catch (Exception exception)
             {
@@ -81,23 +106,32 @@ namespace LeagueOfLegends.Controllers
 
         public ActionResult AllChampions()
         {
-            List<Tuple<int, String, String, String>> dataList = new List<Tuple<int, String, String, String>>();
-            var query = from champion in this.db.ChampionSummary
-                        join image in this.db.ChampionImages on champion.image equals image.id
-                        orderby champion.name ascending
-                        select new { key = champion.key, name = champion.name, title = champion.title, image = image.full };
-
-            foreach (var item in query)
-            {
-                dataList.Add(new Tuple<int, String, String, String>(item.key, item.name, item.title, item.image));
-            }
-            return View(dataList);
+            return View(this.championDictionary2);
         }
 
-        public ActionResult ChampionData(int championKey)
+        public ActionResult ChampionData(String championID)
         {
-            ViewBag.championKey = championKey;
-            return View();
+            ChampionSummary champion = this.championDictionary2[championID];
+            ChampionInfo championInfo = db.ChampionInfo.SingleOrDefault(row => row.championKey == champion.key);
+            ChampionType[] championTypes = db.ChampionTypes.Where(row => row.championKey == champion.key).ToArray();
+            ChampionSpell[] championSpells = db.ChampionSpells.Include("SpellImage").Where(row => row.championKey == champion.key).OrderBy(row => row.image).ToArray();
+            String championTypeString = null;
+            for (int i = 0; i < championTypes.Count(); i++)
+            {
+                if (i == 0)
+                {
+                    championTypeString += championTypes[i].description;
+                }
+                else
+                {
+                    championTypeString += ", " + championTypes[i].description;
+                }
+            }
+            ViewData["ChampionInfo"] = championInfo;
+            ViewData["ChampionSpells"] = championSpells;
+            ViewData["ChampionTypeString"] = championTypeString;
+
+            return View(champion);
         }
     }
 }

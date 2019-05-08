@@ -29,5 +29,7 @@ namespace LeagueOfLegends.Models
         public Nullable<int> image { get; set; }
         public string resource { get; set; }
         public int championKey { get; set; }
+    
+        public virtual SpellImage SpellImage { get; set; }
     }
 }

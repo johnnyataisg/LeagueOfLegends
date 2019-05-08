@@ -32,6 +32,9 @@
         <EntityTypeShape EntityType="YordleSpyModel.Visible" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="YordleSpyModel.Season" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
         <AssociationConnector Association="YordleSpyModel.FK_ChampionSummary_ChampionImages" />
+        <AssociationConnector Association="YordleSpyModel.FK_ChampionPassives_PassiveImages" />
+        <AssociationConnector Association="YordleSpyModel.FK_ChampionSummary_ChampionPassives" />
+        <AssociationConnector Association="YordleSpyModel.FK_ChampionSpells_SpellImages" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

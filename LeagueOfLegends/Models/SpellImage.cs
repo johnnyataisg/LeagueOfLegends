@@ -14,6 +14,12 @@ namespace LeagueOfLegends.Models
     
     public partial class SpellImage
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SpellImage()
+        {
+            this.ChampionSpells = new HashSet<ChampionSpell>();
+        }
+    
         public int id { get; set; }
         public string full { get; set; }
         public string sprite { get; set; }
@@ -22,5 +28,8 @@ namespace LeagueOfLegends.Models
         public Nullable<double> y { get; set; }
         public Nullable<double> w { get; set; }
         public Nullable<double> h { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChampionSpell> ChampionSpells { get; set; }
     }
 }

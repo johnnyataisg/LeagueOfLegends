@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Homepage";
 }
 
 <div class="homepage-jumbotron">
@@ -15,7 +15,7 @@
             <input id="summonerName" name="sName" type="text" class="validate form-control" placeholder="Enter a summoner name">
             <button id="searchBtn" class="btn btn-game" style="margin-top: 30px;" type="submit" name="action"><span>Search Summoner</span><i class="fas fa-paper-plane"></i></button>
         }
-        <p style="margin-top: 20px;">@ViewBag.message</p>
+        <p style="margin-top: 20px;">@ViewData["Message"]</p>
     </div>
 </div>
 <script>loadParticles("particles-js");</script>

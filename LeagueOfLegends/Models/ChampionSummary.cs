@@ -25,5 +25,6 @@ namespace LeagueOfLegends.Models
         public int passive { get; set; }
     
         public virtual ChampionImage ChampionImage { get; set; }
+        public virtual ChampionPassive ChampionPassive { get; set; }
     }
 }
