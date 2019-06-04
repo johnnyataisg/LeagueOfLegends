@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Johnny Pao\Desktop\Work and Personal\LeagueOfLegends\LeagueOfLegends\Models\YordleSpyDBModels.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\johnn\Desktop\Work and Personal\LeagueOfLegends\LeagueOfLegends\Models\YordleSpyDBModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

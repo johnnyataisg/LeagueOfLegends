@@ -7,21 +7,21 @@
     ViewBag.Title = "Match Details";
 
     int championId = ViewBag.champion;
-    Champion champion = db.Champions.Where(s => s.id == championId).FirstOrDefault();
+    ChampionSummary champion = db.ChampionSummary.Include("ChampionImage").Where(s => s.key == championId).FirstOrDefault();
 
     double timestamp = Model.gameCreation;
     System.DateTime gameStartTime = new System.DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
     gameStartTime = gameStartTime.AddMilliseconds(timestamp).ToLocalTime();
 
-    Queue queue = db.Queues.Where(s => s.id == Model.queueId).FirstOrDefault();
+    //Queue queue = db.Queues.Where(s => s.id == Model.queueId).FirstOrDefault();
 
     List<Player> participantIdentities = Model.participantIdentities;
     List<ParticipantPerformance> participantPerformances = Model.participants;
 }
 
 <div>
-    <h4 style="margin: 0 auto;">@queue.map  @queue.pickType @queue.gameType</h4>
-    <img src="~/Images/Champions/Icon/@champion.image" style="height: 80px; width: 80px;"/>
+    @*<h4 style="margin: 0 auto;">@queue.map  @queue.pickType @queue.gameType</h4>*@
+    <img src="~/Images/Champions/Icon/@champion.ChampionImage.full" style="height: 80px; width: 80px;"/>
     <h5>@gameStartTime</h5>
     <div id="teamStatsContainer">
         <div class="teamSideContainer">
@@ -31,7 +31,7 @@
                 Player currentPlayer = participantIdentities.ElementAt(i);
                 ParticipantPerformance currentPlayerPerformance = participantPerformances.ElementAt(i);
                 int participantSelectedChampionId = currentPlayerPerformance.championId;
-                Champion participantSelectedChampion = db.Champions.Where(s => s.id == participantSelectedChampionId).FirstOrDefault();
+                ChampionSummary participantSelectedChampion = db.ChampionSummary.Include("ChampionImage").Where(s => s.key == participantSelectedChampionId).FirstOrDefault();
 
                 String highestAchievedRank = (currentPlayerPerformance.highestAchievedSeasonTier == null) ? "UNRANKED" : currentPlayerPerformance.highestAchievedSeasonTier;
 
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="playerChampionImage">
-                        <img src="~/Images/Champions/Icon/@participantSelectedChampion.image" />
+                        <img src="~/Images/Champions/Icon/@participantSelectedChampion.ChampionImage.full" />
                     </div>
                     <div class="playerKDA">
                         <div>
@@ -70,7 +70,7 @@
                 Player currentPlayer = participantIdentities.ElementAt(i);
                 ParticipantPerformance currentPlayerPerformance = participantPerformances.ElementAt(i);
                 int participantSelectedChampionId = currentPlayerPerformance.championId;
-                Champion participantSelectedChampion = db.Champions.Where(s => s.id == participantSelectedChampionId).FirstOrDefault();
+                ChampionSummary participantSelectedChampion = db.ChampionSummary.Include("ChampionImage").Where(s => s.key == participantSelectedChampionId).FirstOrDefault();
 
                 String highestAchievedRank = (currentPlayerPerformance.highestAchievedSeasonTier == null) ? "UNRANKED" : currentPlayerPerformance.highestAchievedSeasonTier;
 
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="playerChampionImage">
-                        <img src="~/Images/Champions/Icon/@participantSelectedChampion.image" />
+                        <img src="~/Images/Champions/Icon/@participantSelectedChampion.ChampionImage.full" />
                     </div>
                     <div class="playerKDA">
                         <div>

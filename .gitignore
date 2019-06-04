@@ -262,3 +262,6 @@ __pycache__/
 
 # Ignore DataDragon static files
 DataDragonStatic/
+
+# ETL Package
+DataDragonETL/

@@ -4,13 +4,16 @@
 
 @{
     Layout = null;
+    ChampionStat championStats = (ChampionStat)ViewData["ChampionStats"];
     ChampionInfo championInfo = (ChampionInfo)ViewData["ChampionInfo"];
     ChampionSpell[] championSpells = (ChampionSpell[])ViewData["ChampionSpells"];
     String championTypeString = (String)ViewData["ChampionTypeString"];
 }
 
 <div id="left">
-    <h5>@Model.name, @Model.title</h5>
+    <h5 style="color: yellow !important;">@Model.name, @Model.title</h5>
+    <h6>Champion Type: @championTypeString</h6>
+    <hr />
     <div class="champion-header">
         <img src="~/Images/Champions/Icon/@Model.ChampionImage.full" />
         <div id="champion-skillbars">
@@ -37,8 +40,63 @@
         <p>@Model.lore</p>
     </div>
     <div class="champion-info-basics">
-        <p>Champion Types: @championTypeString</p>
-        <p>Resource Bar: @Model.partype</p>
+        <h6>Stats</h6>
+        <div id="statsLeft">
+            <p>
+                <span>
+                    Health: <br />
+                    @Math.Round((double)championStats.hp, 2)  (+@Math.Round((double)championStats.hpperlevel, 2) per level)
+                </span>
+            </p>
+            <p>
+                <span>
+                    @Model.partype: <br />
+                    @Math.Round((double)championStats.mp, 2) (+@Math.Round((double)championStats.mpperlevel, 2) per level)
+                </span>
+            </p>
+            <p>
+                <span>
+                    Attack Damage: <br />
+                    @Math.Round((double)championStats.attackdamage, 2) (+@Math.Round((double)championStats.attackdamageperlevel, 2) per level)
+                </span>
+            </p>
+            <p>
+                <span>
+                    Armor: <br />
+                    @Math.Round((double)championStats.armor, 2)  (+@Math.Round((double)championStats.armorperlevel, 2) per level)
+                </span>
+            </p>
+            <p>
+                <span>Movement Speed: <br />
+                    @Math.Round((double)championStats.movespeed, 2)
+                </span>
+            </p>
+        </div>
+        <div id="statsRight">
+            <p>
+                <span>
+                    Health Regen: <br />
+                    @Math.Round((double)championStats.hpregen, 2)  (+@Math.Round((double)championStats.hpregenperlevel, 2) per level)
+                </span>
+            </p>
+            <p>
+                <span>
+                    @Model.partype Regen: <br />
+                    @Math.Round((double)championStats.mpregen, 2) (+@Math.Round((double)championStats.mpregenperlevel, 2) per level)
+                </span>
+            </p>
+            <p>
+                <span>
+                    Attack Speed: <br />
+                    @Math.Round((double)championStats.attackspeed, 2)  (+@Math.Round((double)championStats.attackspeedperlevel, 2)% per level)
+                </span>
+            </p>
+            <p>
+                <span>Magic Resist: <br />
+                    @Math.Round((double)championStats.spellblock, 2)  (+@Math.Round((double)championStats.spellblockperlevel, 2) per level)
+                </span>
+            </p>
+        </div>
     </div>
 </div>
 <div id="right">
@@ -46,22 +104,48 @@
         @{ 
             ChampionPassive passive = Model.ChampionPassive;
         }
-        <img src="~/Images/Champions/Passive/@passive.PassiveImage.full" />
-        <p>
-            @passive.name
-            <br />
+        <div class="spell-title-block">
+            <img src="~/Images/Champions/Passive/@passive.PassiveImage.full" />
+            <div class="title-and-cost-range">
+                <p class="spell-title">Passive: @passive.name</p>
+            </div>
+        </div>
+        <div class="spell-description-block">
             @Html.Raw(passive.description)
-        </p>
+        </div>
     </div>
     @foreach (ChampionSpell spell in championSpells)
     {
         <div class="spellContainer">
-            <img src="~/Images/Champions/Spell/@spell.SpellImage.full" />
-            <p>
-                @spell.name
-                <br />
+            <div class="spell-title-block">
+                <img src="~/Images/Champions/Spell/@spell.SpellImage.full" />
+                <div class="title-and-cost-range">
+                    <p class="spell-title">@spell.name</p>
+                    @if (spell.costtype != "No Cost")
+                    {
+                        if (spell.costtype.Contains("{{ abilityresourcename }}"))
+                        {
+                            <div class="cost">Resource Cost: @spell.costburn @spell.costtype.Replace(" {{ abilityresourcename }}", Model.partype)</div>
+                            <div class="range">Range: @spell.rangeburn</div>
+                            <br />
+                        }
+                        else
+                        {
+                            <div class="cost">Resource Cost: @spell.costburn @spell.costtype</div>
+                            <div class="range">Range: @spell.rangeburn</div>
+                            <br />
+                        }
+                    }
+                    else
+                    {
+                        <div class="cost">Resource Cost: No Cost</div>
+                        <div class="range">Range: @spell.rangeburn</div>
+                    }
+                </div>
+            </div>
+            <div class="spell-description-block">
                 @Html.Raw(spell.description)
-            </p>
+            </div>
         </div>
     }
 </div>

@@ -30,9 +30,7 @@ namespace LeagueOfLegends.Models
         public virtual DbSet<ChampionInfo> ChampionInfo { get; set; }
         public virtual DbSet<ChampionKey> ChampionKeys { get; set; }
         public virtual DbSet<ChampionPassive> ChampionPassives { get; set; }
-        public virtual DbSet<Champion> Champions { get; set; }
         public virtual DbSet<ChampionSkin> ChampionSkins { get; set; }
-        public virtual DbSet<ChampionSpell> ChampionSpells { get; set; }
         public virtual DbSet<ChampionStat> ChampionStats { get; set; }
         public virtual DbSet<ChampionSummary> ChampionSummary { get; set; }
         public virtual DbSet<ChampionType> ChampionTypes { get; set; }
@@ -41,15 +39,22 @@ namespace LeagueOfLegends.Models
         public virtual DbSet<Hidden> Hiddens { get; set; }
         public virtual DbSet<ItemBlock> ItemBlocks { get; set; }
         public virtual DbSet<ItemRecommendation> ItemRecommendations { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<LevelTip> LevelTips { get; set; }
+        public virtual DbSet<MapImage> MapImages { get; set; }
+        public virtual DbSet<Map> Maps { get; set; }
         public virtual DbSet<PassiveImage> PassiveImages { get; set; }
-        public virtual DbSet<Queue> Queues { get; set; }
         public virtual DbSet<RecommendedItem> RecommendedItems { get; set; }
         public virtual DbSet<SpellEffect> SpellEffects { get; set; }
         public virtual DbSet<SpellImage> SpellImages { get; set; }
         public virtual DbSet<SpellRank> SpellRanks { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Visible> Visibles { get; set; }
-        public virtual DbSet<Season> Seasons { get; set; }
+        public virtual DbSet<ChampionSpell> ChampionSpells { get; set; }
+        public virtual DbSet<ItemEffect> ItemEffects { get; set; }
+        public virtual DbSet<ItemGold> ItemGold { get; set; }
+        public virtual DbSet<ItemImage> ItemImages { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<ItemStat> ItemStats { get; set; }
+        public virtual DbSet<ProfileIcon> ProfileIcons { get; set; }
     }
 }

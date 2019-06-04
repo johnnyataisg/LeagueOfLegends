@@ -5,36 +5,41 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="af35864ee7fc48e2b6217012b430620d" Name="Diagram1">
-        <EntityTypeShape EntityType="YordleSpyModel.AllyTip" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionImage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionInfo" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionKey" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionPassive" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Champion" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionSkin" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionSpell" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionStat" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionSummary" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ChampionType" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Datatype" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.EnemyTip" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Hidden" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ItemBlock" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.ItemRecommendation" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Item" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.LevelTip" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.PassiveImage" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Queue" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.RecommendedItem" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.SpellEffect" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.SpellImage" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.SpellRank" Width="1.5" PointX="12.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Visible" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="YordleSpyModel.Season" Width="1.5" PointX="4.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="YordleSpyModel.AllyTip" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionImage" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionInfo" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionKey" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionPassive" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionSkin" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionStat" Width="1.5" PointX="10.75" PointY="3.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionSummary" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionType" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.Datatype" Width="1.5" PointX="10.75" PointY="9.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.EnemyTip" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.Hidden" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ItemBlock" Width="1.5" PointX="6.75" PointY="11.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ItemRecommendation" Width="1.5" PointX="12.75" PointY="3.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.LevelTip" Width="1.5" PointX="12.75" PointY="8.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.MapImage" Width="1.5" PointX="8.75" PointY="12.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.Map" Width="1.5" PointX="10.75" PointY="12.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.PassiveImage" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="YordleSpyModel.RecommendedItem" Width="1.5" PointX="12.75" PointY="11.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.SpellEffect" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.SpellImage" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.SpellRank" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.sysdiagram" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.Visible" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ChampionSpell" Width="1.5" PointX="8" PointY="6" />
         <AssociationConnector Association="YordleSpyModel.FK_ChampionSummary_ChampionImages" />
         <AssociationConnector Association="YordleSpyModel.FK_ChampionPassives_PassiveImages" />
         <AssociationConnector Association="YordleSpyModel.FK_ChampionSummary_ChampionPassives" />
         <AssociationConnector Association="YordleSpyModel.FK_ChampionSpells_SpellImages" />
+        <EntityTypeShape EntityType="YordleSpyModel.ItemEffect" Width="1.5" PointX="13.75" PointY="14.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ItemGold" Width="1.5" PointX="5.75" PointY="15.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ItemImage" Width="1.5" PointX="15.75" PointY="9.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.Item" Width="1.5" PointX="15.75" PointY="13.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ItemStat" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="YordleSpyModel.ProfileIcon" Width="1.5" PointX="0.75" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

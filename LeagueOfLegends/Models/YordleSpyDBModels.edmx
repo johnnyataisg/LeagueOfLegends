@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="full" Type="varchar" MaxLength="50" />
           <Property Name="sprite" Type="varchar" MaxLength="50" />
           <Property Name="group" Type="varchar" MaxLength="10" />
@@ -49,19 +49,10 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="40" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="image" Type="int" />
-        </EntityType>
-        <EntityType Name="Champions">
-          <Key>
-            <PropertyRef Name="champion_name" />
-          </Key>
-          <Property Name="champion_name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="title" Type="varchar" MaxLength="50" />
-          <Property Name="image" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ChampionSkins">
           <Key>
@@ -73,24 +64,27 @@
           <Property Name="chromas" Type="bit" />
           <Property Name="championKey" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'YordleSpy.dbo.ChampionSpells' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ChampionSpells">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="championKey" />
           </Key>
-          <Property Name="id" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="id" Type="varchar(max)" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" />
           <Property Name="description" Type="varchar(max)" />
           <Property Name="tooltip" Type="varchar(max)" />
           <Property Name="maxrank" Type="float" />
-          <Property Name="costburn" Type="varchar" MaxLength="50" />
-          <Property Name="cooldownburn" Type="varchar" MaxLength="50" />
-          <Property Name="datavalues" Type="varchar" MaxLength="50" />
-          <Property Name="vars" Type="varchar" MaxLength="50" />
-          <Property Name="costtype" Type="varchar" MaxLength="50" />
-          <Property Name="maxammo" Type="varchar" MaxLength="50" />
-          <Property Name="rangeburn" Type="varchar" MaxLength="50" />
-          <Property Name="image" Type="int" />
-          <Property Name="resource" Type="varchar" MaxLength="50" />
+          <Property Name="costburn" Type="varchar(max)" />
+          <Property Name="cooldownburn" Type="varchar(max)" />
+          <Property Name="datavalues" Type="varchar(max)" />
+          <Property Name="vars" Type="varchar(max)" />
+          <Property Name="costtype" Type="varchar(max)" />
+          <Property Name="maxammo" Type="varchar(max)" />
+          <Property Name="rangeburn" Type="varchar(max)" />
+          <Property Name="image" Type="varchar" MaxLength="100" />
+          <Property Name="resource" Type="varchar(max)" />
           <Property Name="championKey" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ChampionStats">
@@ -128,11 +122,11 @@
           <Property Name="id" Type="varchar" MaxLength="30" />
           <Property Name="name" Type="varchar" MaxLength="30" />
           <Property Name="title" Type="varchar" MaxLength="50" />
-          <Property Name="image" Type="int" Nullable="false" />
+          <Property Name="image" Type="int" />
           <Property Name="lore" Type="varchar(max)" />
           <Property Name="blurb" Type="varchar(max)" />
           <Property Name="partype" Type="varchar" MaxLength="15" />
-          <Property Name="passive" Type="int" Nullable="false" />
+          <Property Name="passive" Type="int" />
         </EntityType>
         <EntityType Name="ChampionTypes">
           <Key>
@@ -181,6 +175,38 @@
           <Property Name="appendaftersection" Type="varchar" MaxLength="10" />
           <Property Name="recommendationKey" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ItemEffects">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="60" />
+          <Property Name="value" Type="float" />
+          <Property Name="itemKey" Type="int" />
+        </EntityType>
+        <EntityType Name="ItemGold">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="base" Type="int" />
+          <Property Name="purchasable" Type="bit" />
+          <Property Name="total" Type="int" />
+          <Property Name="sell" Type="int" />
+        </EntityType>
+        <EntityType Name="ItemImages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="full" Type="varchar" MaxLength="40" />
+          <Property Name="sprite" Type="varchar" MaxLength="60" />
+          <Property Name="group" Type="varchar" MaxLength="20" />
+          <Property Name="x" Type="float" />
+          <Property Name="y" Type="float" />
+          <Property Name="w" Type="float" />
+          <Property Name="h" Type="float" />
+        </EntityType>
         <EntityType Name="ItemRecommendations">
           <Key>
             <PropertyRef Name="id" />
@@ -203,7 +229,27 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar(max)" />
+          <Property Name="description" Type="varchar(max)" />
+          <Property Name="colloq" Type="varchar(max)" />
+          <Property Name="plaintext" Type="varchar(max)" />
+          <Property Name="into" Type="varchar(max)" />
+          <Property Name="image" Type="int" />
+          <Property Name="gold" Type="int" />
+          <Property Name="tags" Type="varchar(max)" />
+          <Property Name="map10" Type="bit" />
+          <Property Name="map11" Type="bit" />
+          <Property Name="map12" Type="bit" />
+          <Property Name="depth" Type="int" />
+        </EntityType>
+        <EntityType Name="ItemStats">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+          <Property Name="value" Type="float" />
+          <Property Name="itemKey" Type="int" />
         </EntityType>
         <EntityType Name="LevelTips">
           <Key>
@@ -214,11 +260,11 @@
           <Property Name="effect" Type="varchar" MaxLength="200" />
           <Property Name="spellID" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
-        <EntityType Name="PassiveImages">
+        <EntityType Name="MapImages">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="full" Type="varchar" MaxLength="30" />
           <Property Name="sprite" Type="varchar" MaxLength="30" />
           <Property Name="group" Type="varchar" MaxLength="10" />
@@ -227,16 +273,39 @@
           <Property Name="w" Type="float" />
           <Property Name="h" Type="float" />
         </EntityType>
-        <EntityType Name="Queues">
+        <EntityType Name="Maps">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="map" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="pickType" Type="varchar" MaxLength="50" />
-          <Property Name="gameType" Type="varchar" MaxLength="20" />
-          <Property Name="isActive" Type="bit" Nullable="false" />
-          <Property Name="notes" Type="varchar" MaxLength="100" />
+          <Property Name="mapname" Type="varchar" MaxLength="50" />
+          <Property Name="image" Type="int" />
+        </EntityType>
+        <EntityType Name="PassiveImages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="full" Type="varchar" MaxLength="30" />
+          <Property Name="sprite" Type="varchar" MaxLength="30" />
+          <Property Name="group" Type="varchar" MaxLength="10" />
+          <Property Name="x" Type="float" />
+          <Property Name="y" Type="float" />
+          <Property Name="w" Type="float" />
+          <Property Name="h" Type="float" />
+        </EntityType>
+        <EntityType Name="ProfileIcons">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="full" Type="varchar" MaxLength="30" />
+          <Property Name="sprite" Type="varchar" MaxLength="50" />
+          <Property Name="group" Type="varchar" MaxLength="30" />
+          <Property Name="x" Type="float" />
+          <Property Name="y" Type="float" />
+          <Property Name="w" Type="float" />
+          <Property Name="h" Type="float" />
         </EntityType>
         <EntityType Name="RecommendedItems">
           <Key>
@@ -246,16 +315,6 @@
           <Property Name="count" Type="float" />
           <Property Name="hidecount" Type="bit" />
           <Property Name="blockID" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Seasons">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="SpellEffects">
           <Key>
@@ -270,7 +329,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="full" Type="varchar" MaxLength="50" />
           <Property Name="sprite" Type="varchar" MaxLength="30" />
           <Property Name="group" Type="varchar" MaxLength="10" />
@@ -289,6 +348,16 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="cost" Type="float" />
           <Property Name="range" Type="float" />
           <Property Name="spellID" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Visible">
           <Key>
@@ -310,20 +379,8 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ChampionSpells_SpellImages">
-          <End Role="SpellImages" Type="Self.SpellImages" Multiplicity="0..1" />
-          <End Role="ChampionSpells" Type="Self.ChampionSpells" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SpellImages">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ChampionSpells">
-              <PropertyRef Name="image" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ChampionSummary_ChampionImages">
-          <End Role="ChampionImages" Type="Self.ChampionImages" Multiplicity="1" />
+          <End Role="ChampionImages" Type="Self.ChampionImages" Multiplicity="0..1" />
           <End Role="ChampionSummary" Type="Self.ChampionSummary" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChampionImages">
@@ -335,7 +392,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChampionSummary_ChampionPassives">
-          <End Role="ChampionPassives" Type="Self.ChampionPassives" Multiplicity="1" />
+          <End Role="ChampionPassives" Type="Self.ChampionPassives" Multiplicity="0..1" />
           <End Role="ChampionSummary" Type="Self.ChampionSummary" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChampionPassives">
@@ -352,9 +409,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <EntitySet Name="ChampionInfo" EntityType="Self.ChampionInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChampionKeys" EntityType="Self.ChampionKeys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChampionPassives" EntityType="Self.ChampionPassives" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Champions" EntityType="Self.Champions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChampionSkins" EntityType="Self.ChampionSkins" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ChampionSpells" EntityType="Self.ChampionSpells" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChampionStats" EntityType="Self.ChampionStats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChampionSummary" EntityType="Self.ChampionSummary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChampionTypes" EntityType="Self.ChampionTypes" Schema="dbo" store:Type="Tables" />
@@ -362,29 +417,45 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <EntitySet Name="EnemyTips" EntityType="Self.EnemyTips" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Hidden" EntityType="Self.Hidden" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemBlocks" EntityType="Self.ItemBlocks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemEffects" EntityType="Self.ItemEffects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemGold" EntityType="Self.ItemGold" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemImages" EntityType="Self.ItemImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemRecommendations" EntityType="Self.ItemRecommendations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemStats" EntityType="Self.ItemStats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LevelTips" EntityType="Self.LevelTips" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MapImages" EntityType="Self.MapImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maps" EntityType="Self.Maps" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PassiveImages" EntityType="Self.PassiveImages" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Queues" EntityType="Self.Queues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileIcons" EntityType="Self.ProfileIcons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecommendedItems" EntityType="Self.RecommendedItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpellEffects" EntityType="Self.SpellEffects" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpellImages" EntityType="Self.SpellImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpellRanks" EntityType="Self.SpellRanks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visible" EntityType="Self.Visible" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Seasons" EntityType="Self.Seasons" store:Type="Tables" store:Schema="dbo">
+          <EntitySet Name="ChampionSpells" EntityType="Self.ChampionSpells" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [Seasons].[id] AS [id], 
-    [Seasons].[name] AS [name]
-    FROM [dbo].[Seasons] AS [Seasons]</DefiningQuery>
+    [ChampionSpells].[id] AS [id], 
+    [ChampionSpells].[name] AS [name], 
+    [ChampionSpells].[description] AS [description], 
+    [ChampionSpells].[tooltip] AS [tooltip], 
+    [ChampionSpells].[maxrank] AS [maxrank], 
+    [ChampionSpells].[costburn] AS [costburn], 
+    [ChampionSpells].[cooldownburn] AS [cooldownburn], 
+    [ChampionSpells].[datavalues] AS [datavalues], 
+    [ChampionSpells].[vars] AS [vars], 
+    [ChampionSpells].[costtype] AS [costtype], 
+    [ChampionSpells].[maxammo] AS [maxammo], 
+    [ChampionSpells].[rangeburn] AS [rangeburn], 
+    [ChampionSpells].[image] AS [image], 
+    [ChampionSpells].[resource] AS [resource], 
+    [ChampionSpells].[championKey] AS [championKey]
+    FROM [dbo].[ChampionSpells] AS [ChampionSpells]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_ChampionPassives_PassiveImages" Association="Self.FK_ChampionPassives_PassiveImages">
             <End Role="PassiveImages" EntitySet="PassiveImages" />
             <End Role="ChampionPassives" EntitySet="ChampionPassives" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChampionSpells_SpellImages" Association="Self.FK_ChampionSpells_SpellImages">
-            <End Role="SpellImages" EntitySet="SpellImages" />
-            <End Role="ChampionSpells" EntitySet="ChampionSpells" />
           </AssociationSet>
           <AssociationSet Name="FK_ChampionSummary_ChampionImages" Association="Self.FK_ChampionSummary_ChampionImages">
             <End Role="ChampionImages" EntitySet="ChampionImages" />
@@ -399,6 +470,55 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="YordleSpyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DatabaseEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AllyTips" EntityType="YordleSpyModel.AllyTip" />
+          <EntitySet Name="ChampionImages" EntityType="YordleSpyModel.ChampionImage" />
+          <EntitySet Name="ChampionInfoes" EntityType="YordleSpyModel.ChampionInfo" />
+          <EntitySet Name="ChampionKeys" EntityType="YordleSpyModel.ChampionKey" />
+          <EntitySet Name="ChampionPassives" EntityType="YordleSpyModel.ChampionPassive" />
+          <EntitySet Name="ChampionSkins" EntityType="YordleSpyModel.ChampionSkin" />
+          <EntitySet Name="ChampionStats" EntityType="YordleSpyModel.ChampionStat" />
+          <EntitySet Name="ChampionSummaries" EntityType="YordleSpyModel.ChampionSummary" />
+          <EntitySet Name="ChampionTypes" EntityType="YordleSpyModel.ChampionType" />
+          <EntitySet Name="Datatypes" EntityType="YordleSpyModel.Datatype" />
+          <EntitySet Name="EnemyTips" EntityType="YordleSpyModel.EnemyTip" />
+          <EntitySet Name="Hiddens" EntityType="YordleSpyModel.Hidden" />
+          <EntitySet Name="ItemBlocks" EntityType="YordleSpyModel.ItemBlock" />
+          <EntitySet Name="ItemRecommendations" EntityType="YordleSpyModel.ItemRecommendation" />
+          <EntitySet Name="LevelTips" EntityType="YordleSpyModel.LevelTip" />
+          <EntitySet Name="MapImages" EntityType="YordleSpyModel.MapImage" />
+          <EntitySet Name="Maps" EntityType="YordleSpyModel.Map" />
+          <EntitySet Name="PassiveImages" EntityType="YordleSpyModel.PassiveImage" />
+          <EntitySet Name="RecommendedItems" EntityType="YordleSpyModel.RecommendedItem" />
+          <EntitySet Name="SpellEffects" EntityType="YordleSpyModel.SpellEffect" />
+          <EntitySet Name="SpellImages" EntityType="YordleSpyModel.SpellImage" />
+          <EntitySet Name="SpellRanks" EntityType="YordleSpyModel.SpellRank" />
+          <EntitySet Name="sysdiagrams" EntityType="YordleSpyModel.sysdiagram" />
+          <EntitySet Name="Visibles" EntityType="YordleSpyModel.Visible" />
+          <EntitySet Name="ChampionSpells" EntityType="YordleSpyModel.ChampionSpell" />
+          <AssociationSet Name="FK_ChampionSummary_ChampionImages" Association="YordleSpyModel.FK_ChampionSummary_ChampionImages">
+            <End Role="ChampionImage" EntitySet="ChampionImages" />
+            <End Role="ChampionSummary" EntitySet="ChampionSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionPassives_PassiveImages" Association="YordleSpyModel.FK_ChampionPassives_PassiveImages">
+            <End Role="PassiveImage" EntitySet="PassiveImages" />
+            <End Role="ChampionPassive" EntitySet="ChampionPassives" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionSummary_ChampionPassives" Association="YordleSpyModel.FK_ChampionSummary_ChampionPassives">
+            <End Role="ChampionPassive" EntitySet="ChampionPassives" />
+            <End Role="ChampionSummary" EntitySet="ChampionSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChampionSpells_SpellImages" Association="YordleSpyModel.FK_ChampionSpells_SpellImages">
+            <End Role="SpellImage" EntitySet="SpellImages" />
+            <End Role="ChampionSpell" EntitySet="ChampionSpells" />
+          </AssociationSet>
+          <EntitySet Name="ItemEffects" EntityType="YordleSpyModel.ItemEffect" />
+          <EntitySet Name="ItemGolds" EntityType="YordleSpyModel.ItemGold" />
+          <EntitySet Name="ItemImages" EntityType="YordleSpyModel.ItemImage" />
+          <EntitySet Name="Items" EntityType="YordleSpyModel.Item" />
+          <EntitySet Name="ItemStats" EntityType="YordleSpyModel.ItemStat" />
+          <EntitySet Name="ProfileIcons" EntityType="YordleSpyModel.ProfileIcon" />
+        </EntityContainer>
         <EntityType Name="AllyTip">
           <Key>
             <PropertyRef Name="id" />
@@ -411,7 +531,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="full" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sprite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="group" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -444,21 +564,12 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="image" Type="Int32" />
           <NavigationProperty Name="PassiveImage" Relationship="YordleSpyModel.FK_ChampionPassives_PassiveImages" FromRole="ChampionPassive" ToRole="PassiveImage" />
           <NavigationProperty Name="ChampionSummaries" Relationship="YordleSpyModel.FK_ChampionSummary_ChampionPassives" FromRole="ChampionPassive" ToRole="ChampionSummary" />
-        </EntityType>
-        <EntityType Name="Champion">
-          <Key>
-            <PropertyRef Name="champion_name" />
-          </Key>
-          <Property Name="champion_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ChampionSkin">
           <Key>
@@ -469,27 +580,6 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="chromas" Type="Boolean" />
           <Property Name="championKey" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ChampionSpell">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="tooltip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="maxrank" Type="Double" />
-          <Property Name="costburn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cooldownburn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="datavalues" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="vars" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="costtype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="maxammo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rangeburn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="image" Type="Int32" />
-          <Property Name="resource" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="championKey" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="SpellImage" Relationship="YordleSpyModel.FK_ChampionSpells_SpellImages" FromRole="ChampionSpell" ToRole="SpellImage" />
         </EntityType>
         <EntityType Name="ChampionStat">
           <Key>
@@ -526,11 +616,11 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="id" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="image" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="Int32" />
           <Property Name="lore" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="blurb" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="partype" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="passive" Type="Int32" Nullable="false" />
+          <Property Name="passive" Type="Int32" />
           <NavigationProperty Name="ChampionImage" Relationship="YordleSpyModel.FK_ChampionSummary_ChampionImages" FromRole="ChampionSummary" ToRole="ChampionImage" />
           <NavigationProperty Name="ChampionPassive" Relationship="YordleSpyModel.FK_ChampionSummary_ChampionPassives" FromRole="ChampionSummary" ToRole="ChampionPassive" />
         </EntityType>
@@ -546,7 +636,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Key>
             <PropertyRef Name="type" />
           </Key>
-          <Property Name="type" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="format" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="version" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -598,13 +688,6 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="custompanel" Type="Boolean" />
           <Property Name="championKey" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Item">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="item_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="LevelTip">
           <Key>
             <PropertyRef Name="id" />
@@ -612,13 +695,34 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="label" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="effect" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="spellID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="spellID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MapImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="full" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sprite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="group" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="x" Type="Double" />
+          <Property Name="y" Type="Double" />
+          <Property Name="w" Type="Double" />
+          <Property Name="h" Type="Double" />
+        </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="mapname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="Int32" />
         </EntityType>
         <EntityType Name="PassiveImage">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="full" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="sprite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="group" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -627,17 +731,6 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="w" Type="Double" />
           <Property Name="h" Type="Double" />
           <NavigationProperty Name="ChampionPassives" Relationship="YordleSpyModel.FK_ChampionPassives_PassiveImages" FromRole="PassiveImage" ToRole="ChampionPassive" />
-        </EntityType>
-        <EntityType Name="Queue">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="map" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="pickType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="gameType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <Property Name="notes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="RecommendedItem">
           <Key>
@@ -661,7 +754,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="full" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sprite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="group" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -680,7 +773,17 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="cooldown" Type="Double" />
           <Property Name="cost" Type="Double" />
           <Property Name="range" Type="Double" />
-          <Property Name="spellID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="spellID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Visible">
           <Key>
@@ -690,60 +793,30 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <Property Name="value" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="blockID" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="Season">
+        <EntityType Name="ChampionSpell">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="name" />
+            <PropertyRef Name="championKey" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tooltip" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="maxrank" Type="Double" />
+          <Property Name="costburn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="cooldownburn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="datavalues" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="vars" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="costtype" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="maxammo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="rangeburn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="resource" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="championKey" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="SpellImage" Relationship="YordleSpyModel.FK_ChampionSpells_SpellImages" FromRole="ChampionSpell" ToRole="SpellImage" />
         </EntityType>
-        <EntityContainer Name="DatabaseEntity" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AllyTips" EntityType="Self.AllyTip" />
-          <EntitySet Name="ChampionImages" EntityType="Self.ChampionImage" />
-          <EntitySet Name="ChampionInfoes" EntityType="Self.ChampionInfo" />
-          <EntitySet Name="ChampionKeys" EntityType="Self.ChampionKey" />
-          <EntitySet Name="ChampionPassives" EntityType="Self.ChampionPassive" />
-          <EntitySet Name="Champions" EntityType="Self.Champion" />
-          <EntitySet Name="ChampionSkins" EntityType="Self.ChampionSkin" />
-          <EntitySet Name="ChampionSpells" EntityType="Self.ChampionSpell" />
-          <EntitySet Name="ChampionStats" EntityType="Self.ChampionStat" />
-          <EntitySet Name="ChampionSummaries" EntityType="Self.ChampionSummary" />
-          <EntitySet Name="ChampionTypes" EntityType="Self.ChampionType" />
-          <EntitySet Name="Datatypes" EntityType="Self.Datatype" />
-          <EntitySet Name="EnemyTips" EntityType="Self.EnemyTip" />
-          <EntitySet Name="Hiddens" EntityType="Self.Hidden" />
-          <EntitySet Name="ItemBlocks" EntityType="Self.ItemBlock" />
-          <EntitySet Name="ItemRecommendations" EntityType="Self.ItemRecommendation" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
-          <EntitySet Name="LevelTips" EntityType="Self.LevelTip" />
-          <EntitySet Name="PassiveImages" EntityType="Self.PassiveImage" />
-          <EntitySet Name="Queues" EntityType="Self.Queue" />
-          <EntitySet Name="RecommendedItems" EntityType="Self.RecommendedItem" />
-          <EntitySet Name="SpellEffects" EntityType="Self.SpellEffect" />
-          <EntitySet Name="SpellImages" EntityType="Self.SpellImage" />
-          <EntitySet Name="SpellRanks" EntityType="Self.SpellRank" />
-          <EntitySet Name="Visibles" EntityType="Self.Visible" />
-          <EntitySet Name="Seasons" EntityType="Self.Season" />
-          <AssociationSet Name="FK_ChampionSummary_ChampionImages" Association="YordleSpyModel.FK_ChampionSummary_ChampionImages">
-            <End Role="ChampionImage" EntitySet="ChampionImages" />
-            <End Role="ChampionSummary" EntitySet="ChampionSummaries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChampionPassives_PassiveImages" Association="YordleSpyModel.FK_ChampionPassives_PassiveImages">
-            <End Role="PassiveImage" EntitySet="PassiveImages" />
-            <End Role="ChampionPassive" EntitySet="ChampionPassives" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChampionSummary_ChampionPassives" Association="YordleSpyModel.FK_ChampionSummary_ChampionPassives">
-            <End Role="ChampionPassive" EntitySet="ChampionPassives" />
-            <End Role="ChampionSummary" EntitySet="ChampionSummaries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ChampionSpells_SpellImages" Association="YordleSpyModel.FK_ChampionSpells_SpellImages">
-            <End Role="SpellImage" EntitySet="SpellImages" />
-            <End Role="ChampionSpell" EntitySet="ChampionSpells" />
-          </AssociationSet>
-        </EntityContainer>
         <Association Name="FK_ChampionSummary_ChampionImages">
-          <End Type="YordleSpyModel.ChampionImage" Role="ChampionImage" Multiplicity="1" />
+          <End Type="YordleSpyModel.ChampionImage" Role="ChampionImage" Multiplicity="0..1" />
           <End Type="YordleSpyModel.ChampionSummary" Role="ChampionSummary" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChampionImage">
@@ -767,7 +840,7 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ChampionSummary_ChampionPassives">
-          <End Type="YordleSpyModel.ChampionPassive" Role="ChampionPassive" Multiplicity="1" />
+          <End Type="YordleSpyModel.ChampionPassive" Role="ChampionPassive" Multiplicity="0..1" />
           <End Type="YordleSpyModel.ChampionSummary" Role="ChampionSummary" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ChampionPassive">
@@ -790,7 +863,79 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="ItemEffect">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="itemKey" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ItemGold">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="base" Type="Int32" />
+          <Property Name="purchasable" Type="Boolean" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="sell" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ItemImage">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="full" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="sprite" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="group" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="x" Type="Double" />
+          <Property Name="y" Type="Double" />
+          <Property Name="w" Type="Double" />
+          <Property Name="h" Type="Double" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="colloq" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="plaintext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="into" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="Int32" />
+          <Property Name="gold" Type="Int32" />
+          <Property Name="tags" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="map10" Type="Boolean" />
+          <Property Name="map11" Type="Boolean" />
+          <Property Name="map12" Type="Boolean" />
+          <Property Name="depth" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ItemStat">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="itemKey" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProfileIcon">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="full" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sprite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="group" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="x" Type="Double" />
+          <Property Name="y" Type="Double" />
+          <Property Name="w" Type="Double" />
+          <Property Name="h" Type="Double" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -799,316 +944,390 @@ warning 6002: The table/view 'YordleSpy.dbo.Seasons' does not have a primary key
           <EntitySetMapping Name="AllyTips">
             <EntityTypeMapping TypeName="YordleSpyModel.AllyTip">
               <MappingFragment StoreEntitySet="AllyTips">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionImages">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionImage">
               <MappingFragment StoreEntitySet="ChampionImages">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="full" ColumnName="full" />
-                <ScalarProperty Name="sprite" ColumnName="sprite" />
-                <ScalarProperty Name="group" ColumnName="group" />
-                <ScalarProperty Name="x" ColumnName="x" />
-                <ScalarProperty Name="y" ColumnName="y" />
-                <ScalarProperty Name="w" ColumnName="w" />
                 <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="full" ColumnName="full" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionInfoes">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionInfo">
               <MappingFragment StoreEntitySet="ChampionInfo">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="attack" ColumnName="attack" />
-                <ScalarProperty Name="defense" ColumnName="defense" />
-                <ScalarProperty Name="magic" ColumnName="magic" />
-                <ScalarProperty Name="difficulty" ColumnName="difficulty" />
                 <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="difficulty" ColumnName="difficulty" />
+                <ScalarProperty Name="magic" ColumnName="magic" />
+                <ScalarProperty Name="defense" ColumnName="defense" />
+                <ScalarProperty Name="attack" ColumnName="attack" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionKeys">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionKey">
               <MappingFragment StoreEntitySet="ChampionKeys">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="dbtype" ColumnName="dbtype" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionPassives">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionPassive">
               <MappingFragment StoreEntitySet="ChampionPassives">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="image" ColumnName="image" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Champions">
-            <EntityTypeMapping TypeName="YordleSpyModel.Champion">
-              <MappingFragment StoreEntitySet="Champions">
-                <ScalarProperty Name="champion_name" ColumnName="champion_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="image" ColumnName="image" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionSkins">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionSkin">
               <MappingFragment StoreEntitySet="ChampionSkins">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="num" ColumnName="num" />
-                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="championKey" ColumnName="championKey" />
                 <ScalarProperty Name="chromas" ColumnName="chromas" />
-                <ScalarProperty Name="championKey" ColumnName="championKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ChampionSpells">
-            <EntityTypeMapping TypeName="YordleSpyModel.ChampionSpell">
-              <MappingFragment StoreEntitySet="ChampionSpells">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="tooltip" ColumnName="tooltip" />
-                <ScalarProperty Name="maxrank" ColumnName="maxrank" />
-                <ScalarProperty Name="costburn" ColumnName="costburn" />
-                <ScalarProperty Name="cooldownburn" ColumnName="cooldownburn" />
-                <ScalarProperty Name="datavalues" ColumnName="datavalues" />
-                <ScalarProperty Name="vars" ColumnName="vars" />
-                <ScalarProperty Name="costtype" ColumnName="costtype" />
-                <ScalarProperty Name="maxammo" ColumnName="maxammo" />
-                <ScalarProperty Name="rangeburn" ColumnName="rangeburn" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="resource" ColumnName="resource" />
-                <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="num" ColumnName="num" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionStats">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionStat">
               <MappingFragment StoreEntitySet="ChampionStats">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="hp" ColumnName="hp" />
-                <ScalarProperty Name="hpperlevel" ColumnName="hpperlevel" />
-                <ScalarProperty Name="mp" ColumnName="mp" />
-                <ScalarProperty Name="mpperlevel" ColumnName="mpperlevel" />
-                <ScalarProperty Name="movespeed" ColumnName="movespeed" />
-                <ScalarProperty Name="armor" ColumnName="armor" />
-                <ScalarProperty Name="armorperlevel" ColumnName="armorperlevel" />
-                <ScalarProperty Name="spellblock" ColumnName="spellblock" />
-                <ScalarProperty Name="spellblockperlevel" ColumnName="spellblockperlevel" />
-                <ScalarProperty Name="attackrange" ColumnName="attackrange" />
-                <ScalarProperty Name="hpregen" ColumnName="hpregen" />
-                <ScalarProperty Name="hpregenperlevel" ColumnName="hpregenperlevel" />
-                <ScalarProperty Name="mpregen" ColumnName="mpregen" />
-                <ScalarProperty Name="mpregenperlevel" ColumnName="mpregenperlevel" />
-                <ScalarProperty Name="crit" ColumnName="crit" />
-                <ScalarProperty Name="critperlevel" ColumnName="critperlevel" />
-                <ScalarProperty Name="attackdamage" ColumnName="attackdamage" />
-                <ScalarProperty Name="attackdamageperlevel" ColumnName="attackdamageperlevel" />
-                <ScalarProperty Name="attackspeed" ColumnName="attackspeed" />
-                <ScalarProperty Name="attackspeedperlevel" ColumnName="attackspeedperlevel" />
                 <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="attackspeedperlevel" ColumnName="attackspeedperlevel" />
+                <ScalarProperty Name="attackspeed" ColumnName="attackspeed" />
+                <ScalarProperty Name="attackdamageperlevel" ColumnName="attackdamageperlevel" />
+                <ScalarProperty Name="attackdamage" ColumnName="attackdamage" />
+                <ScalarProperty Name="critperlevel" ColumnName="critperlevel" />
+                <ScalarProperty Name="crit" ColumnName="crit" />
+                <ScalarProperty Name="mpregenperlevel" ColumnName="mpregenperlevel" />
+                <ScalarProperty Name="mpregen" ColumnName="mpregen" />
+                <ScalarProperty Name="hpregenperlevel" ColumnName="hpregenperlevel" />
+                <ScalarProperty Name="hpregen" ColumnName="hpregen" />
+                <ScalarProperty Name="attackrange" ColumnName="attackrange" />
+                <ScalarProperty Name="spellblockperlevel" ColumnName="spellblockperlevel" />
+                <ScalarProperty Name="spellblock" ColumnName="spellblock" />
+                <ScalarProperty Name="armorperlevel" ColumnName="armorperlevel" />
+                <ScalarProperty Name="armor" ColumnName="armor" />
+                <ScalarProperty Name="movespeed" ColumnName="movespeed" />
+                <ScalarProperty Name="mpperlevel" ColumnName="mpperlevel" />
+                <ScalarProperty Name="mp" ColumnName="mp" />
+                <ScalarProperty Name="hpperlevel" ColumnName="hpperlevel" />
+                <ScalarProperty Name="hp" ColumnName="hp" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionSummaries">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionSummary">
               <MappingFragment StoreEntitySet="ChampionSummary">
-                <ScalarProperty Name="key" ColumnName="key" />
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="image" ColumnName="image" />
-                <ScalarProperty Name="lore" ColumnName="lore" />
-                <ScalarProperty Name="blurb" ColumnName="blurb" />
-                <ScalarProperty Name="partype" ColumnName="partype" />
                 <ScalarProperty Name="passive" ColumnName="passive" />
+                <ScalarProperty Name="partype" ColumnName="partype" />
+                <ScalarProperty Name="blurb" ColumnName="blurb" />
+                <ScalarProperty Name="lore" ColumnName="lore" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ChampionTypes">
             <EntityTypeMapping TypeName="YordleSpyModel.ChampionType">
               <MappingFragment StoreEntitySet="ChampionTypes">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Datatypes">
             <EntityTypeMapping TypeName="YordleSpyModel.Datatype">
               <MappingFragment StoreEntitySet="Datatypes">
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="format" ColumnName="format" />
                 <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="format" ColumnName="format" />
+                <ScalarProperty Name="type" ColumnName="type" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EnemyTips">
             <EntityTypeMapping TypeName="YordleSpyModel.EnemyTip">
               <MappingFragment StoreEntitySet="EnemyTips">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Hiddens">
             <EntityTypeMapping TypeName="YordleSpyModel.Hidden">
               <MappingFragment StoreEntitySet="Hidden">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="blockID" ColumnName="blockID" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemBlocks">
             <EntityTypeMapping TypeName="YordleSpyModel.ItemBlock">
               <MappingFragment StoreEntitySet="ItemBlocks">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="recmath" ColumnName="recmath" />
-                <ScalarProperty Name="recsteps" ColumnName="recsteps" />
-                <ScalarProperty Name="minsummonerlevel" ColumnName="minsummonerlevel" />
-                <ScalarProperty Name="maxsummonerlevel" ColumnName="maxsummonerlevel" />
-                <ScalarProperty Name="showifsummonerspell" ColumnName="showifsummonerspell" />
-                <ScalarProperty Name="hideifsummonerspell" ColumnName="hideifsummonerspell" />
-                <ScalarProperty Name="appendaftersection" ColumnName="appendaftersection" />
                 <ScalarProperty Name="recommendationKey" ColumnName="recommendationKey" />
+                <ScalarProperty Name="appendaftersection" ColumnName="appendaftersection" />
+                <ScalarProperty Name="hideifsummonerspell" ColumnName="hideifsummonerspell" />
+                <ScalarProperty Name="showifsummonerspell" ColumnName="showifsummonerspell" />
+                <ScalarProperty Name="maxsummonerlevel" ColumnName="maxsummonerlevel" />
+                <ScalarProperty Name="minsummonerlevel" ColumnName="minsummonerlevel" />
+                <ScalarProperty Name="recsteps" ColumnName="recsteps" />
+                <ScalarProperty Name="recmath" ColumnName="recmath" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ItemRecommendations">
             <EntityTypeMapping TypeName="YordleSpyModel.ItemRecommendation">
               <MappingFragment StoreEntitySet="ItemRecommendations">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="champion" ColumnName="champion" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="map" ColumnName="map" />
-                <ScalarProperty Name="mode" ColumnName="mode" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="customtag" ColumnName="customtag" />
-                <ScalarProperty Name="sortrank" ColumnName="sortrank" />
-                <ScalarProperty Name="extensionpage" ColumnName="extensionpage" />
-                <ScalarProperty Name="useobviouscheckmark" ColumnName="useobviouscheckmark" />
-                <ScalarProperty Name="custompanel" ColumnName="custompanel" />
                 <ScalarProperty Name="championKey" ColumnName="championKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="YordleSpyModel.Item">
-              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="custompanel" ColumnName="custompanel" />
+                <ScalarProperty Name="useobviouscheckmark" ColumnName="useobviouscheckmark" />
+                <ScalarProperty Name="extensionpage" ColumnName="extensionpage" />
+                <ScalarProperty Name="sortrank" ColumnName="sortrank" />
+                <ScalarProperty Name="customtag" ColumnName="customtag" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="map" ColumnName="map" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="champion" ColumnName="champion" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="item_name" ColumnName="item_name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LevelTips">
             <EntityTypeMapping TypeName="YordleSpyModel.LevelTip">
               <MappingFragment StoreEntitySet="LevelTips">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="label" ColumnName="label" />
-                <ScalarProperty Name="effect" ColumnName="effect" />
                 <ScalarProperty Name="spellID" ColumnName="spellID" />
+                <ScalarProperty Name="effect" ColumnName="effect" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MapImages">
+            <EntityTypeMapping TypeName="YordleSpyModel.MapImage">
+              <MappingFragment StoreEntitySet="MapImages">
+                <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="full" ColumnName="full" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maps">
+            <EntityTypeMapping TypeName="YordleSpyModel.Map">
+              <MappingFragment StoreEntitySet="Maps">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="mapname" ColumnName="mapname" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PassiveImages">
             <EntityTypeMapping TypeName="YordleSpyModel.PassiveImage">
               <MappingFragment StoreEntitySet="PassiveImages">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="full" ColumnName="full" />
-                <ScalarProperty Name="sprite" ColumnName="sprite" />
-                <ScalarProperty Name="group" ColumnName="group" />
-                <ScalarProperty Name="x" ColumnName="x" />
-                <ScalarProperty Name="y" ColumnName="y" />
-                <ScalarProperty Name="w" ColumnName="w" />
                 <ScalarProperty Name="h" ColumnName="h" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Queues">
-            <EntityTypeMapping TypeName="YordleSpyModel.Queue">
-              <MappingFragment StoreEntitySet="Queues">
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="full" ColumnName="full" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="map" ColumnName="map" />
-                <ScalarProperty Name="pickType" ColumnName="pickType" />
-                <ScalarProperty Name="gameType" ColumnName="gameType" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RecommendedItems">
             <EntityTypeMapping TypeName="YordleSpyModel.RecommendedItem">
               <MappingFragment StoreEntitySet="RecommendedItems">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="count" ColumnName="count" />
-                <ScalarProperty Name="hidecount" ColumnName="hidecount" />
                 <ScalarProperty Name="blockID" ColumnName="blockID" />
+                <ScalarProperty Name="hidecount" ColumnName="hidecount" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpellEffects">
             <EntityTypeMapping TypeName="YordleSpyModel.SpellEffect">
               <MappingFragment StoreEntitySet="SpellEffects">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="effect" ColumnName="effect" />
-                <ScalarProperty Name="effectburn" ColumnName="effectburn" />
                 <ScalarProperty Name="spellRankID" ColumnName="spellRankID" />
+                <ScalarProperty Name="effectburn" ColumnName="effectburn" />
+                <ScalarProperty Name="effect" ColumnName="effect" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpellImages">
             <EntityTypeMapping TypeName="YordleSpyModel.SpellImage">
               <MappingFragment StoreEntitySet="SpellImages">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="full" ColumnName="full" />
-                <ScalarProperty Name="sprite" ColumnName="sprite" />
-                <ScalarProperty Name="group" ColumnName="group" />
-                <ScalarProperty Name="x" ColumnName="x" />
-                <ScalarProperty Name="y" ColumnName="y" />
-                <ScalarProperty Name="w" ColumnName="w" />
                 <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="full" ColumnName="full" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SpellRanks">
             <EntityTypeMapping TypeName="YordleSpyModel.SpellRank">
               <MappingFragment StoreEntitySet="SpellRanks">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="rank" ColumnName="rank" />
-                <ScalarProperty Name="cooldown" ColumnName="cooldown" />
-                <ScalarProperty Name="cost" ColumnName="cost" />
-                <ScalarProperty Name="range" ColumnName="range" />
                 <ScalarProperty Name="spellID" ColumnName="spellID" />
+                <ScalarProperty Name="range" ColumnName="range" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="cooldown" ColumnName="cooldown" />
+                <ScalarProperty Name="rank" ColumnName="rank" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="YordleSpyModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Visibles">
             <EntityTypeMapping TypeName="YordleSpyModel.Visible">
               <MappingFragment StoreEntitySet="Visible">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="blockID" ColumnName="blockID" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Seasons">
-            <EntityTypeMapping TypeName="YordleSpyModel.Season">
-              <MappingFragment StoreEntitySet="Seasons">
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="ChampionSpells">
+            <EntityTypeMapping TypeName="YordleSpyModel.ChampionSpell">
+              <MappingFragment StoreEntitySet="ChampionSpells">
+                <ScalarProperty Name="championKey" ColumnName="championKey" />
+                <ScalarProperty Name="resource" ColumnName="resource" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="rangeburn" ColumnName="rangeburn" />
+                <ScalarProperty Name="maxammo" ColumnName="maxammo" />
+                <ScalarProperty Name="costtype" ColumnName="costtype" />
+                <ScalarProperty Name="vars" ColumnName="vars" />
+                <ScalarProperty Name="datavalues" ColumnName="datavalues" />
+                <ScalarProperty Name="cooldownburn" ColumnName="cooldownburn" />
+                <ScalarProperty Name="costburn" ColumnName="costburn" />
+                <ScalarProperty Name="maxrank" ColumnName="maxrank" />
+                <ScalarProperty Name="tooltip" ColumnName="tooltip" />
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemEffects">
+            <EntityTypeMapping TypeName="YordleSpyModel.ItemEffect">
+              <MappingFragment StoreEntitySet="ItemEffects">
+                <ScalarProperty Name="itemKey" ColumnName="itemKey" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemGolds">
+            <EntityTypeMapping TypeName="YordleSpyModel.ItemGold">
+              <MappingFragment StoreEntitySet="ItemGold">
+                <ScalarProperty Name="sell" ColumnName="sell" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="purchasable" ColumnName="purchasable" />
+                <ScalarProperty Name="base" ColumnName="base" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemImages">
+            <EntityTypeMapping TypeName="YordleSpyModel.ItemImage">
+              <MappingFragment StoreEntitySet="ItemImages">
+                <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="full" ColumnName="full" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="YordleSpyModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="depth" ColumnName="depth" />
+                <ScalarProperty Name="map12" ColumnName="map12" />
+                <ScalarProperty Name="map11" ColumnName="map11" />
+                <ScalarProperty Name="map10" ColumnName="map10" />
+                <ScalarProperty Name="tags" ColumnName="tags" />
+                <ScalarProperty Name="gold" ColumnName="gold" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="into" ColumnName="into" />
+                <ScalarProperty Name="plaintext" ColumnName="plaintext" />
+                <ScalarProperty Name="colloq" ColumnName="colloq" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemStats">
+            <EntityTypeMapping TypeName="YordleSpyModel.ItemStat">
+              <MappingFragment StoreEntitySet="ItemStats">
+                <ScalarProperty Name="itemKey" ColumnName="itemKey" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileIcons">
+            <EntityTypeMapping TypeName="YordleSpyModel.ProfileIcon">
+              <MappingFragment StoreEntitySet="ProfileIcons">
+                <ScalarProperty Name="h" ColumnName="h" />
+                <ScalarProperty Name="w" ColumnName="w" />
+                <ScalarProperty Name="y" ColumnName="y" />
+                <ScalarProperty Name="x" ColumnName="x" />
+                <ScalarProperty Name="group" ColumnName="group" />
+                <ScalarProperty Name="sprite" ColumnName="sprite" />
+                <ScalarProperty Name="full" ColumnName="full" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

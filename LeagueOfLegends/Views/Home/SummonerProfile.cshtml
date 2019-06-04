@@ -11,13 +11,67 @@
     //Initialize variables
     String accountID = (String)ViewData["AccountID"];
     Summoner summoner = (Summoner)ViewData["Summoner"];
+    ProfileIcon icon = (ProfileIcon)ViewData["ProfileIcon"];
+    List<SummonerLeague> leagues = (List<SummonerLeague>)ViewData["SummonerLeagues"];
+    List<ChampionSummary> bestChampions = (List<ChampionSummary>)ViewData["BestChampions"];
     MatchList matchList = (MatchList)ViewData["Matchlist"];
     Dictionary<long, MatchData> matchDictionary = (Dictionary<long, MatchData>)ViewData["MatchDictionary"];
+
+    //Set background image string
+    String background = Model[matchList.matches.ElementAt(0).champion].id + "_0.jpg";
 }
 
+<div class="summoner-profile-cover" style="background-image: url(/Images/Champions/Splash/@background);">
+    <div class="overlay" style="background-color: #000000a1;">
+        @{
+            String league = null;
+            String leagueFull = null;
+            if (leagues.Count() == 0)
+            {
+                league = "UNRANKED";
+                leagueFull = "unranked_1.png";
+            }
+            else
+            {
+                foreach (SummonerLeague element in leagues)
+                {
+                    if (element.queueType == "RANKED_SOLO_5x5")
+                    {
+                        league = element.tier + " " + element.rank;
+                        leagueFull = element.tier.ToLower() + "_1.png";
+                    }
+                }
+            }
+        }
+        <div id="summoner-header-block">
+            <img id="profile-icon" src="~/Images/ProfileIcons/@icon.full" />
+            <div class="name-and-level">
+                <div class="vertical-center-align">
+                    <h4>@summoner.name</h4>
+                    <h5>Level @summoner.summonerLevel</h5>
+                </div>
+            </div>
+        </div>
+        <div id="champion-masteries">
+            <div class="container">
+                <div class="row">
+                    @foreach (ChampionSummary championMastery in bestChampions)
+                    {
+                        <div class="col-sm">
+                            <img src="~/Images/Champions/Icon/@championMastery.ChampionImage.full" />
+                            <p>@championMastery.name</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @*<div id="summoner-rank-block">
+            <img src="~/Images/RankEmblems/@leagueFull" />
+            <h5>@league</h5>
+        </div>*@
+    </div>
+</div>
 <div class="body-main-container">
-    <h4 style="margin: 10px auto;">@summoner.name</h4>
-    <h5 style="margin: 10px auto;">Summoner Level: @summoner.summonerLevel</h5>
     <h5 style="margin: 10px auto;">Win Rate in Past 20 Games: @statsMatrix["winrate"]%</h5>
     <h5 style="margin: 10px auto;">Average Stats: @statsMatrix["kills"]/@statsMatrix["deaths"]/@statsMatrix["assists"]</h5>
     <h5 style="margin: 10px auto;">Average Minion Score: @statsMatrix["minionscore"]</h5>

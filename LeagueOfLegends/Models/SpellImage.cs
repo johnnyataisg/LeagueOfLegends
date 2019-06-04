@@ -20,7 +20,7 @@ namespace LeagueOfLegends.Models
             this.ChampionSpells = new HashSet<ChampionSpell>();
         }
     
-        public int id { get; set; }
+        public string id { get; set; }
         public string full { get; set; }
         public string sprite { get; set; }
         public string group { get; set; }

@@ -24,6 +24,5 @@ namespace LeagueOfLegends.Models.StaticDataModels
         public List<ChampionSpell> spells { get; set; }
         public ChampionPassive passive { get; set; }
         public List<ChampionRecommendation> recommended { get; set; }
-
     }
 }

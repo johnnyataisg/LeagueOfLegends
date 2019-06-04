@@ -18,11 +18,11 @@ namespace LeagueOfLegends.Models
         public string id { get; set; }
         public string name { get; set; }
         public string title { get; set; }
-        public int image { get; set; }
+        public Nullable<int> image { get; set; }
         public string lore { get; set; }
         public string blurb { get; set; }
         public string partype { get; set; }
-        public int passive { get; set; }
+        public Nullable<int> passive { get; set; }
     
         public virtual ChampionImage ChampionImage { get; set; }
         public virtual ChampionPassive ChampionPassive { get; set; }

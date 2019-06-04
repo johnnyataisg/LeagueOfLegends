@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using System.Data;
+using System.Data; 
 using System.Data.Entity;
 using System.Web.Security;
 using RestSharp;
@@ -48,6 +48,15 @@ namespace LeagueOfLegends.Controllers
                     return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
                 }
                 Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response.Content.ToString());
+                ProfileIcon icon = db.ProfileIcons.SingleOrDefault(row => row.id == summoner.profileIconId);
+
+                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summoner.id);
+                response = client.Execute();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                }
+                List<SummonerLeague> leagues = JsonConvert.DeserializeObject<List<SummonerLeague>>(response.Content.ToString());
 
                 //Get the 100 most recent games of this summoner
                 String accountID = summoner.accountId;
@@ -73,9 +82,27 @@ namespace LeagueOfLegends.Controllers
                     matchDictionary.Add(match.gameId, data);
                 }
 
+                //Look up Champion Masteries
+                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summoner.id);
+                response = client.Execute();
+                List<ChampionMastery> championMasteries = JsonConvert.DeserializeObject<List<ChampionMastery>>(response.Content.ToString());
+                List<ChampionSummary> bestChampions = new List<ChampionSummary>();
+                for (int i = 0; i < championMasteries.Count(); i++)
+                {
+                    if (i > 2)
+                    {
+                        break;
+                    }
+                    int championId = championMasteries.ElementAt(i).championId;
+                    bestChampions.Add(db.ChampionSummary.Include("ChampionImage").SingleOrDefault(row => row.key == championId));
+                }
+
                 ViewData["Summoner"] = summoner;
                 ViewData["Matchlist"] = matchList;
                 ViewData["AccountID"] = accountID;
+                ViewData["SummonerLeagues"] = leagues;
+                ViewData["BestChampions"] = bestChampions;
+                ViewData["ProfileIcon"] = icon;
                 ViewData["MatchDictionary"] = matchDictionary;
 
                 return View(this.championDictionary);
@@ -112,9 +139,10 @@ namespace LeagueOfLegends.Controllers
         public ActionResult ChampionData(String championID)
         {
             ChampionSummary champion = this.championDictionary2[championID];
+            ChampionStat championStats = db.ChampionStats.SingleOrDefault(row => row.championKey == champion.key);
             ChampionInfo championInfo = db.ChampionInfo.SingleOrDefault(row => row.championKey == champion.key);
             ChampionType[] championTypes = db.ChampionTypes.Where(row => row.championKey == champion.key).ToArray();
-            ChampionSpell[] championSpells = db.ChampionSpells.Include("SpellImage").Where(row => row.championKey == champion.key).OrderBy(row => row.image).ToArray();
+            ChampionSpell[] championSpells = db.ChampionSpells.Include("SpellImage").Where(row => row.championKey == champion.key).ToArray();
             String championTypeString = null;
             for (int i = 0; i < championTypes.Count(); i++)
             {
@@ -127,6 +155,8 @@ namespace LeagueOfLegends.Controllers
                     championTypeString += ", " + championTypes[i].description;
                 }
             }
+
+            ViewData["ChampionStats"] = championStats;
             ViewData["ChampionInfo"] = championInfo;
             ViewData["ChampionSpells"] = championSpells;
             ViewData["ChampionTypeString"] = championTypeString;

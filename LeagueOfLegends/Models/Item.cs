@@ -15,6 +15,17 @@ namespace LeagueOfLegends.Models
     public partial class Item
     {
         public int id { get; set; }
-        public string item_name { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public string colloq { get; set; }
+        public string plaintext { get; set; }
+        public string into { get; set; }
+        public Nullable<int> image { get; set; }
+        public Nullable<int> gold { get; set; }
+        public string tags { get; set; }
+        public Nullable<bool> map10 { get; set; }
+        public Nullable<bool> map11 { get; set; }
+        public Nullable<bool> map12 { get; set; }
+        public Nullable<int> depth { get; set; }
     }
 }

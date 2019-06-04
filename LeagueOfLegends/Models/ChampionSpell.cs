@@ -26,7 +26,7 @@ namespace LeagueOfLegends.Models
         public string costtype { get; set; }
         public string maxammo { get; set; }
         public string rangeburn { get; set; }
-        public Nullable<int> image { get; set; }
+        public string image { get; set; }
         public string resource { get; set; }
         public int championKey { get; set; }
     

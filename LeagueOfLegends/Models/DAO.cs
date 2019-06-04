@@ -167,7 +167,7 @@ namespace LeagueOfLegends.Models
             return entry.id;
         }
 
-        public int updateSpellImagesTable(StaticDataModels.SpellImage image)
+        public String updateSpellImagesTable(StaticDataModels.SpellImage image)
         {
             bool newRow = false;
             SpellImage entry = this.db.SpellImages.Where(row => row.full == image.full).FirstOrDefault();
