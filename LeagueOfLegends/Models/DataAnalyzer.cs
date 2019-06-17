@@ -10,17 +10,11 @@ namespace LeagueOfLegends.Models
 {
     public class DataAnalyzer
     {
-        private List<MatchData> matchDataList = new List<MatchData>();
+        private Dictionary<long, MatchData> matchDataList = new Dictionary<long, MatchData>();
 
-        public DataAnalyzer(MatchList matches, int listLength)
+        public DataAnalyzer(Dictionary<long, MatchData> matches)
         {
-            for (int i = 0; i < listLength; i++)
-            {
-                Match match = matches.matches.ElementAt(i);
-                RiotRestWrapper client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matches/" + match.gameId.ToString());
-                IRestResponse response = client.Execute();
-                matchDataList.Add(JsonConvert.DeserializeObject<MatchData>(response.Content.ToString()));
-            }
+            this.matchDataList = matches;
         }
 
         public Dictionary<String, double> calculateAverageStats(String accountID)
@@ -38,9 +32,9 @@ namespace LeagueOfLegends.Models
         {
             double wins = 0;
             double losses = 0;
-            foreach (MatchData matchData in this.matchDataList)
+            foreach (KeyValuePair<long, MatchData> matchData in this.matchDataList)
             {
-                if (matchData.getMatchResultForPlayer(accountID).Equals("Win"))
+                if (matchData.Value.getMatchResultForPlayer(accountID).Equals("Win"))
                 {
                     wins++;
                 }
@@ -57,9 +51,9 @@ namespace LeagueOfLegends.Models
         {
             double kills = 0;
             double i = 0;
-            foreach (MatchData matchData in this.matchDataList)
+            foreach (KeyValuePair<long, MatchData> matchData in this.matchDataList)
             {
-                kills += matchData.getKillsForPlayer(accountID);
+                kills += matchData.Value.getKillsForPlayer(accountID);
                 i++;
             }
             double averageKills = Math.Round(Convert.ToDouble(kills / i));
@@ -70,9 +64,9 @@ namespace LeagueOfLegends.Models
         {
             double deaths = 0;
             double i = 0;
-            foreach (MatchData matchData in this.matchDataList)
+            foreach (KeyValuePair<long, MatchData> matchData in this.matchDataList)
             {
-                deaths += matchData.getDeathsForPlayer(accountID);
+                deaths += matchData.Value.getDeathsForPlayer(accountID);
                 i++;
             }
             double averageDeaths = Math.Round(Convert.ToDouble(deaths / i));
@@ -83,9 +77,9 @@ namespace LeagueOfLegends.Models
         {
             double assists = 0;
             double i = 0;
-            foreach (MatchData matchData in this.matchDataList)
+            foreach (KeyValuePair<long, MatchData> matchData in this.matchDataList)
             {
-                assists += matchData.getAssistsForPlayer(accountID);
+                assists += matchData.Value.getAssistsForPlayer(accountID);
                 i++;
             }
             double averageAssists = Math.Round(Convert.ToDouble(assists / i));
@@ -96,9 +90,9 @@ namespace LeagueOfLegends.Models
         {
             double cs = 0;
             double i = 0;
-            foreach (MatchData matchData in this.matchDataList)
+            foreach (KeyValuePair<long, MatchData> matchData in this.matchDataList)
             {
-                cs += matchData.getMinionScoreForPlayer(accountID);
+                cs += matchData.Value.getMinionScoreForPlayer(accountID);
                 i++;
             }
             double averageCS = Math.Round(Convert.ToDouble(cs / i));
@@ -114,10 +108,10 @@ namespace LeagueOfLegends.Models
 
         private void loadPlayerStats(Dictionary<String, ParticipantPerformance> statsContainer, String accountID)
         {
-            foreach (MatchData data in this.matchDataList)
+            foreach (KeyValuePair<long, MatchData> matchData in this.matchDataList)
             {
-                ParticipantPerformance playerMatchStats = data.findPerformanceStatsForPlayer(accountID);
-                statsContainer.Add(data.gameId.ToString(), playerMatchStats);
+                ParticipantPerformance playerMatchStats = matchData.Value.findPerformanceStatsForPlayer(accountID);
+                statsContainer.Add(matchData.Value.gameId.ToString(), playerMatchStats);
             }
         }
     }

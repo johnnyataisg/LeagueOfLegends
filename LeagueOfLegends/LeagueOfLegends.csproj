@@ -139,6 +139,7 @@
     <Compile Include="Models\AllyTip.cs">
       <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Cache.cs" />
     <Compile Include="Models\ChampionImage.cs">
       <DependentUpon>YordleSpyDBModels.tt</DependentUpon>
     </Compile>
@@ -4967,6 +4968,7 @@
     <Content Include="Models\YordleSpyDBModels.edmx.diagram">
       <DependentUpon>YordleSpyDBModels.edmx</DependentUpon>
     </Content>
+    <Compile Include="Models\DTO\SummonerProfileDTO.cs" />
     <None Include="Properties\PublishProfiles\yordlespy - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

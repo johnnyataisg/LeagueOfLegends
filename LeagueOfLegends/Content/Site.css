@@ -28,6 +28,18 @@ hr {
     position: relative;
 }
 
+.fill {
+    height: 100%;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.mg-0 {
+    margin: 0;
+}
+
 /* Screen progress circle for long requests */
 .screenLoader {
     background-color: #00000063;
@@ -297,14 +309,36 @@ textarea {
 }
 
 #summoner-header-block {
-    height: 120px;
+    height: 150px;
     width: 500px;
+    background-color: #0e0835b3;
+    box-shadow: 0px 0px 8px 10px #00000069;
+    border-radius: 10px;
+    padding: 15px;
 }
 
 #champion-masteries {
     margin-top: 25px;
     height: 200px;
-    width: 50%;
+    width: 60%;
+    padding: 20px;
+    background-color: #0e0835b3;
+    box-shadow: 0px 0px 8px 10px #00000069;
+    border-radius: 10px;
+}
+
+.champion-mastery-image {
+    border-radius: 50%;
+    border: 2px solid #a5a555;
+    height: 100%;
+    float: left;
+}
+
+.champion-mastery-descriptions {
+    height: 100%;
+    width: 60%;
+    padding: 8%;
+    float: left;
 }
 
 #profile-icon {
@@ -316,7 +350,7 @@ textarea {
 
 .name-and-level {
     height: 100%;
-    width: 360px;
+    width: 200px;
     float: left;
     position: relative;
 }
@@ -330,8 +364,12 @@ textarea {
 }
 
 #summoner-rank-block {
-    text-align: center;
-    height: 200px;
+    height: 150px;
+    width: 500px;
+    background-color: #0e0835b3;
+    box-shadow: 0px 0px 8px 10px #00000069;
+    border-radius: 10px;
+    padding: 15px;
 }
 
 #summoner-rank-block img {

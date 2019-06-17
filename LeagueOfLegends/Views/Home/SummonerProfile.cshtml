@@ -1,24 +1,19 @@
-﻿@using LeagueOfLegends.Models
+﻿@using LeagueOfLegends.Models.DTO
+@using LeagueOfLegends.Models
 @model Dictionary<int, LeagueOfLegends.Models.ChampionSummary>
 
 @{
     ViewBag.Title = "Summoner Profile";
 
-    //Load the match history data for the past 20 games into a PlayerDataAnalyzer object and perform calculations
-    DataAnalyzer analyzer = new DataAnalyzer(ViewBag.matchList, 20);
-    Dictionary<String, double> statsMatrix = analyzer.calculateAverageStats((String)ViewData["AccountID"]);
+    //Initialize summoner profile variable
+    SummonerProfileDTO summonerProfile = (SummonerProfileDTO)ViewData["SummonerProfile"];
 
-    //Initialize variables
-    String accountID = (String)ViewData["AccountID"];
-    Summoner summoner = (Summoner)ViewData["Summoner"];
-    ProfileIcon icon = (ProfileIcon)ViewData["ProfileIcon"];
-    List<SummonerLeague> leagues = (List<SummonerLeague>)ViewData["SummonerLeagues"];
-    List<ChampionSummary> bestChampions = (List<ChampionSummary>)ViewData["BestChampions"];
-    MatchList matchList = (MatchList)ViewData["Matchlist"];
-    Dictionary<long, MatchData> matchDictionary = (Dictionary<long, MatchData>)ViewData["MatchDictionary"];
+    //Load the match history data for the past 20 games into a PlayerDataAnalyzer object and perform calculations
+    DataAnalyzer analyzer = new DataAnalyzer(summonerProfile.matchDictionary);
+    Dictionary<String, double> statsMatrix = analyzer.calculateAverageStats(summonerProfile.accountID);
 
     //Set background image string
-    String background = Model[matchList.matches.ElementAt(0).champion].id + "_0.jpg";
+    String background = Model[summonerProfile.matchList.matches.ElementAt(0).champion].id + "_0.jpg";
 }
 
 <div class="summoner-profile-cover" style="background-image: url(/Images/Champions/Splash/@background);">
@@ -26,14 +21,14 @@
         @{
             String league = null;
             String leagueFull = null;
-            if (leagues.Count() == 0)
+            if (summonerProfile.leagues.Count() == 0)
             {
                 league = "UNRANKED";
                 leagueFull = "unranked_1.png";
             }
             else
             {
-                foreach (SummonerLeague element in leagues)
+                foreach (SummonerLeague element in summonerProfile.leagues)
                 {
                     if (element.queueType == "RANKED_SOLO_5x5")
                     {
@@ -44,31 +39,42 @@
             }
         }
         <div id="summoner-header-block">
-            <img id="profile-icon" src="~/Images/ProfileIcons/@icon.full" />
+            <img id="profile-icon" src="~/Images/ProfileIcons/@summonerProfile.icon.full" />
             <div class="name-and-level">
                 <div class="vertical-center-align">
-                    <h4>@summoner.name</h4>
-                    <h5>Level @summoner.summonerLevel</h5>
+                    <h4 style="color: #72ff98 !important;">@summonerProfile.summoner.name</h4>
+                    <h5>Level @summonerProfile.summoner.summonerLevel</h5>
                 </div>
             </div>
         </div>
         <div id="champion-masteries">
-            <div class="container">
-                <div class="row">
-                    @foreach (ChampionSummary championMastery in bestChampions)
+            <div style="height: 25%;">
+                <h5 style="color: #4fd8c6 !important;">Best Champions</h5>
+            </div>
+            <div class="container" style="height: 55%;">
+                <div class="row fill">
+                    @for (int i = 0; i < summonerProfile.bestChampions.Count(); i++)
                     {
-                        <div class="col-sm">
-                            <img src="~/Images/Champions/Icon/@championMastery.ChampionImage.full" />
-                            <p>@championMastery.name</p>
+                        ChampionSummary champion = summonerProfile.bestChampions.ElementAt(i);
+                        ChampionMastery mastery = summonerProfile.championMasteries.ElementAt(i);
+                        <div class="col-sm fill">
+                            <img src="~/Images/Champions/Icon/@champion.ChampionImage.full" class="champion-mastery-image" />
+                            <div class="champion-mastery-descriptions position-relative">
+                                <div class="vertical-center-align">
+                                    <p class="mg-0">@champion.name</p>
+                                    <p class="mg-0">Level @mastery.championLevel</p>
+                                    <p class="mg-0">@mastery.championPoints Points</p>
+                                </div>
+                            </div>
                         </div>
                     }
                 </div>
             </div>
         </div>
-        @*<div id="summoner-rank-block">
+        <div id="summoner-rank-block">
             <img src="~/Images/RankEmblems/@leagueFull" />
             <h5>@league</h5>
-        </div>*@
+        </div>
     </div>
 </div>
 <div class="body-main-container">
@@ -79,10 +85,10 @@
 
     <table class="table table-hover">
         <tbody>
-            @foreach (Match match in matchList.matches)
+            @foreach (Match match in summonerProfile.matchList.matches)
             {
                 ChampionSummary champion = Model[match.champion];
-                String matchResult = matchDictionary[match.gameId].getMatchResultForPlayer(accountID);
+                String matchResult = summonerProfile.matchDictionary[match.gameId].getMatchResultForPlayer(summonerProfile.accountID);
                 <tr class="@(@matchResult == "Win" ? "table-info" : "table-danger")">
                     <td>
                         <a href=@Url.Action("MatchDetails", "Home", new { matchId = match.gameId, championId = match.champion })>

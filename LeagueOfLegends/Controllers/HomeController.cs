@@ -14,6 +14,7 @@ using System.Web.Security;
 using RestSharp;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
+using LeagueOfLegends.Models.DTO;
 
 namespace LeagueOfLegends.Controllers
 {
@@ -25,6 +26,11 @@ namespace LeagueOfLegends.Controllers
 
         public ActionResult Index(String message)
         {
+            if (Session["Cache"] == null)
+            {
+                Session["Cache"] = new Cache();
+            }
+
             ViewData["Message"] = message;
             return View();
         }
@@ -40,72 +46,88 @@ namespace LeagueOfLegends.Controllers
                     return RedirectToAction("Index", "Home", new { message = "Please enter the name of a summoner" });
                 }
 
-                //Get the summoner Riot API response object
-                RiotRestWrapper client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + sName);
-                IRestResponse response = client.Execute();
-                if (response.StatusCode != HttpStatusCode.OK)
-                {
-                    return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
-                }
-                Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response.Content.ToString());
-                ProfileIcon icon = db.ProfileIcons.SingleOrDefault(row => row.id == summoner.profileIconId);
+                Cache cache = (Cache)Session["Cache"];
 
-                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summoner.id);
-                response = client.Execute();
-                if (response.StatusCode != HttpStatusCode.OK)
+                //Use data in the cache if request has been made prior
+                if (cache.ContainsKey(sName))
                 {
-                    return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                    ViewData["SummonerProfile"] = cache.retrieveData(sName);
+                    return View(this.championDictionary);
                 }
-                List<SummonerLeague> leagues = JsonConvert.DeserializeObject<List<SummonerLeague>>(response.Content.ToString());
-
-                //Get the 100 most recent games of this summoner
-                String accountID = summoner.accountId;
-                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID + "?endIndex=20");
-                response = client.Execute();
-                if (response.StatusCode != HttpStatusCode.OK)
+                else
                 {
-                    return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
-                }
-                MatchList matchList = JsonConvert.DeserializeObject<MatchList>(response.Content.ToString());
+                    SummonerProfileDTO summonerProfile = new SummonerProfileDTO();
 
-                //Create a dictionary for all match data
-                Dictionary<long, MatchData> matchDictionary = new Dictionary<long, MatchData>();
-                foreach (Match match in matchList.matches)
-                {
-                    client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matches/" + match.gameId);
+                    //Get the summoner Riot API response object
+                    RiotRestWrapper client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + sName);
+                    IRestResponse response = client.Execute();
+                    if (response.StatusCode != HttpStatusCode.OK)
+                    {
+                        return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                    }
+                    Summoner summoner = JsonConvert.DeserializeObject<Summoner>(response.Content.ToString());
+                    ProfileIcon icon = db.ProfileIcons.SingleOrDefault(row => row.id == summoner.profileIconId);
+                    summonerProfile.summoner = summoner;
+                    summonerProfile.icon = icon;
+
+                    client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summoner.id);
                     response = client.Execute();
                     if (response.StatusCode != HttpStatusCode.OK)
                     {
                         return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
                     }
-                    MatchData data = JsonConvert.DeserializeObject<MatchData>(response.Content.ToString());
-                    matchDictionary.Add(match.gameId, data);
-                }
+                    List<SummonerLeague> leagues = JsonConvert.DeserializeObject<List<SummonerLeague>>(response.Content.ToString());
+                    summonerProfile.leagues = leagues;
 
-                //Look up Champion Masteries
-                client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summoner.id);
-                response = client.Execute();
-                List<ChampionMastery> championMasteries = JsonConvert.DeserializeObject<List<ChampionMastery>>(response.Content.ToString());
-                List<ChampionSummary> bestChampions = new List<ChampionSummary>();
-                for (int i = 0; i < championMasteries.Count(); i++)
-                {
-                    if (i > 2)
+                    //Get the 20 most recent games of this summoner
+                    String accountID = summoner.accountId;
+                    summonerProfile.accountID = accountID;
+                    client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/" + accountID + "?endIndex=20");
+                    response = client.Execute();
+                    if (response.StatusCode != HttpStatusCode.OK)
                     {
-                        break;
+                        return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
                     }
-                    int championId = championMasteries.ElementAt(i).championId;
-                    bestChampions.Add(db.ChampionSummary.Include("ChampionImage").SingleOrDefault(row => row.key == championId));
+                    MatchList matchList = JsonConvert.DeserializeObject<MatchList>(response.Content.ToString());
+                    summonerProfile.matchList = matchList;
+
+                    //Create a dictionary for all match data
+                    Dictionary<long, MatchData> matchDictionary = new Dictionary<long, MatchData>();
+                    foreach (Match match in matchList.matches)
+                    {
+                        client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/match/v4/matches/" + match.gameId);
+                        response = client.Execute();
+                        if (response.StatusCode != HttpStatusCode.OK)
+                        {
+                            return RedirectToAction("Index", "Home", new { message = "There was an error processing your request, most likely due to rate restrictions" });
+                        }
+                        MatchData data = JsonConvert.DeserializeObject<MatchData>(response.Content.ToString());
+                        matchDictionary.Add(match.gameId, data);
+                    }
+                    summonerProfile.matchDictionary = matchDictionary;
+
+                    //Look up Champion Masteries
+                    client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summoner.id);
+                    response = client.Execute();
+                    List<ChampionMastery> championMasteries = JsonConvert.DeserializeObject<List<ChampionMastery>>(response.Content.ToString());
+                    summonerProfile.championMasteries = championMasteries;
+                    List<ChampionSummary> bestChampions = new List<ChampionSummary>();
+                    for (int i = 0; i < championMasteries.Count(); i++)
+                    {
+                        if (i > 2)
+                        {
+                            break;
+                        }
+                        int championId = championMasteries.ElementAt(i).championId;
+                        bestChampions.Add(db.ChampionSummary.Include("ChampionImage").SingleOrDefault(row => row.key == championId));
+                    }
+                    summonerProfile.bestChampions = bestChampions;
+
+                    cache.addSummonerProfileToCache(sName, summonerProfile);
+
+                    ViewData["SummonerProfile"] = summonerProfile;
+                    return View(this.championDictionary);
                 }
-
-                ViewData["Summoner"] = summoner;
-                ViewData["Matchlist"] = matchList;
-                ViewData["AccountID"] = accountID;
-                ViewData["SummonerLeagues"] = leagues;
-                ViewData["BestChampions"] = bestChampions;
-                ViewData["ProfileIcon"] = icon;
-                ViewData["MatchDictionary"] = matchDictionary;
-
-                return View(this.championDictionary);
             }
             catch (Exception exception)
             {
