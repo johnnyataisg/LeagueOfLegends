@@ -15,6 +15,7 @@ footer {
 h1, h2, h3, h4, h5, h6 {
     color: white !important;
 }
+
 hr {
     border-top: 1px solid white;
     border-top: 1px solid white;
@@ -38,6 +39,10 @@ hr {
 
 .mg-0 {
     margin: 0;
+}
+
+.text-center {
+    text-align: center;
 }
 
 /* Screen progress circle for long requests */
@@ -301,7 +306,6 @@ textarea {
 }
 
 .summoner-profile-cover {
-    height: 500px;
     width: 100%;
     display: block;
     background-size: cover;
@@ -364,12 +368,13 @@ textarea {
 }
 
 #summoner-rank-block {
-    height: 150px;
-    width: 500px;
+    margin-top: 25px;
+    height: 280px;
+    width: 650px;
     background-color: #0e0835b3;
     box-shadow: 0px 0px 8px 10px #00000069;
     border-radius: 10px;
-    padding: 15px;
+    padding: 20px;
 }
 
 #summoner-rank-block img {

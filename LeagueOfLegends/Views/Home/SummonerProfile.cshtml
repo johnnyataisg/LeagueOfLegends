@@ -18,26 +18,6 @@
 
 <div class="summoner-profile-cover" style="background-image: url(/Images/Champions/Splash/@background);">
     <div class="overlay" style="background-color: #000000a1;">
-        @{
-            String league = null;
-            String leagueFull = null;
-            if (summonerProfile.leagues.Count() == 0)
-            {
-                league = "UNRANKED";
-                leagueFull = "unranked_1.png";
-            }
-            else
-            {
-                foreach (SummonerLeague element in summonerProfile.leagues)
-                {
-                    if (element.queueType == "RANKED_SOLO_5x5")
-                    {
-                        league = element.tier + " " + element.rank;
-                        leagueFull = element.tier.ToLower() + "_1.png";
-                    }
-                }
-            }
-        }
         <div id="summoner-header-block">
             <img id="profile-icon" src="~/Images/ProfileIcons/@summonerProfile.icon.full" />
             <div class="name-and-level">
@@ -72,8 +52,35 @@
             </div>
         </div>
         <div id="summoner-rank-block">
-            <img src="~/Images/RankEmblems/@leagueFull" />
-            <h5>@league</h5>
+            <div style="height: 15%;">
+                <h5 style="color: #4fd8c6 !important;">League Ranks</h5>
+            </div>
+            @{ 
+                RankedMapDto rankedMap = new RankedMapDto(summonerProfile.leagues);
+            }
+            <div class="row" style="height: 65%;">
+                <div class="col-sm text-center">
+                    <p class="mg-0">Ranked Solo 5v5</p>
+                    <img src="~/Images/RankEmblems/@rankedMap.GetRankedEmblemFor(RankedMapDto.RANKED_SOLO)" style="height: 100px;" />
+                    <p class="mg-0">@rankedMap.GetTierFor(RankedMapDto.RANKED_SOLO)</p>
+                    <p class="mg-0">@rankedMap.GetDivisionFor(RankedMapDto.RANKED_SOLO)</p>
+                    <p class="mg-0">@rankedMap.GetPointsFor(RankedMapDto.RANKED_SOLO) Points</p>
+                </div>
+                <div class="col-sm text-center">
+                    <p class="mg-0">Ranked Flex 5v5</p>
+                    <img src="~/Images/RankEmblems/@rankedMap.GetRankedEmblemFor(RankedMapDto.RANKED_FLEX)" style="height: 100px;" />
+                    <p class="mg-0">@rankedMap.GetTierFor(RankedMapDto.RANKED_FLEX)</p>
+                    <p class="mg-0">@rankedMap.GetDivisionFor(RankedMapDto.RANKED_FLEX)</p>
+                    <p class="mg-0">@rankedMap.GetPointsFor(RankedMapDto.RANKED_FLEX) Points</p>
+                </div>
+                <div class="col-sm text-center">
+                    <p class="mg-0">Ranked Flex 3v3</p>
+                    <img src="~/Images/RankEmblems/@rankedMap.GetRankedEmblemFor(RankedMapDto.RANKED_3V3)" style="height: 100px;" />
+                    <p class="mg-0">@rankedMap.GetTierFor(RankedMapDto.RANKED_3V3)</p>
+                    <p class="mg-0">@rankedMap.GetDivisionFor(RankedMapDto.RANKED_3V3)</p>
+                    <p class="mg-0">@rankedMap.GetPointsFor(RankedMapDto.RANKED_3V3) Points</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

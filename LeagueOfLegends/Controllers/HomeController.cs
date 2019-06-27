@@ -70,6 +70,7 @@ namespace LeagueOfLegends.Controllers
                     summonerProfile.summoner = summoner;
                     summonerProfile.icon = icon;
 
+                    //Get summoner ranks
                     client = new RiotRestWrapper("https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/" + summoner.id);
                     response = client.Execute();
                     if (response.StatusCode != HttpStatusCode.OK)
